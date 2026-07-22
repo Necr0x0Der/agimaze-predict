@@ -1,0 +1,2 @@
+{"input":"<MAP>\n+---+\n| S |\n+---+\n</MAP>\n<ACT>right</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+\n| S     |\n+---+---+\n</MAP>\n<ACT>right</ACT>","target":"<POS>(0, 1)</POS>"}
