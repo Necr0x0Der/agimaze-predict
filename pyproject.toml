@@ -12,7 +12,7 @@ license = {file = "LICENSE"}
 dependencies = []
 
 [project.optional-dependencies]
-torch = ["torch>=2.2"]
+torch = ["torch>=2.3"]
 test = ["pytest>=8"]
 
 [tool.setuptools.packages.find]
