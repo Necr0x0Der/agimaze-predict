@@ -1,8 +1,7 @@
 """Training entry point for the vanilla byte-Transformer baseline.
 
-The temporary random split is intentionally only a pipeline smoke-test split. It
-splits *examples*, not underlying maze instances, and must be replaced by a
-maze/source-level split before reporting generalization claims.
+Training and validation JSONL files are supplied separately. The dataset builder,
+not this script, owns the split so it can separate underlying maze instances.
 """
 
 from __future__ import annotations
@@ -36,7 +35,12 @@ def seed_everything(seed: int) -> None:
 def split_examples(
     examples: Sequence[PerStepExample], *, validation_fraction: float, seed: int
 ) -> tuple[list[PerStepExample], list[PerStepExample]]:
-    """Make a deterministic temporary random example-level train/validation split."""
+    """Reconstruct the legacy random split stored in old checkpoints.
+
+    New training runs must receive separate datasets and never call this helper.
+    It remains here only because ``evaluate_checkpoint`` supports the earlier
+    ``temporary_random_example_split`` checkpoint format.
+    """
 
     if len(examples) < 2:
         raise ValueError("at least two examples are required for a train/validation split")
@@ -81,10 +85,10 @@ def make_dataloader(
 def train(args: argparse.Namespace) -> dict[str, object]:
     seed_everything(args.seed)
     device = torch.device(args.device or ("cuda" if torch.cuda.is_available() else "cpu"))
-    dataset = PerStepMapActToPosDataset(args.dataset)
-    train_examples, validation_examples = split_examples(
-        list(dataset), validation_fraction=args.validation_fraction, seed=args.seed
-    )
+    train_dataset = PerStepMapActToPosDataset(args.train_dataset)
+    validation_dataset = PerStepMapActToPosDataset(args.validation_dataset)
+    train_examples = list(train_dataset)
+    validation_examples = list(validation_dataset)
 
     config = ByteTransformerConfig(
         context_length=args.context_length,
@@ -140,11 +144,12 @@ def train(args: argparse.Namespace) -> dict[str, object]:
         "format": "agimaze_predict.byte_transformer.v1",
         "model_config": asdict(config),
         "model_state_dict": model.state_dict(),
-        "dataset_path": str(Path(args.dataset).resolve()),
+        "datasets": {
+            "train_path": str(Path(args.train_dataset).resolve()),
+            "validation_path": str(Path(args.validation_dataset).resolve()),
+        },
         "split": {
-            "kind": "temporary_random_example_split",
-            "seed": args.seed,
-            "validation_fraction": args.validation_fraction,
+            "kind": "explicit_train_validation_datasets",
             "train_examples": len(train_examples),
             "validation_examples": len(validation_examples),
         },
@@ -161,12 +166,24 @@ def train(args: argparse.Namespace) -> dict[str, object]:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--dataset", type=Path, required=True, help="prepared per_step JSONL path")
+    parser.add_argument(
+        "--train-dataset",
+        type=Path,
+        required=True,
+        help="prepared per_step JSONL used for parameter updates",
+    )
+    parser.add_argument(
+        "--validation-dataset",
+        "--test-dataset",
+        dest="validation_dataset",
+        type=Path,
+        required=True,
+        help="held-out prepared per_step JSONL evaluated after each selected epoch",
+    )
     parser.add_argument("--output", type=Path, required=True, help="checkpoint output path")
     parser.add_argument("--overwrite", action="store_true", help="replace an existing checkpoint")
     parser.add_argument("--device", default=None, help="PyTorch device, default: cuda when available else cpu")
     parser.add_argument("--seed", type=int, default=0)
-    parser.add_argument("--validation-fraction", type=float, default=0.2)
     parser.add_argument("--epochs", type=int, default=50)
     parser.add_argument("--evaluate-every", type=int, default=5)
     parser.add_argument(

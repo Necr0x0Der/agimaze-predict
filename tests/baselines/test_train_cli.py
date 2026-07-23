@@ -1,0 +1,48 @@
+from __future__ import annotations
+
+import ast
+from pathlib import Path
+import unittest
+
+
+TRAIN_PATH = (
+    Path(__file__).parents[2]
+    / "src"
+    / "agimaze_predict"
+    / "baselines"
+    / "byte_transformer"
+    / "train.py"
+)
+
+
+class TrainCliDefinitionTest(unittest.TestCase):
+    def test_requires_explicit_train_and_validation_dataset_arguments(self) -> None:
+        """Inspect the parser definition without importing optional PyTorch."""
+
+        tree = ast.parse(TRAIN_PATH.read_text(encoding="utf-8"))
+        build_parser = next(
+            node for node in tree.body if isinstance(node, ast.FunctionDef) and node.name == "build_parser"
+        )
+        option_calls = [
+            node
+            for node in ast.walk(build_parser)
+            if isinstance(node, ast.Call)
+            and isinstance(node.func, ast.Attribute)
+            and node.func.attr == "add_argument"
+        ]
+        options = {
+            value.value
+            for call in option_calls
+            for value in call.args
+            if isinstance(value, ast.Constant) and isinstance(value.value, str)
+        }
+
+        self.assertIn("--train-dataset", options)
+        self.assertIn("--validation-dataset", options)
+        self.assertIn("--test-dataset", options)
+        self.assertNotIn("--dataset", options)
+        self.assertNotIn("--validation-fraction", options)
+
+
+if __name__ == "__main__":
+    unittest.main()

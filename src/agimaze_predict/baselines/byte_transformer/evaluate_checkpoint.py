@@ -42,13 +42,21 @@ def main() -> int:
     examples = list(PerStepMapActToPosDataset(args.dataset))
     if args.split == "validation":
         split = checkpoint.get("split", {})
-        if split.get("kind") != "temporary_random_example_split":
-            raise ValueError("checkpoint does not contain the temporary random example split metadata")
-        _, examples = split_examples(
-            examples,
-            validation_fraction=float(split["validation_fraction"]),
-            seed=int(split["seed"]),
-        )
+        if split.get("kind") == "temporary_random_example_split":
+            _, examples = split_examples(
+                examples,
+                validation_fraction=float(split["validation_fraction"]),
+                seed=int(split["seed"]),
+            )
+        elif split.get("kind") == "explicit_train_validation_datasets":
+            expected_path = Path(checkpoint["datasets"]["validation_path"]).resolve()
+            if args.dataset.resolve() != expected_path:
+                raise ValueError(
+                    "--split validation for this checkpoint requires --dataset to be its "
+                    f"saved validation dataset: {expected_path}"
+                )
+        else:
+            raise ValueError("checkpoint does not contain recognised validation split metadata")
 
     metrics = evaluate_examples(
         model,

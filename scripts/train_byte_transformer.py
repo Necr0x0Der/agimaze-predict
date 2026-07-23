@@ -3,7 +3,8 @@
 
 Example:
     python scripts/train_byte_transformer.py \
-      --dataset /path/to/per_step_map_act_to_pos.jsonl \
+      --train-dataset /path/to/train_per_step.jsonl \
+      --validation-dataset /path/to/test_per_step.jsonl \
       --output runs/byte-transformer-v0a.pt
 """
 
