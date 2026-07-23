@@ -130,7 +130,12 @@ def train(args: argparse.Namespace) -> dict[str, object]:
                 flush=True,
             )
 
-    metrics = evaluate_examples(model, validation_examples, device=device)
+    metrics = evaluate_examples(
+        model,
+        validation_examples,
+        device=device,
+        greedy_error_log=args.validation_greedy_error_log,
+    )
     checkpoint = {
         "format": "agimaze_predict.byte_transformer.v1",
         "model_config": asdict(config),
@@ -164,6 +169,15 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--validation-fraction", type=float, default=0.2)
     parser.add_argument("--epochs", type=int, default=50)
     parser.add_argument("--evaluate-every", type=int, default=5)
+    parser.add_argument(
+        "--validation-greedy-error-log",
+        type=Path,
+        default=None,
+        help=(
+            "after the final epoch, write every incorrect validation greedy POS "
+            "prediction to this UTF-8 text file"
+        ),
+    )
     parser.add_argument("--batch-size", type=int, default=32)
     parser.add_argument("--learning-rate", type=float, default=3e-4)
     parser.add_argument("--weight-decay", type=float, default=0.01)

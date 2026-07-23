@@ -52,6 +52,22 @@ python scripts/evaluate_byte_transformer.py \
   --checkpoint runs/byte-transformer-v0a.pt
 ```
 
+For semantic inspection of greedy failures, add `--greedy-error-log`:
+
+```bash
+python scripts/evaluate_byte_transformer.py \
+  --dataset /path/to/per_step_map_act_to_pos.jsonl \
+  --checkpoint runs/byte-transformer-v0a.pt \
+  --split validation \
+  --greedy-error-log runs/validation-errors.txt
+```
+
+The UTF-8 report contains one self-contained record per incorrect example:
+its `MAP` and `ACT`, expected `<POS>`, generated `<POS>`, and the first byte at
+which the target strings differ.  Training has the analogous
+`--validation-greedy-error-log` flag for its final validation pass.
+```
+
 The current train script uses a fixed-seed **random example-level** validation
 split only to exercise the full pipeline. It is explicitly stored in the
 checkpoint as `temporary_random_example_split`; it must be replaced with a split

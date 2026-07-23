@@ -20,6 +20,12 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--dataset", type=Path, required=True, help="prepared per_step JSONL path")
     parser.add_argument("--checkpoint", type=Path, required=True)
     parser.add_argument("--split", choices=("all", "validation"), default="all")
+    parser.add_argument(
+        "--greedy-error-log",
+        type=Path,
+        default=None,
+        help="write every incorrect greedy POS prediction to this UTF-8 text file",
+    )
     parser.add_argument("--device", default=None, help="PyTorch device, default: cuda when available else cpu")
     return parser
 
@@ -44,7 +50,12 @@ def main() -> int:
             seed=int(split["seed"]),
         )
 
-    metrics = evaluate_examples(model, examples, device=device)
+    metrics = evaluate_examples(
+        model,
+        examples,
+        device=device,
+        greedy_error_log=args.greedy_error_log,
+    )
     print(json.dumps({"checkpoint": str(args.checkpoint), "split": args.split, "metrics": metrics}, sort_keys=True))
     return 0
 

@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Iterable, Sequence
+from pathlib import Path
+from typing import Sequence
 
 import torch
 from torch import Tensor
@@ -10,6 +11,7 @@ from torch import Tensor
 from agimaze_predict.data.per_step import PerStepExample
 
 from .model import ByteTransformer, target_cross_entropy
+from .reporting import GreedyPrediction, write_greedy_error_log
 from .tokenizer import collate_byte_examples, serialize_example
 
 
@@ -47,6 +49,7 @@ def evaluate_examples(
     *,
     device: torch.device,
     batch_size: int = 64,
+    greedy_error_log: str | Path | None = None,
 ) -> dict[str, float]:
     """Compute target-byte NLL and non-teacher-forced exact POS-span accuracy."""
 
@@ -57,6 +60,7 @@ def evaluate_examples(
     total_loss = 0.0
     total_target_bytes = 0
     greedy_exact = 0
+    predictions: list[GreedyPrediction] = []
 
     for start in range(0, len(examples), batch_size):
         batch_examples = examples[start : start + batch_size]
@@ -76,8 +80,13 @@ def evaluate_examples(
             expected = bytes(item.token_ids[item.target_start :])
             predicted = greedy_target_bytes(model, prefix, target_bytes=len(expected))
             greedy_exact += int(predicted == expected)
+            if greedy_error_log is not None:
+                predictions.append(GreedyPrediction(example=example, predicted=predicted))
 
-    return {
+    metrics = {
         "target_byte_nll": total_loss / total_target_bytes,
         "greedy_exact_target_accuracy": greedy_exact / len(examples),
     }
+    if greedy_error_log is not None:
+        metrics["greedy_error_count"] = float(write_greedy_error_log(greedy_error_log, predictions))
+    return metrics
