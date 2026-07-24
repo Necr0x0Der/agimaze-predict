@@ -1,0 +1,28 @@
+# Canonical byte-Transformer training experiment on the simplest dataset.
+
+[data]
+train_files = ["../../../datasets/per_step/4x4-keys-rnd-train.jsonl"]
+validation_files = ["../../../datasets/per_step/4x4-keys-rnd-valid.jsonl"]
+
+[model]
+context_length = 512
+d_model = 256
+n_heads = 4
+n_layers = 4
+mlp_multiplier = 4
+dropout = 0.04
+
+[training]
+seed = 1111
+epochs = 250
+evaluate_every = 5
+batch_size = 32
+learning_rate = 0.0001
+weight_decay = 0.01
+grad_clip = 1.0
+
+[run]
+output = "../../../runs/byte-transformer-4x4-keys.pt"
+overwrite = true
+# device = "cuda"
+# validation_greedy_error_log = "../../../runs/validation-errors.txt"
