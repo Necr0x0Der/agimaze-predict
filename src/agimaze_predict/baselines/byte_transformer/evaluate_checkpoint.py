@@ -49,11 +49,21 @@ def main() -> int:
                 seed=int(split["seed"]),
             )
         elif split.get("kind") == "explicit_train_validation_datasets":
-            expected_path = Path(checkpoint["datasets"]["validation_path"]).resolve()
-            if args.dataset.resolve() != expected_path:
+            datasets = checkpoint["datasets"]
+            validation_paths = datasets.get("validation_paths")
+            if validation_paths is None:  # v1 checkpoints written before sharded datasets.
+                validation_paths = [datasets["validation_path"]]
+            expected_paths = {Path(path).resolve() for path in validation_paths}
+            actual_path = args.dataset.resolve()
+            if actual_path not in expected_paths:
                 raise ValueError(
                     "--split validation for this checkpoint requires --dataset to be its "
-                    f"saved validation dataset: {expected_path}"
+                    f"saved validation dataset: {', '.join(map(str, sorted(expected_paths)))}"
+                )
+            if len(expected_paths) > 1:
+                raise ValueError(
+                    "--split validation cannot evaluate one shard of a checkpoint trained with "
+                    "multiple validation datasets; run without --split validation to evaluate a shard"
                 )
         else:
             raise ValueError("checkpoint does not contain recognised validation split metadata")

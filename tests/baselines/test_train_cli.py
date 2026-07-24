@@ -16,7 +16,7 @@ TRAIN_PATH = (
 
 
 class TrainCliDefinitionTest(unittest.TestCase):
-    def test_requires_explicit_train_and_validation_dataset_arguments(self) -> None:
+    def test_supports_optional_config_and_dataset_shards(self) -> None:
         """Inspect the parser definition without importing optional PyTorch."""
 
         tree = ast.parse(TRAIN_PATH.read_text(encoding="utf-8"))
@@ -37,9 +37,11 @@ class TrainCliDefinitionTest(unittest.TestCase):
             if isinstance(value, ast.Constant) and isinstance(value.value, str)
         }
 
+        self.assertIn("--config", options)
         self.assertIn("--train-dataset", options)
         self.assertIn("--validation-dataset", options)
         self.assertIn("--test-dataset", options)
+        self.assertIn("--no-overwrite", options)
         self.assertNotIn("--dataset", options)
         self.assertNotIn("--validation-fraction", options)
 

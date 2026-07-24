@@ -1,7 +1,7 @@
 """Training entry point for the vanilla byte-Transformer baseline.
 
-Training and validation JSONL files are supplied separately. The dataset builder,
-not this script, owns the split so it can separate underlying maze instances.
+Training and validation JSONL shards are supplied separately. The dataset
+builder, not this script, owns the split so it can separate maze instances.
 """
 
 from __future__ import annotations
@@ -20,6 +20,7 @@ from torch.utils.data import DataLoader
 
 from agimaze_predict.data.per_step import PerStepExample, PerStepMapActToPosDataset
 
+from .config import resolve_training_arguments
 from .evaluate import evaluate_examples
 from .model import ByteTransformer, ByteTransformerConfig, target_cross_entropy
 from .tokenizer import collate_byte_examples
@@ -82,13 +83,20 @@ def make_dataloader(
     )
 
 
+def load_examples(paths: Sequence[Path]) -> list[PerStepExample]:
+    """Load prepared shards in the supplied deterministic order."""
+
+    examples: list[PerStepExample] = []
+    for path in paths:
+        examples.extend(PerStepMapActToPosDataset(path))
+    return examples
+
+
 def train(args: argparse.Namespace) -> dict[str, object]:
     seed_everything(args.seed)
     device = torch.device(args.device or ("cuda" if torch.cuda.is_available() else "cpu"))
-    train_dataset = PerStepMapActToPosDataset(args.train_dataset)
-    validation_dataset = PerStepMapActToPosDataset(args.validation_dataset)
-    train_examples = list(train_dataset)
-    validation_examples = list(validation_dataset)
+    train_examples = load_examples(args.train_datasets)
+    validation_examples = load_examples(args.validation_datasets)
 
     config = ByteTransformerConfig(
         context_length=args.context_length,
@@ -145,8 +153,8 @@ def train(args: argparse.Namespace) -> dict[str, object]:
         "model_config": asdict(config),
         "model_state_dict": model.state_dict(),
         "datasets": {
-            "train_path": str(Path(args.train_dataset).resolve()),
-            "validation_path": str(Path(args.validation_dataset).resolve()),
+            "train_paths": [str(Path(path).resolve()) for path in args.train_datasets],
+            "validation_paths": [str(Path(path).resolve()) for path in args.validation_datasets],
         },
         "split": {
             "kind": "explicit_train_validation_datasets",
@@ -165,52 +173,63 @@ def train(args: argparse.Namespace) -> dict[str, object]:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description=__doc__)
+    parser = argparse.ArgumentParser(description=__doc__, argument_default=argparse.SUPPRESS)
+    parser.add_argument("--config", type=Path, help="TOML training configuration file")
     parser.add_argument(
         "--train-dataset",
+        dest="train_datasets",
         type=Path,
-        required=True,
-        help="prepared per_step JSONL used for parameter updates",
+        action="append",
+        help="prepared per_step JSONL used for parameter updates; may be repeated",
     )
     parser.add_argument(
         "--validation-dataset",
         "--test-dataset",
-        dest="validation_dataset",
+        dest="validation_datasets",
         type=Path,
-        required=True,
-        help="held-out prepared per_step JSONL evaluated after each selected epoch",
+        action="append",
+        help="held-out prepared per_step JSONL evaluated after selected epochs; may be repeated",
     )
-    parser.add_argument("--output", type=Path, required=True, help="checkpoint output path")
-    parser.add_argument("--overwrite", action="store_true", help="replace an existing checkpoint")
-    parser.add_argument("--device", default=None, help="PyTorch device, default: cuda when available else cpu")
-    parser.add_argument("--seed", type=int, default=0)
-    parser.add_argument("--epochs", type=int, default=50)
-    parser.add_argument("--evaluate-every", type=int, default=5)
+    parser.add_argument("--output", type=Path, help="checkpoint output path")
+    overwrite_group = parser.add_mutually_exclusive_group()
+    overwrite_group.add_argument("--overwrite", action="store_true", help="replace an existing checkpoint")
+    overwrite_group.add_argument(
+        "--no-overwrite",
+        dest="overwrite",
+        action="store_false",
+        help="do not replace an existing checkpoint (overrides config)",
+    )
+    parser.add_argument("--device", help="PyTorch device, default: cuda when available else cpu")
+    parser.add_argument("--seed", type=int)
+    parser.add_argument("--epochs", type=int)
+    parser.add_argument("--evaluate-every", type=int)
     parser.add_argument(
         "--validation-greedy-error-log",
         type=Path,
-        default=None,
         help=(
             "after the final epoch, write every incorrect validation greedy POS "
             "prediction to this UTF-8 text file"
         ),
     )
-    parser.add_argument("--batch-size", type=int, default=32)
-    parser.add_argument("--learning-rate", type=float, default=3e-4)
-    parser.add_argument("--weight-decay", type=float, default=0.01)
-    parser.add_argument("--grad-clip", type=float, default=1.0)
-    parser.add_argument("--context-length", type=int, default=512)
-    parser.add_argument("--d-model", type=int, default=128)
-    parser.add_argument("--n-heads", type=int, default=4)
-    parser.add_argument("--n-layers", type=int, default=4)
-    parser.add_argument("--mlp-multiplier", type=int, default=4)
-    parser.add_argument("--dropout", type=float, default=0.0)
+    parser.add_argument("--batch-size", type=int)
+    parser.add_argument("--learning-rate", type=float)
+    parser.add_argument("--weight-decay", type=float)
+    parser.add_argument("--grad-clip", type=float)
+    parser.add_argument("--context-length", type=int)
+    parser.add_argument("--d-model", type=int)
+    parser.add_argument("--n-heads", type=int)
+    parser.add_argument("--n-layers", type=int)
+    parser.add_argument("--mlp-multiplier", type=int)
+    parser.add_argument("--dropout", type=float)
     return parser
 
 
 def main() -> int:
     parser = build_parser()
-    args = parser.parse_args()
+    try:
+        args = resolve_training_arguments(parser)
+    except (FileNotFoundError, ValueError) as exc:
+        parser.error(str(exc))
     if args.epochs <= 0 or args.evaluate_every <= 0 or args.batch_size <= 0:
         parser.error("epochs, evaluate-every, and batch-size must be positive")
     try:

@@ -71,8 +71,39 @@ its `MAP` and `ACT`, expected `<POS>`, generated `<POS>`, and the first byte at
 which the target strings differ. Training has the analogous
 `--validation-greedy-error-log` flag for its final validation pass.
 
-`--test-dataset` is accepted as an alias for `--validation-dataset`. The selected
-paths and example counts are stored in the checkpoint as
-`explicit_train_validation_datasets`. For `evaluate_byte_transformer.py --split
-validation`, pass the same validation/test JSONL path that was used for training;
-this is checked against the checkpoint metadata.
+`--test-dataset` is accepted as an alias for `--validation-dataset`. Both
+`--train-dataset` and `--validation-dataset` can be repeated to combine prepared
+JSONL shards in the supplied order. The selected paths and example counts are
+stored in the checkpoint as `explicit_train_validation_datasets`. For
+`evaluate_byte_transformer.py --split validation`, pass the same validation/test
+JSONL path that was used for a single-file validation run; this is checked against
+checkpoint metadata. For a sharded validation set, invoke evaluation without
+`--split validation` once per shard.
+
+### Reusable experiment configuration
+
+Training can instead be driven by an optional TOML configuration file:
+
+```bash
+python scripts/train_byte_transformer.py --config examples/byte_transformer_training.toml
+```
+
+See [`examples/byte_transformer_training.toml`](examples/byte_transformer_training.toml)
+for the complete canonical format. It keeps dataset shard lists under `[data]`,
+Transformer architecture under `[model]`, and optimizer/training settings under
+`[training]`. `[run]` contains the output path and runtime settings. Relative paths
+in the TOML are resolved relative to that file, not the current shell directory.
+
+All regular CLI options remain supported. Explicit CLI options override their TOML
+counterparts, for example:
+
+```bash
+python scripts/train_byte_transformer.py \
+  --config experiments/4x4.toml \
+  --learning-rate 0.0001 \
+  --epochs 100 \
+  --output runs/4x4-lr1e-4.pt
+```
+
+The old CLI-only invocation is fully supported. When a config uses `overwrite =
+true`, pass `--no-overwrite` to override it for one run.

@@ -1,0 +1,37 @@
+# Canonical byte-Transformer training experiment.
+# Paths are relative to this TOML file, so committed experiment configurations are
+# portable across working directories. Command-line options override these values.
+
+[data]
+# Combine any number of independently composed JSONL shards in the listed order.
+train_files = [
+  "../datasets/train/3x3-no-rivers-or-pits.jsonl",
+  "../datasets/train/4x4-no-rivers-or-pits.jsonl",
+  "../datasets/train/4x4-rivers-and-pits.jsonl",
+]
+# `test_files` is an alias for `validation_files`.
+test_files = ["../datasets/test/4x4-rivers-and-pits.jsonl"]
+
+[model]
+context_length = 512
+# Latent-code / Transformer hidden dimension. Must be divisible by n_heads.
+d_model = 128
+n_heads = 4
+n_layers = 4
+mlp_multiplier = 4
+dropout = 0.0
+
+[training]
+seed = 0
+epochs = 50
+evaluate_every = 5
+batch_size = 32
+learning_rate = 0.0003
+weight_decay = 0.01
+grad_clip = 1.0
+
+[run]
+output = "../runs/byte-transformer-v0a.pt"
+overwrite = false
+# device = "cuda"
+# validation_greedy_error_log = "../runs/validation-errors.txt"
