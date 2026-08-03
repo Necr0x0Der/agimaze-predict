@@ -50,6 +50,9 @@ The initial committed shards were collected from random-walk traces:
 | --- | ---: | ---: | ---: | ---: |
 | `3x3-keys-rnd` | 100 | 25 | 2,211 | 567 |
 | `4x4-keys-rnd` | 100 | 25 | 2,364 | 617 |
+| `3x3-rivers-rnd` | 100 | 25 | 1,875 | 480 |
+| `3x4-rivers-rnd` | 200 (two shards) | 25 | 4,058 | 542 |
+| `4x5-keys-rnd` | 300 (three shards) | 25 | 6,758 | 521 |
 
 The train and validation maze sets are separate. Example counts differ from maze
 counts because each random walk supplies multiple per-state transitions.

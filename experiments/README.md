@@ -1,8 +1,11 @@
 # Experiments
 
-### Per step datasets
+### Per-step datasets
 
-[add brief description on per step]
+Per-step experiments train a model to predict the next agent position from a rendered
+maze state and one requested action (`MAP + ACT → POS`). This isolates local movement
+geometry from multi-step planning; the JSONL schema, dataset families, and shard sizes
+are documented in the [datasets README](../datasets/README.md#per_step).
 
 ### Byte-Transformer Results
 
