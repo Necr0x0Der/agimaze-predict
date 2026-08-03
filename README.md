@@ -3,22 +3,27 @@
 Prediction-model baselines and shared loading utilities for prepared AGI Maze
 transition datasets.
 
-The repository intentionally has no dependency on the private `labyrinth` engine
-repository. A prepared dataset is supplied as an explicit local path.
+This repository complements [agimaze-bench](https://github.com/Necr0x0Der/agimaze-bench),
+which provides the LLM benchmarking harness, access to the
+[AGI Maze](https://agimaze.org) API, and the framework documentation. Here, the
+same framework is used to study models trained from scratch rather than pretrained
+LLMs: a compact, MNIST-like setting for controlled next-token-prediction experiments.
 
 ## Layout
 
 - `src/agimaze_predict/data/` — shared dataset contracts, parsers and loaders.
 - `src/agimaze_predict/baselines/` — reproducible reference models.
-- `src/agimaze_predict/experiments/` — reserved for future experimental
-  architectures; it is intentionally absent until there is code to place there.
+- `datasets/` — prepared datasets, grouped by format; see
+  [`datasets/README.md`](datasets/README.md).
+- `experiments/` — reproducible training configurations, grouped by model and
+  dataset type.
 - `scripts/` — thin command-line entry points.
 - `tests/` — loader and model tests with small committed fixtures only.
 
 ## Current prepared-data contract
 
-The first supported format is newline-delimited JSON (JSONL), emitted by
-`labyrinth/scripts/compose_dataset.py`. Every non-empty line must be exactly:
+The first supported format is newline-delimited JSON (JSONL). Every non-empty
+line must be exactly:
 
 ```json
 {"input":"<MAP>...</MAP>\n<ACT>right</ACT>","target":"<POS>(0, 1)</POS>"}
@@ -85,10 +90,10 @@ checkpoint metadata. For a sharded validation set, invoke evaluation without
 Training can instead be driven by an optional TOML configuration file:
 
 ```bash
-python scripts/train_byte_transformer.py --config examples/byte_transformer_training.toml
+python scripts/train_byte_transformer.py --config experiments/byte_transformer_example.toml
 ```
 
-See [`examples/byte_transformer_training.toml`](examples/byte_transformer_training.toml)
+See [`experiments/byte_transformer_example.toml`](experiments/byte_transformer_example.toml)
 for the complete canonical format. It keeps dataset shard lists under `[data]`,
 Transformer architecture under `[model]`, and optimizer/training settings under
 `[training]`. `[run]` contains the output path and runtime settings. Relative paths
@@ -99,11 +104,11 @@ counterparts, for example:
 
 ```bash
 python scripts/train_byte_transformer.py \
-  --config experiments/4x4.toml \
+  --config experiments/byte-transformer/per_step/4x4-keys.toml \
   --learning-rate 0.0001 \
   --epochs 100 \
   --output runs/4x4-lr1e-4.pt
 ```
 
-The old CLI-only invocation is fully supported. When a config uses `overwrite =
+The CLI-only invocation is fully supported. When a config uses `overwrite =
 true`, pass `--no-overwrite` to override it for one run.
