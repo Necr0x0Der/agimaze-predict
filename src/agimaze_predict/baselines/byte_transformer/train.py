@@ -114,6 +114,7 @@ def train(args: argparse.Namespace) -> dict[str, object]:
         context_length=config.context_length,
         shuffle=True,
     )
+    print("Training set size: ", len(train_loader.dataset))
 
     for epoch in range(1, args.epochs + 1):
         model.train()
