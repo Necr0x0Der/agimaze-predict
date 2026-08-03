@@ -8,7 +8,7 @@ makes it easy to combine selected shards in an experiment configuration.
 ```text
 datasets/
   per_step/   # MAP + ACT -> POS transition-prediction examples
-  seq/        # reserved for sequential trajectory examples
+  seq/        # MAP + ACT^h -> POS_h fixed-horizon examples
   txt/        # reserved for agent-visible text-observation examples
 ```
 
@@ -57,10 +57,29 @@ The initial committed shards were collected from random-walk traces:
 The train and validation maze sets are separate. Example counts differ from maze
 counts because each random walk supplies multiple per-state transitions.
 
+## `seq`
+
+`seq` contains fixed-horizon endpoint-composition examples. A record provides
+the initial rendered map and the first `h` actions of a trace; its target is the
+agent position after the `h`-th action. Unlike `per_step`, the model must
+compose all `h` transitions without receiving an intermediate position or an
+updated map.
+
+```json
+{"input":"<MAP>...</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 1)</POS>"}
+```
+
+The raw trace convention is `MAP, POS_0, ACT_1, POS_1, ...`; consequently a
+composer run with horizon `h` emits the position after action `ACT_h`. Generate
+training and validation shards separately with the `labyrinth` repository's
+`scripts/compose_seq_dataset.py --horizon <h>`. Trajectories are deliberately
+not deduplicated.
+
 ## Using shards in an experiment
 
-The byte-Transformer trainer accepts one or more JSONL shards per split. Paths
-in TOML experiment files are relative to the TOML file itself:
+The byte-Transformer trainer accepts one or more `per_step` or fixed-horizon
+`seq` JSONL shards per split. Paths in TOML experiment files are relative to the
+TOML file itself:
 
 ```toml
 [data]

@@ -1,5 +1,17 @@
 """Prepared AGI Maze dataset contracts and loaders."""
 
-from .per_step import PerStepExample, PerStepMapActToPosDataset, read_per_step_jsonl
+from .prepared import (
+    PreparedDatasetFormatError,
+    PreparedExample,
+    PreparedMapActionsToPosDataset,
+    collate_prepared_examples,
+    read_prepared_jsonl,
+)
 
-__all__ = ["PerStepExample", "PerStepMapActToPosDataset", "read_per_step_jsonl"]
+__all__ = [
+    "PreparedDatasetFormatError",
+    "PreparedExample",
+    "PreparedMapActionsToPosDataset",
+    "collate_prepared_examples",
+    "read_prepared_jsonl",
+]

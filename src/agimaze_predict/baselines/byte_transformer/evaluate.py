@@ -8,7 +8,7 @@ from typing import Sequence
 import torch
 from torch import Tensor
 
-from agimaze_predict.data.per_step import PerStepExample
+from agimaze_predict.data.prepared import PreparedExample
 
 from .model import ByteTransformer, target_cross_entropy
 from .reporting import GreedyPrediction, write_greedy_error_log
@@ -45,7 +45,7 @@ def greedy_target_bytes(model: ByteTransformer, prefix: bytes, *, target_bytes: 
 @torch.no_grad()
 def evaluate_examples(
     model: ByteTransformer,
-    examples: Sequence[PerStepExample],
+    examples: Sequence[PreparedExample],
     *,
     device: torch.device,
     batch_size: int = 64,

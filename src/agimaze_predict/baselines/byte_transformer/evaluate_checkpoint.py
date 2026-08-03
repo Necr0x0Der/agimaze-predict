@@ -8,7 +8,7 @@ from pathlib import Path
 
 import torch
 
-from agimaze_predict.data.per_step import PerStepMapActToPosDataset
+from agimaze_predict.data.prepared import PreparedMapActionsToPosDataset
 
 from .evaluate import evaluate_examples
 from .model import ByteTransformer, ByteTransformerConfig
@@ -17,7 +17,7 @@ from .train import split_examples
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--dataset", type=Path, required=True, help="prepared per_step JSONL path")
+    parser.add_argument("--dataset", type=Path, required=True, help="prepared MAP + ACT+ -> POS JSONL path")
     parser.add_argument("--checkpoint", type=Path, required=True)
     parser.add_argument("--split", choices=("all", "validation"), default="all")
     parser.add_argument(
@@ -39,7 +39,7 @@ def main() -> int:
 
     model = ByteTransformer(ByteTransformerConfig(**checkpoint["model_config"])).to(device)
     model.load_state_dict(checkpoint["model_state_dict"])
-    examples = list(PerStepMapActToPosDataset(args.dataset))
+    examples = list(PreparedMapActionsToPosDataset(args.dataset))
     if args.split == "validation":
         split = checkpoint.get("split", {})
         if split.get("kind") == "temporary_random_example_split":

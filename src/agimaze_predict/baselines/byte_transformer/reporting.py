@@ -10,14 +10,14 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Sequence
 
-from agimaze_predict.data.per_step import PerStepExample
+from agimaze_predict.data.prepared import PreparedExample
 
 
 @dataclass(frozen=True)
 class GreedyPrediction:
     """One fully decoded target, retained for human-readable error reports."""
 
-    example: PerStepExample
+    example: PreparedExample
     predicted: bytes
 
     @property
@@ -47,9 +47,9 @@ def _first_difference(expected: bytes, predicted: bytes) -> int | None:
 def write_greedy_error_log(path: str | Path, predictions: Sequence[GreedyPrediction]) -> int:
     """Write every incorrect greedy decode as a readable, self-contained record.
 
-    Each record preserves the model input MAP and ACT, then shows expected and
-    generated POS spans. This is intentionally plain UTF-8 text, so a person can
-    inspect errors with ordinary editor/search tools.
+    Each record preserves the model input MAP and action blocks, then shows the
+    expected and generated POS spans. This is intentionally plain UTF-8 text, so
+    a person can inspect errors with ordinary editor/search tools.
     """
 
     output = Path(path)

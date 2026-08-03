@@ -18,7 +18,7 @@ from torch import Tensor
 from torch.optim import AdamW
 from torch.utils.data import DataLoader
 
-from agimaze_predict.data.per_step import PerStepExample, PerStepMapActToPosDataset
+from agimaze_predict.data.prepared import PreparedExample, PreparedMapActionsToPosDataset
 
 from .config import resolve_training_arguments
 from .evaluate import evaluate_examples
@@ -34,8 +34,8 @@ def seed_everything(seed: int) -> None:
 
 
 def split_examples(
-    examples: Sequence[PerStepExample], *, validation_fraction: float, seed: int
-) -> tuple[list[PerStepExample], list[PerStepExample]]:
+    examples: Sequence[PreparedExample], *, validation_fraction: float, seed: int
+) -> tuple[list[PreparedExample], list[PreparedExample]]:
     """Reconstruct the legacy random split stored in old checkpoints.
 
     New training runs must receive separate datasets and never call this helper.
@@ -58,7 +58,7 @@ def split_examples(
 
 
 def _collator(context_length: int):
-    def collate(examples: Sequence[PerStepExample]) -> dict[str, Tensor]:
+    def collate(examples: Sequence[PreparedExample]) -> dict[str, Tensor]:
         batch = collate_byte_examples(examples, context_length=context_length)
         return {
             "input_ids": torch.tensor(batch["input_ids"], dtype=torch.long),
@@ -69,12 +69,12 @@ def _collator(context_length: int):
 
 
 def make_dataloader(
-    examples: Sequence[PerStepExample],
+    examples: Sequence[PreparedExample],
     *,
     batch_size: int,
     context_length: int,
     shuffle: bool,
-) -> DataLoader[PerStepExample]:
+) -> DataLoader[PreparedExample]:
     return DataLoader(
         examples,
         batch_size=batch_size,
@@ -83,12 +83,12 @@ def make_dataloader(
     )
 
 
-def load_examples(paths: Sequence[Path]) -> list[PerStepExample]:
+def load_examples(paths: Sequence[Path]) -> list[PreparedExample]:
     """Load prepared shards in the supplied deterministic order."""
 
-    examples: list[PerStepExample] = []
+    examples: list[PreparedExample] = []
     for path in paths:
-        examples.extend(PerStepMapActToPosDataset(path))
+        examples.extend(PreparedMapActionsToPosDataset(path))
     return examples
 
 
@@ -181,7 +181,7 @@ def build_parser() -> argparse.ArgumentParser:
         dest="train_datasets",
         type=Path,
         action="append",
-        help="prepared per_step JSONL used for parameter updates; may be repeated",
+        help="prepared MAP + ACT+ -> POS JSONL used for parameter updates; may be repeated",
     )
     parser.add_argument(
         "--validation-dataset",
@@ -189,7 +189,7 @@ def build_parser() -> argparse.ArgumentParser:
         dest="validation_datasets",
         type=Path,
         action="append",
-        help="held-out prepared per_step JSONL evaluated after selected epochs; may be repeated",
+        help="held-out prepared MAP + ACT+ -> POS JSONL evaluated after selected epochs; may be repeated",
     )
     parser.add_argument("--output", type=Path, help="checkpoint output path")
     overwrite_group = parser.add_mutually_exclusive_group()

@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Sequence
 
-from agimaze_predict.data.per_step import PerStepExample
+from agimaze_predict.data.prepared import PreparedExample
 
 BYTE_VOCAB_SIZE = 256
 PAD_TOKEN_ID = 256
@@ -21,7 +21,7 @@ class SerializedExample:
     target_start: int
 
 
-def serialize_example(example: PerStepExample) -> SerializedExample:
+def serialize_example(example: PreparedExample) -> SerializedExample:
     """Serialize one record as ``input + newline + target`` UTF-8 bytes.
 
     The target's first byte is the first byte of ``<POS>``.  No separate BOS/EOS
@@ -35,7 +35,7 @@ def serialize_example(example: PerStepExample) -> SerializedExample:
 
 
 def collate_byte_examples(
-    examples: Sequence[PerStepExample],
+    examples: Sequence[PreparedExample],
     *,
     context_length: int,
 ) -> dict[str, list[list[int]]]:

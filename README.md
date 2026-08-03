@@ -22,16 +22,19 @@ LLMs: a compact, MNIST-like setting for controlled next-token-prediction experim
 
 ## Current prepared-data contract
 
-The first supported format is newline-delimited JSON (JSONL). Every non-empty
-line must be exactly:
+Prepared datasets are newline-delimited JSON (JSONL). Every non-empty line must
+have exactly the keys `input` and `target`:
 
 ```json
 {"input":"<MAP>...</MAP>\n<ACT>right</ACT>","target":"<POS>(0, 1)</POS>"}
 ```
 
-`input` must be a `<MAP>...</MAP>` block followed by one newline and an
-`<ACT>...</ACT>` block. `target` must be one `<POS>...</POS>` block. Dataset
-metadata, raw traces and terminal tags are deliberately outside this contract.
+`input` must be a `<MAP>...</MAP>` block followed by one or more
+newline-separated `<ACT>...</ACT>` blocks. `target` must be one
+`<POS>...</POS>` block. Thus `per_step` is the one-action special case, while a
+fixed-horizon sequence example supplies several actions and predicts the final
+position. Dataset metadata, raw traces and terminal tags are deliberately
+outside this contract.
 
 The baseline accepts explicit local JSONL paths. Training requires separate train
 and held-out validation/test datasets, so dataset construction owns the split by
@@ -52,11 +55,11 @@ dataset:
 ```bash
 python -m pip install -e '.[torch]'
 python scripts/train_byte_transformer.py \
-  --train-dataset /path/to/train_per_step.jsonl \
-  --validation-dataset /path/to/test_per_step.jsonl \
+  --train-dataset /path/to/train.jsonl \
+  --validation-dataset /path/to/valid.jsonl \
   --output runs/byte-transformer-v0a.pt
 python scripts/evaluate_byte_transformer.py \
-  --dataset /path/to/test_per_step.jsonl \
+  --dataset /path/to/valid.jsonl \
   --checkpoint runs/byte-transformer-v0a.pt \
   --split validation
 ```
@@ -65,15 +68,15 @@ For semantic inspection of greedy failures, add `--greedy-error-log`:
 
 ```bash
 python scripts/evaluate_byte_transformer.py \
-  --dataset /path/to/test_per_step.jsonl \
+  --dataset /path/to/valid.jsonl \
   --checkpoint runs/byte-transformer-v0a.pt \
   --split validation \
   --greedy-error-log runs/validation-errors.txt
 ```
 
 The UTF-8 report contains one self-contained record per incorrect example:
-its `MAP` and `ACT`, expected `<POS>`, generated `<POS>`, and the first byte at
-which the target strings differ. Training has the analogous
+its `MAP` and action block(s), expected `<POS>`, generated `<POS>`, and the
+first byte at which the target strings differ. Training has the analogous
 `--validation-greedy-error-log` flag for its final validation pass.
 
 `--test-dataset` is accepted as an alias for `--validation-dataset`. Both
