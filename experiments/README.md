@@ -1,5 +1,28 @@
 # Experiments
 
+## Metrics
+
+For the per-step and seq experiments, **Result** is validation
+`greedy_exact_target_accuracy`: the fraction of examples for which greedy decoding
+produces the complete `<POS>...</POS>` target byte-for-byte. The target is the position
+after the requested one action (per-step) or after the complete requested action
+sequence (seq); it is not a per-byte accuracy.
+
+TXT trace experiments report three validation metrics:
+
+- `txt_byte_nll` — teacher-forced next-byte negative log-likelihood, averaged only
+  over bytes in `<TXT>...</TXT>` blocks. MAP/START, ACT, separators, and padding do
+  not contribute to loss.
+- `txt_span_exact_accuracy` — fraction of individual `<TXT>...</TXT>` blocks decoded
+  greedily and matched byte-for-byte, including the literal opening and closing tags.
+- `trace_all_txt_exact_accuracy` — fraction of depth-limited traces for which every
+  evaluated TXT block is exact.
+
+For TXT greedy metrics, after each generated TXT block is evaluated, its **ground-truth**
+version is appended before the next ACT/TXT pair. Thus later observations are evaluated
+with teacher-forced previous observations, rather than with accumulated generation
+errors.
+
 ## Per-step datasets
 
 Per-step experiments train a model to predict the next agent position from a rendered
@@ -55,7 +78,12 @@ are documented in the [datasets README](../datasets/README.md#per_step).
 
 ## Seq (n-step prediction) datasets
 
-[DESCRIPTION]
+Seq experiments predict the agent position after a fixed sequence of requested actions
+from the initial rendered maze (`MAP + ACT₁ + … + ACTₕ → POSₕ`). Unlike a rollout, no
+intermediate positions are supplied or predicted: the model must compose the full
+horizon from the map and all `h` actions. The data composer omits terminal transitions,
+whose out-of-bounds outcomes are not ordinary in-maze positions. The JSONL contract is
+shared with the per-step baseline; see the [datasets README](../datasets/README.md#seq).
 
 ### Byte-Transformer Results
 #### 3x3-keys-2step
@@ -123,3 +151,18 @@ are documented in the [datasets README](../datasets/README.md#per_step).
   - 3x4-rivers-2step-rnd-train2
 - Result: 0.881
 - Conclusion: even 2-step predicion with rivers is hard (even given 1-step prediction examples for the same traces)
+
+## Txt (sequential textual observations prediction) datasets
+
+TXT experiments use composed full trajectories with an initial `<MAP>` and `<START>`
+block followed by alternating `<ACT>` and `<TXT>` blocks. The TOML configuration selects
+exactly one initial context (`MAP` or `START`) and a maximum rollout depth. For each
+trajectory, the byte Transformer is trained to predict every `<TXT>...</TXT>` block in
+`ACT₁ → TXT₁ → ACT₂ → TXT₂ → …`, while loss is masked on the initial context and all ACT
+blocks. Previous TXT blocks are retained as ground-truth context when predicting later
+ones. This isolates sequential observation modelling while avoiding compounding errors
+from earlier generated observations.
+
+### Byte-Transformer Results
+
+_No TXT experiments have been recorded yet._

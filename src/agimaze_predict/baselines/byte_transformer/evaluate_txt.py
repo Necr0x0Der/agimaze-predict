@@ -78,6 +78,10 @@ def evaluate_txt_rollouts(
                 prefix += separator + encoded
             exact_traces += int(all_exact)
 
+    # ``txt_span_exact_accuracy`` is the exact-match rate across individual
+    # complete <TXT>...</TXT> blocks. ``trace_all_txt_exact_accuracy`` is the
+    # stricter rate across examples: every depth-limited TXT block in a trace
+    # must match exactly. Both use ground-truth prior TXT blocks as context.
     return {
         "txt_byte_nll": total_loss / total_target_bytes,
         "txt_span_exact_accuracy": exact_spans / spans,
