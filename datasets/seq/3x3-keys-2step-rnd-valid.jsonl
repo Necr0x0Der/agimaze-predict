@@ -1,0 +1,1000 @@
+{"input":"<MAP>\n+---+---+---+\n|           |\n+   +   +   +\n| S       T |\n+   +   +---+\n|         K |\n+   +---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +---+   +\n|     T     |\n+   +   +   +\n|         S |\n+   +---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +---+\n|         S |\n+   +   +   +\n| K         |\n+---+---+   +\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|            \n+   +   +---+\n|     S     |\n+   +   +   +\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         T |\n+---+   +   +\n|           |\n+   +   +   +\n| K       S |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S         |\n+   +   +   +\n|     T |   |\n+   +   +   +\n          K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T   K |\n+   +   +   +\n|           |\n+   +   +---+\n|     S     |\n+   +---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       T |\n+   +   +---+\n|         K |\n+   +   +   +\n|           |\n+   +---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n|           |\n+   +   +   +\n|     S |   |\n+   +   +   +\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|   |       |\n+   +   +   +\n| K       S |\n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|           |\n+   +   +   +\n| T     | K |\n+   +   +   +\n|     S     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          S |\n+   +   +   +\n|     T     |\n+   +---+   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S         |\n+   +   +   +\n          T |\n+   +   +---+\n|         K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n| S         |\n+   +   +   +\n        | K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n| K         |\n+   +   +   +\n|   | S     |\n+---+---+   +\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n|     S     |\n+   +---+   +\n|           |\n+   +   +   +\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S | T     |\n+   +   +   +\n|         K |\n+   +   +   +\n            |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     S | T |\n+   +   +   +\n            |\n+   +   +   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S          \n+   +   +---+\n|           |\n+   +   +   +\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+---+   +   +\n|         T |\n+   +   +   +\n|     S     |\n+   +---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|         S |\n+   +   +---+\n|           |\n+   +   +   +\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n|           |\n+   +   +   +\n| K | S     |\n+---+---+   +\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|         S |\n+   +   +   +\n|           |\n+   +   +---+\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n|   |     S |\n+   +   +   +\n| K          \n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S          \n+---+   +   +\n| T         |\n+   +   +   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n          K |\n+   +   +   +\n| S     |   |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +   +   +\n| T          \n+---+   +   +\n| S         |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       T |\n+   +---+   +\n|           |\n+   +   +   +\n          K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|           |\n+   +   +   +\n| S         |\n+   +   +   +\n|     T | K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|           |\n+   +   +   +\n| K       S |\n+   +---+   +\n| T          \n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n|           |\n+   +   +   +\n|     S     |\n+   +   +   +\n| T |     K |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +---+   +\n|            \n+   +   +   +\n| T       S |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +---+   +\n          T |\n+   +   +   +\n|     S     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|           |\n+   +   +   +\n| K     | S |\n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       T |\n+   +   +   +\n|           |\n+   +   +---+\n|         K |\n+   +---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +---+\n|         K |\n+   +   +   +\n| S         |\n+---+   +---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +---+   +\n|     S     |\n+   +   +   +\n| K         |\n+---+---+   +\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         K |\n+   +   +   +\n| S         |\n+   +   +   +\n|     T |   |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S     | T |\n+   +   +   +\n          K |\n+   +   +   +\n|           |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+---+   +   +\n|            \n+   +   +   +\n| T       S |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|   |     S |\n+   +   +   +\n| K         |\n+   +   +   +\n|         T |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n    |     K |\n+   +   +   +\n|     T     |\n+   +   +   +\n| S         |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +---+   +\n| S          \n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +---+   +\n            |\n+   +   +   +\n| S       T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n| S     |   |\n+   +   +   +\n|           |\n+   +   +   +\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|            \n+   +   +   +\n|     S     |\n+   +   +   +\n| T |     K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n      S     |\n+---+   +   +\n|         T |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S |     K |\n+   +   +   +\n|           |\n+   +   +   +\n| T          \n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|   |     S |\n+   +   +   +\n|     T     |\n+   +   +   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n|            \n+---+   +   +\n| K       S |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+---+   +   +\n          T |\n+   +   +   +\n| S         |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T | K |\n+   +   +   +\n|           |\n+   +   +   +\n|     S     |\n+---+---+   +\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n            |\n+   +   +   +\n| S     | K |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n      S     |\n+   +   +   +\n|         T |\n+   +---+   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S     | T |\n+   +   +   +\n|           |\n+   +   +   +\n|         K |\n+   +---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +---+   +\n| S         |\n+   +   +   +\n|         T |\n+   +---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S          \n+   +   +   +\n|           |\n+   +   +   +\n| T |     K |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n| S         |\n+---+   +   +\n|         T |\n+   +   +   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|            \n+   +   +   +\n| T       S |\n+   +   +---+\n|         K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S | T     |\n+   +   +   +\n|         K |\n+   +   +   +\n|           |\n+   +---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|         S |\n+   +   +   +\n| T         |\n+   +   +---+\n|         K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+---+   +   +\n| K          \n+   +   +   +\n|         S |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n|           |\n+---+   +   +\n|     S     |\n+   +   +   +\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n|            \n+---+   +   +\n| K       S |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n|         S |\n+   +   +   +\n| K     |    \n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|       | K |\n+   +   +   +\n|     S     |\n+   +   +   +\n| T         |\n+---+---+   +\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   |     S |\n+   +   +   +\n|     T     |\n+   +   +   +\n| K         |\n+---+---+   +\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n|   |       |\n+   +   +   +\n| T   S      \n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n            |\n+   +   +   +\n|     T | K |\n+   +   +   +\n| S         |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +---+   +\n| K       S |\n+   +   +   +\n|           |\n+---+   +---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     S      \n+   +   +   +\n| T         |\n+   +   +   +\n|   |     K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +   +   +\n| T     |    \n+   +   +   +\n|         S |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       K |\n+   +   +   +\n|           |\n+   +---+   +\n| T         |\n+---+---+   +\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|           |\n+   +   +   +\n| T       S |\n+   +   +---+\n|         K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +---+\n| S         |\n+   +   +   +\n|         K |\n+   +---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n| T         |\n+   +   +   +\n|   | S      \n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|   |       |\n+   +   +   +\n| K       S |\n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+---+   +   +\n          T |\n+   +   +   +\n| S         |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n|     S     |\n+   +---+   +\n|           |\n+   +   +   +\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         K |\n+   +---+   +\n| S         |\n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     S     |\n+   +   +   +\n          T |\n+   +---+   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       T |\n+   +   +   +\n|           |\n+   +   +---+\n| K          \n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n        | K |\n+   +   +   +\n| S         |\n+   +   +   +\n|         T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +   +\n            |\n+   +   +   +\n| S |     K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n|           |\n+---+   +   +\n| T       S |\n+   +   +   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n| K          \n+   +---+   +\n|         S |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n            |\n+   +   +   +\n|     T | S |\n+   +   +   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   |     K |\n+   +   +   +\n|     S     |\n+   +   +   +\n|         T |\n+   +---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +   +---+\n|            \n+   +   +   +\n| T       S |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|       | T |\n+   +   +   +\n            |\n+   +   +   +\n| S       K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n| S         |\n+   +   +   +\n|       | K |\n+   +   +   +\n| T         |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +   +   +\n| T          \n+   +---+   +\n|     S     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +---+\n          T |\n+   +   +   +\n|     S     |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|         S |\n+   +   +   +\n|           |\n+   +   +   +\n| T |     K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|   |       |\n+   +   +   +\n| K       S |\n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|         S |\n+---+   +   +\n| K         |\n+   +   +   +\n|         T |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         S |\n+   +   +   +\n|     T     |\n+   +---+   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n|           |\n+---+   +   +\n|     S     |\n+   +   +   +\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +   +---+\n            |\n+   +   +   +\n|     S   T |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +---+   +\n|     T     |\n+   +   +   +\n| S          \n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n        | K |\n+   +   +   +\n|     S     |\n+   +   +   +\n|         T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|       | S |\n+   +   +   +\n| K         |\n+   +   +   +\n|         T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   | T     |\n+   +   +   +\n|            \n+   +   +   +\n| K       S |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +---+\n| T       S |\n+   +   +   +\n|           |\n+---+   +---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S         |\n+   +   +   +\n|   | T     |\n+   +   +   +\n|         K |\n+   +---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|           |\n+   +   +   +\n| S       K |\n+   +   +---+\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         S |\n+   +   +   +\n|            \n+   +   +   +\n| K | T     |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n|           |\n+   +   +   +\n|     S     |\n+   +   +---+\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n| S         |\n+   +   +   +\n|         K |\n+   +   +   +\n|     T |   |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +---+   +\n| S         |\n+   +   +   +\n          K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+---+   +   +\n| T          \n+   +   +   +\n|     S     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|       | K |\n+   +   +   +\n| T         |\n+   +   +   +\n|     S      \n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +   +\n| K         |\n+   +   +   +\n|   |     S |\n+---+   +---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+---+   +   +\n|         S |\n+   +   +   +\n| K         |\n+---+---+   +\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +   +\n| K         |\n+   +   +   +\n|   | S     |\n+---+---+   +\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n            |\n+   +   +   +\n| S     | K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +   +\n| K         |\n+---+   +   +\n|         S |\n+---+   +---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|         S |\n+   +   +   +\n| T         |\n+---+   +   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +---+   +\n| S       T |\n+   +   +   +\n|           |\n+   +---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   | T     |\n+   +   +   +\n| K         |\n+   +   +   +\n|         S |\n+---+   +---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T | S |\n+   +   +   +\n|            \n+   +   +   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +---+   +\n| S         |\n+   +   +   +\n          T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|         S |\n+   +   +   +\n| T |       |\n+   +   +   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n|         S |\n+   +   +---+\n| K          \n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|           |\n+   +   +   +\n|         K |\n+   +   +---+\n| T       S |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S     | T |\n+   +   +   +\n            |\n+   +   +   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   |     K |\n+   +   +   +\n| T         |\n+   +   +   +\n|     S     |\n+---+---+   +\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     S | T |\n+   +   +   +\n            |\n+   +   +   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n| T         |\n+   +   +---+\n|     S     |\n+---+---+   +\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K | T |\n+   +   +   +\n|           |\n+   +   +   +\n|         S |\n+---+   +---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n|           |\n+---+   +   +\n|     S     |\n+   +   +   +\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       T |\n+   +   +   +\n|   |       |\n+   +   +   +\n          K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|         S |\n+   +---+   +\n|           |\n+   +   +   +\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   | T     |\n+   +   +   +\n            |\n+   +   +   +\n| S       K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+---+   +   +\n      S     |\n+   +   +   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n    |     K |\n+   +   +   +\n|     S     |\n+   +   +   +\n|         T |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          K |\n+   +---+   +\n| S         |\n+   +   +   +\n|         T |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n      S | T |\n+   +   +   +\n|           |\n+   +   +   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+---+   +   +\n| S          \n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   | K     |\n+   +   +   +\n|         S |\n+   +   +   +\n| T         |\n+---+---+   +\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +   +\n| K | S     |\n+   +   +   +\n|           |\n+---+---+   +\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S         |\n+   +   +   +\n|            \n+   +   +   +\n| T | K     |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         S |\n+   +   +   +\n|     T     |\n+   +   +   +\n| K     |   |\n+---+---+   +\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n            |\n+   +   +---+\n| S       T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|           |\n+   +   +   +\n|     T   S |\n+   +---+   +\n| K          \n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          T |\n+   +   +   +\n|           |\n+   +   +   +\n| S |     K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     S      \n+   +   +---+\n|           |\n+   +   +   +\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|         S |\n+   +   +   +\n| K |       |\n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +   +   +\n| T         |\n+   +---+   +\n|         S |\n+---+   +---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|           |\n+   +   +   +\n| S         |\n+---+   +   +\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|         S |\n+   +   +   +\n| K         |\n+---+   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +   +   +\n| T |       |\n+   +   +   +\n|         S |\n+---+   +---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n      S     |\n+   +   +   +\n|           |\n+   +   +   +\n| T     | K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n| S         |\n+   +   +   +\n|           |\n+---+   +   +\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +---+\n| K          \n+   +   +   +\n|         S |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n|           |\n+   +   +   +\n|         S |\n+   +   +---+\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     S      \n+   +   +   +\n|           |\n+   +   +---+\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         K |\n+   +   +---+\n|         S |\n+   +   +   +\n| T         |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n          S |\n+   +---+   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +---+   +\n| T          \n+   +   +   +\n|         S |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +   +   +\n|         T |\n+   +   +---+\n|     S     |\n+   +---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          K |\n+   +   +   +\n|     S     |\n+   +   +   +\n|       | T |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n| T     |   |\n+   +   +   +\n|     S      \n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n      S     |\n+   +   +   +\n|         T |\n+   +   +---+\n| K         |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +---+\n            |\n+   +   +   +\n| S       T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n| T         |\n+   +---+   +\n|     S     |\n+---+---+   +\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     S     |\n+   +   +   +\n            |\n+   +   +---+\n|     K   T |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n| K |        \n+   +   +   +\n|         S |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +   +\n|     S     |\n+   +   +---+\n          K |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   | T     |\n+   +   +   +\n| K         |\n+   +   +   +\n|         S |\n+---+   +---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +   +\n|           |\n+   +   +   +\n| K | S     |\n+---+---+   +\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+---+   +   +\n| T          \n+   +   +   +\n|     S     |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +---+\n| K         |\n+   +   +   +\n|         S |\n+---+   +---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   |     K |\n+   +   +   +\n|     S     |\n+   +   +   +\n| T          \n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|            \n+   +   +   +\n|         S |\n+   +   +---+\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +---+   +\n            |\n+   +   +   +\n| S       T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          K |\n+   +---+   +\n|           |\n+   +   +   +\n| T       S |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +---+   +\n| K       S |\n+   +   +   +\n|           |\n+---+---+   +\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n|           |\n+   +   +   +\n| K | S     |\n+---+---+   +\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     S      \n+   +   +---+\n|           |\n+   +   +   +\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   | S      \n+   +   +   +\n| T         |\n+   +   +   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|         S |\n+   +   +   +\n|           |\n+   +   +   +\n|     K | T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +   +   +\n          T |\n+   +   +   +\n|     S |   |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n| S         |\n+   +   +   +\n|     T     |\n+---+   +   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+---+   +   +\n| T         |\n+   +   +   +\n|     S     |\n+---+---+   +\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|            \n+   +   +   +\n| T       S |\n+   +   +---+\n|         K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         S |\n+   +   +   +\n| K          \n+   +   +   +\n|   | T     |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|           |\n+   +   +   +\n|     S     |\n+---+   +   +\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +   +   +\n|       |    \n+   +   +   +\n| T       S |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|           |\n+   +   +   +\n|     S |   |\n+   +   +   +\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S |     K |\n+   +   +   +\n            |\n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|       | K |\n+   +   +   +\n| S         |\n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n            |\n+   +   +---+\n| S       T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +   +\n| K         |\n+---+   +   +\n|     S      \n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|   |       |\n+   +   +   +\n| K       S |\n+   +   +   +\n|         T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n| S         |\n+---+   +   +\n|           |\n+   +   +   +\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          K |\n+   +   +   +\n| S         |\n+   +   +   +\n|       | T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +   +\n| K         |\n+   +   +   +\n|   |     S |\n+---+   +---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n| S         |\n+   +   +   +\n|       | K |\n+   +---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +---+   +\n|            \n+   +   +   +\n| T       S |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n|     S     |\n+   +   +   +\n| T     |   |\n+   +   +   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          T |\n+   +   +   +\n| S         |\n+   +   +   +\n|   | K     |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n| S         |\n+   +   +   +\n|         K |\n+   +   +   +\n| T     |   |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   |     T |\n+   +   +   +\n| S         |\n+   +   +   +\n          K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|     S     |\n+   +---+   +\n|           |\n+   +   +   +\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          T |\n+   +   +   +\n|     S | K |\n+   +   +   +\n|           |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         S |\n+   +   +   +\n|     T     |\n+   +   +   +\n| K     |    \n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T | S |\n+   +   +   +\n|            \n+   +   +   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S     | T |\n+   +   +   +\n|           |\n+   +   +   +\n          K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n| S         |\n+---+   +   +\n| K         |\n+   +   +   +\n|         T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n| T     |   |\n+   +   +   +\n|     S      \n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n|           |\n+   +   +   +\n| S | K     |\n+   +   +   +\n|         T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n            |\n+   +   +---+\n| S       T |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +---+   +\n| T         |\n+   +   +   +\n|     S     |\n+---+---+   +\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K   T |\n+   +   +---+\n            |\n+   +   +   +\n|     S     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         K |\n+   +   +---+\n|         T |\n+   +   +   +\n| S         |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n|   |       |\n+   +   +   +\n| T       S |\n+   +   +   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n      S     |\n+---+   +   +\n|         T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +---+   +\n          S |\n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          T |\n+   +   +   +\n|     S     |\n+---+   +   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         S |\n+   +   +   +\n|   | T     |\n+   +   +   +\n| K          \n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n| S         |\n+   +   +   +\n|   |     K |\n+   +---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n| S         |\n+   +   +   +\n|         T |\n+   +   +   +\n| K |       |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|       | S |\n+   +   +   +\n|           |\n+   +   +   +\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +   +   +\n| T |        \n+   +   +   +\n|         S |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       T |\n+   +   +---+\n            |\n+   +   +   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|            \n+   +   +   +\n| K         |\n+   +   +   +\n|     T | S |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n|           |\n+   +   +   +\n| K     | S |\n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         K |\n+   +   +---+\n|     S     |\n+   +   +   +\n|         T |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         K |\n+   +   +   +\n|           |\n+---+   +   +\n| T   S     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n|       | S |\n+   +   +   +\n| K          \n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+---+   +   +\n            |\n+   +   +   +\n| S       T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          S |\n+   +   +   +\n|           |\n+   +---+   +\n| K   T     |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       T |\n+   +   +   +\n|       |   |\n+   +   +   +\n|         K |\n+   +---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|     S | K |\n+   +   +   +\n|           |\n+   +   +   +\n| T         |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          T |\n+   +   +   +\n|     S |   |\n+   +   +   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n|   | T     |\n+   +   +   +\n| S         |\n+---+---+   +\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|           |\n+   +   +   +\n|     S | K |\n+   +   +   +\n| T         |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T |   |\n+   +   +   +\n|         S |\n+   +   +   +\n| K         |\n+---+---+   +\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         S |\n+   +   +   +\n|     T     |\n+   +   +---+\n| K         |\n+---+---+   +\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n|     S     |\n+   +   +   +\n|           |\n+   +   +   +\n| K     | T |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n| S         |\n+   +---+   +\n          K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K | T |\n+   +   +   +\n|           |\n+   +   +   +\n          S |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +---+\n          K |\n+   +   +   +\n| S         |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          T |\n+   +   +   +\n| S         |\n+   +---+   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n|     S     |\n+   +   +   +\n| T         |\n+   +---+   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +   +\n      S     |\n+   +---+   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T |   |\n+   +   +   +\n|            \n+   +   +   +\n| K       S |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n|           |\n+   +   +   +\n| T |     S |\n+   +   +   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n|     S     |\n+---+   +   +\n| T         |\n+   +   +   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n|         S |\n+   +   +   +\n| K |       |\n+---+---+   +\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|         S |\n+---+   +   +\n|           |\n+   +   +   +\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   | K     |\n+   +   +   +\n| T          \n+   +   +   +\n|         S |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       T |\n+   +   +   +\n    |       |\n+   +   +   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         K |\n+   +   +   +\n|         T |\n+---+   +   +\n|     S     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   | T     |\n+   +   +   +\n| S       K |\n+   +   +   +\n|           |\n+   +---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +---+\n|     S     |\n+   +   +   +\n| T          \n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n      S     |\n+   +   +   +\n|   |       |\n+   +   +   +\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|         S |\n+---+   +   +\n|           |\n+   +   +   +\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n|   |     S |\n+   +   +   +\n| K          \n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +   +   +\n|           |\n+   +---+   +\n| T   S     |\n+---+---+   +\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +---+\n|     S     |\n+   +   +   +\n|         T |\n+   +---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+---+   +   +\n|         S |\n+   +   +   +\n| K         |\n+---+---+   +\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n      S     |\n+   +   +   +\n|     T |   |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+---+   +   +\n| K          \n+   +   +   +\n|         S |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       T |\n+   +   +   +\n|       |   |\n+   +   +   +\n|         K |\n+   +---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n            |\n+   +   +---+\n| S       T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n            |\n+   +   +   +\n| S       T |\n+   +   +   +\n|   | K     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n| S         |\n+   +   +   +\n|           |\n+   +---+   +\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n| T         |\n+   +   +   +\n|   |     S |\n+---+   +---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|            \n+   +   +   +\n| K | S     |\n+   +   +   +\n|         T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         T |\n+   +   +   +\n| S         |\n+   +---+   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         S |\n+   +   +   +\n|     T     |\n+   +   +   +\n| K     |   |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          K |\n+   +   +   +\n|     S     |\n+   +   +   +\n| T |       |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          T |\n+   +---+   +\n| S         |\n+   +   +   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         S |\n+   +   +   +\n|           |\n+   +   +   +\n| K     | T |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|           |\n+   +   +   +\n| K         |\n+---+   +   +\n| T       S |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   | K     |\n+   +   +   +\n          S |\n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   |     K |\n+   +   +   +\n| T         |\n+   +   +   +\n|     S     |\n+---+---+   +\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +   +\n      S     |\n+   +---+   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S          \n+   +   +   +\n|           |\n+   +   +   +\n| T |     K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n|            \n+   +   +   +\n| S | K     |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n|   | T     |\n+   +   +   +\n| S          \n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +---+\n| T         |\n+   +   +   +\n|     S     |\n+---+---+   +\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         S |\n+   +   +   +\n|           |\n+   +   +   +\n|     K | T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          K |\n+   +   +---+\n|     S     |\n+   +   +   +\n|         T |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +   +---+\n| T          \n+   +   +   +\n|         S |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         S |\n+   +   +   +\n|       |   |\n+   +   +   +\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S         |\n+   +   +   +\n          K |\n+   +---+   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         S |\n+   +   +   +\n            |\n+   +   +   +\n|     K | T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   |     K |\n+   +   +   +\n            |\n+   +   +   +\n| S       T |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+---+   +   +\n| K         |\n+   +   +   +\n|         S |\n+---+   +---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   |     K |\n+   +   +   +\n| T         |\n+   +   +   +\n|     S     |\n+---+---+   +\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S         |\n+   +   +   +\n    |     K |\n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +   +\n| K         |\n+---+   +   +\n| S         |\n+---+   +---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       T |\n+   +   +   +\n|           |\n+---+   +   +\n| K         |\n+---+---+   +\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n| T |       |\n+   +   +   +\n|         S |\n+---+   +---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          T |\n+   +   +   +\n| S         |\n+---+   +   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +   +\n| S         |\n+   +   +   +\n    |     K |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         K |\n+   +   +   +\n|       |   |\n+   +   +   +\n| T   S     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n| S         |\n+   +   +   +\n|           |\n+   +   +   +\n| K | T     |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   | S      \n+   +   +   +\n| K         |\n+   +   +   +\n|         T |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   | K     |\n+   +   +   +\n|            \n+   +   +   +\n| T       S |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         K |\n+   +   +   +\n|     T     |\n+   +---+   +\n|     S     |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +   +\n|     S     |\n+   +---+   +\n| K         |\n+---+---+   +\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T   S |\n+   +   +   +\n|            \n+   +   +---+\n| K         |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          T |\n+   +   +   +\n| S         |\n+   +   +---+\n|         K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n            |\n+   +   +   +\n|     K   T |\n+   +---+   +\n|     S     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|           |\n+   +   +   +\n| S         |\n+   +   +   +\n|     T | K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T   S |\n+   +   +   +\n|            \n+   +   +---+\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n|     S     |\n+   +   +   +\n| T         |\n+---+   +   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n|       |   |\n+   +   +   +\n|     S     |\n+   +   +   +\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          K |\n+   +   +   +\n| S     |   |\n+   +   +   +\n|         T |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n|   | S     |\n+   +   +   +\n| K          \n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         S |\n+   +   +   +\n| K |        \n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|           |\n+   +   +   +\n|     S     |\n+   +---+   +\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|           |\n+---+   +   +\n          K |\n+   +   +   +\n| S       T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         K |\n+   +   +   +\n|           |\n+   +   +---+\n|     S   T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          S |\n+   +   +   +\n|           |\n+   +   +---+\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S          \n+   +   +   +\n|           |\n+   +   +   +\n| T |     K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|     S |   |\n+   +   +   +\n|           |\n+   +   +   +\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n| T         |\n+   +   +---+\n|         S |\n+---+   +---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n    |       |\n+   +   +   +\n| S       T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|           |\n+   +---+   +\n|     S     |\n+   +   +   +\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|       | T |\n+   +   +   +\n| K         |\n+   +   +   +\n|         S |\n+---+   +---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         K |\n+   +---+   +\n|     S     |\n+   +   +   +\n| T         |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          K |\n+   +   +---+\n|         S |\n+   +   +   +\n| T         |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n| T     |   |\n+   +   +   +\n|         S |\n+---+   +---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n|         K |\n+   +   +   +\n| S |       |\n+---+   +---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|            \n+   +   +   +\n| T |     S |\n+   +   +   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n|     S     |\n+   +   +   +\n| T         |\n+   +---+   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         S |\n+   +   +   +\n|     T     |\n+   +   +---+\n| K         |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          T |\n+---+   +   +\n| S         |\n+   +   +   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n| T         |\n+   +   +---+\n|     S      \n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n| S         |\n+   +   +---+\n|         K |\n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n|   | S     |\n+   +   +   +\n| K         |\n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          K |\n+   +   +   +\n|     T     |\n+   +   +   +\n| S     |   |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n|     S     |\n+   +   +   +\n| T         |\n+---+   +   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       T |\n+   +   +   +\n    |       |\n+   +   +   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S          \n+   +   +   +\n|           |\n+   +   +   +\n| T     | K |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          T |\n+   +   +   +\n|     S     |\n+   +   +---+\n|         K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          K |\n+   +   +   +\n| S         |\n+   +   +---+\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+---+   +   +\n      S     |\n+   +   +   +\n|         T |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +   +\n| K         |\n+---+   +   +\n| S         |\n+---+---+   +\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|       | S |\n+   +   +   +\n| K          \n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K | S |\n+   +   +   +\n            |\n+   +   +   +\n|         T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n| S         |\n+---+   +   +\n| K       T |\n+   +   +   +\n|           |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +   +\n| K | S     |\n+   +   +   +\n|           |\n+---+   +---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +---+   +\n| T         |\n+   +   +   +\n|         S |\n+---+   +---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +---+\n|     S     |\n+   +   +   +\n| K         |\n+---+---+   +\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n            |\n+   +   +   +\n|     T | K |\n+   +   +   +\n| S         |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T | K |\n+   +   +   +\n      S     |\n+   +   +   +\n|           |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n| S         |\n+---+   +   +\n| T          \n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       T |\n+   +   +   +\n            |\n+   +   +   +\n|   |     K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n            |\n+   +   +   +\n|     T | K |\n+   +   +   +\n| S         |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n            |\n+   +   +   +\n|     S | K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +   +\n|         S |\n+   +---+   +\n| K         |\n+---+---+   +\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n            |\n+   +   +   +\n| S       K |\n+   +   +   +\n|       | T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n            |\n+   +   +   +\n|     S | T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T | K |\n+   +   +   +\n|           |\n+   +   +   +\n| S          \n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       T |\n+   +   +   +\n|       |   |\n+   +   +   +\n|         K |\n+   +---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n| T         |\n+   +---+   +\n|     S      \n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          S |\n+   +   +   +\n|     T     |\n+---+   +   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +---+   +\n| S         |\n+   +   +   +\n          T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n    | S     |\n+   +   +   +\n|         T |\n+   +   +   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n            |\n+   +   +   +\n| S         |\n+---+   +   +\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K |   |\n+   +   +   +\n|         S |\n+   +   +   +\n| T         |\n+---+---+   +\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +---+   +\n      S     |\n+   +   +   +\n|         T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n|         S |\n+   +---+   +\n| K          \n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         K |\n+   +   +   +\n| S         |\n+   +   +   +\n|     T |   |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n            |\n+   +   +   +\n|     S     |\n+   +   +   +\n| K |     T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     S      \n+   +   +   +\n|           |\n+   +   +---+\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          K |\n+   +   +   +\n|           |\n+   +   +---+\n| T       S |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|         S |\n+   +   +   +\n|           |\n+   +   +   +\n| K |     T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n            |\n+   +   +   +\n|     S | K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +   +\n| K     |   |\n+   +   +   +\n|         S |\n+---+   +---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|           |\n+   +   +   +\n| S       K |\n+   +   +   +\n|   | T     |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +---+   +\n| T         |\n+   +   +   +\n|     S      \n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|           |\n+   +   +   +\n| S       T |\n+---+   +   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       T |\n+   +---+   +\n            |\n+   +   +   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|           |\n+   +   +---+\n|     S     |\n+   +   +   +\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|       | T |\n+   +   +   +\n|           |\n+   +   +   +\n| K       S |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +   +   +\n    |       |\n+   +   +   +\n| S       T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n        | K |\n+   +   +   +\n| S         |\n+   +   +   +\n|         T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n|   | T     |\n+   +   +   +\n| S         |\n+---+---+   +\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|           |\n+   +   +   +\n| T |     S |\n+   +   +   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n| K |        \n+   +   +   +\n|         S |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         T |\n+   +   +   +\n|           |\n+   +   +   +\n|     S | K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n| T         |\n+   +   +---+\n|     S     |\n+---+---+   +\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n| S         |\n+   +   +   +\n|           |\n+   +   +   +\n| T |     K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T | S |\n+   +   +   +\n| K         |\n+   +   +   +\n|           |\n+---+   +---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n| S     |   |\n+   +   +   +\n|           |\n+   +   +   +\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S         |\n+   +   +   +\n|     T     |\n+   +---+   +\n|         K |\n+   +---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|           |\n+   +   +   +\n|         T |\n+   +   +   +\n| K | S     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|         S |\n+   +   +   +\n| K |       |\n+   +   +   +\n|         T |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n        |   |\n+   +   +   +\n| S       T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +   +   +\n|       |    \n+   +   +   +\n| T       S |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          K |\n+   +   +   +\n|           |\n+   +---+   +\n| S   T     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +   +\n|     S     |\n+   +   +---+\n          K |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|       | T |\n+   +   +   +\n|     S     |\n+   +   +   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          S |\n+   +   +   +\n|           |\n+---+   +   +\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T | K |\n+   +   +   +\n|           |\n+   +   +   +\n|     S      \n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n| S         |\n+---+   +   +\n| T         |\n+---+---+   +\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +---+\n| T         |\n+   +   +   +\n|         S |\n+---+   +---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         S |\n+   +   +   +\n            |\n+   +   +   +\n|     K | T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          T |\n+   +   +   +\n|           |\n+   +   +   +\n| K     | S |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          T |\n+   +   +   +\n|     S     |\n+   +   +   +\n| K     |   |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   | T     |\n+   +   +   +\n|         S |\n+   +   +   +\n| K         |\n+---+---+   +\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +---+\n|         T |\n+   +   +   +\n| S         |\n+---+   +---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         S |\n+   +   +   +\n|       |    \n+   +   +   +\n| T   K     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n|     S     |\n+   +   +   +\n| T |        \n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +---+   +\n| S         |\n+   +   +   +\n          K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          T |\n+   +---+   +\n|     S     |\n+   +   +   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +   +   +\n| T         |\n+   +---+   +\n|         S |\n+---+   +---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         T |\n+   +   +---+\n| S         |\n+   +   +   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +---+\n|     S     |\n+   +   +   +\n| K         |\n+---+---+   +\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          K |\n+   +   +   +\n|       | T |\n+   +   +   +\n|     S     |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +---+   +\n| S       K |\n+   +   +   +\n|           |\n+   +---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     S      \n+   +   +   +\n|           |\n+---+   +   +\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S     | T |\n+   +   +   +\n|           |\n+   +   +   +\n          K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n|         S |\n+   +   +---+\n| K         |\n+---+---+   +\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n|     S     |\n+   +   +   +\n|       | T |\n+   +---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T | K |\n+   +   +   +\n            |\n+   +   +   +\n|     S     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +---+   +\n|     S     |\n+   +   +   +\n| T          \n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n|         S |\n+---+   +   +\n| K         |\n+---+---+   +\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|         S |\n+   +   +   +\n| T         |\n+   +---+   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   |     T |\n+   +   +   +\n|     S     |\n+   +   +   +\n          K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   | S      \n+   +   +   +\n|           |\n+   +   +   +\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +   +\n| K         |\n+   +   +   +\n|   |     S |\n+---+   +---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n            |\n+   +   +   +\n|           |\n+   +   +   +\n| T   S | K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|           |\n+   +   +   +\n          K |\n+   +---+   +\n| S       T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         T |\n+   +   +   +\n|   | S     |\n+   +   +   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       T |\n+   +   +   +\n    |       |\n+   +   +   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   |     T |\n+   +   +   +\n|     S     |\n+   +   +   +\n|         K |\n+   +---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|       | T |\n+   +   +   +\n      S     |\n+   +   +   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n| S         |\n+   +   +   +\n|       | K |\n+   +   +   +\n| T         |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n            |\n+   +   +   +\n| S |     K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|         S |\n+   +   +   +\n|           |\n+   +---+   +\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n| S |     K |\n+   +   +   +\n|           |\n+---+   +---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|     S | K |\n+   +   +   +\n|           |\n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         S |\n+   +   +   +\n            |\n+   +   +   +\n|     K | T |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n|            \n+---+   +   +\n| K       S |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +---+\n|     S     |\n+   +   +   +\n| T         |\n+---+---+   +\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +   +   +\n| T          \n+   +   +   +\n|   |     S |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   | T     |\n+   +   +   +\n| K          \n+   +   +   +\n|         S |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +---+   +\n|            \n+   +   +   +\n| T       S |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     S      \n+   +   +   +\n|           |\n+   +---+   +\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|           |\n+   +   +   +\n|     S | T |\n+   +   +   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n|   |     K |\n+   +   +   +\n| S         |\n+---+   +---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   | T     |\n+   +   +   +\n| S         |\n+   +   +   +\n|         K |\n+   +---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +   +\n| K |       |\n+   +   +   +\n|         S |\n+---+   +---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +---+   +\n| K         |\n+   +   +   +\n|         S |\n+---+   +---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|           |\n+   +   +   +\n|     T | K |\n+   +   +   +\n| S         |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|           |\n+   +   +   +\n| S       K |\n+   +   +---+\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n| S         |\n+   +   +   +\n|   |       |\n+   +   +   +\n|     K   T |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n|     S     |\n+---+   +   +\n|         T |\n+   +---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T | K |\n+   +   +   +\n            |\n+   +   +   +\n| S         |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T   S |\n+---+   +   +\n|            \n+   +   +   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         S |\n+   +   +   +\n| T         |\n+---+   +   +\n| K          \n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +---+\n| K         |\n+   +   +   +\n|         S |\n+---+   +---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|   |     S |\n+   +   +   +\n| K         |\n+   +   +   +\n|         T |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n|         S |\n+   +---+   +\n| K         |\n+---+---+   +\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          K |\n+---+   +   +\n| S         |\n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|     S     |\n+   +   +   +\n|         T |\n+   +   +   +\n| K     |   |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n| S         |\n+   +   +   +\n|       | K |\n+   +   +   +\n| T         |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+---+   +   +\n            |\n+   +   +   +\n| S       T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+---+   +   +\n|         T |\n+   +   +   +\n      S     |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n|     S     |\n+   +---+   +\n| T         |\n+   +   +   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   | T   K |\n+   +   +   +\n            |\n+   +   +   +\n|     S     |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n|     S     |\n+   +   +   +\n| T         |\n+---+   +   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         K |\n+   +---+   +\n| S         |\n+   +   +   +\n|         T |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n|       | K |\n+   +   +   +\n| S         |\n+---+   +---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|            \n+---+   +   +\n|         S |\n+   +   +   +\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       K |\n+   +   +---+\n|         T |\n+   +   +   +\n|           |\n+---+   +---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+---+   +   +\n|         S |\n+   +   +   +\n| K         |\n+---+---+   +\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n| S         |\n+   +   +   +\n|     T     |\n+   +---+   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +---+\n| T       S |\n+   +   +   +\n|            \n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       T |\n+   +   +---+\n|           |\n+   +   +   +\n          K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     S      \n+   +   +---+\n|           |\n+   +   +   +\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   |     K |\n+   +   +   +\n| T         |\n+   +   +   +\n|     S     |\n+---+---+   +\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         T |\n+   +   +   +\n|           |\n+   +   +   +\n| K | S     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|           |\n+   +   +   +\n| K       T |\n+---+   +   +\n|     S     |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +---+\n|         S |\n+   +   +   +\n| T         |\n+---+---+   +\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n|         S |\n+   +   +---+\n| K          \n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +---+\n| T       S |\n+   +   +   +\n|           |\n+---+   +---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         T |\n+   +   +---+\n|         K |\n+   +   +   +\n| S         |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +   +   +\n|         T |\n+   +---+   +\n| S         |\n+---+   +---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   | T   S |\n+   +   +   +\n|           |\n+   +   +   +\n| K          \n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         T |\n+   +   +   +\n|           |\n+   +   +   +\n| S     | K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|       |    \n+   +   +   +\n| T       S |\n+   +   +   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|           |\n+   +   +   +\n| S |     K |\n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n            |\n+   +---+   +\n| S       T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n| S     | K |\n+   +   +   +\n|           |\n+---+   +---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   | K     |\n+   +   +   +\n| T         |\n+   +   +   +\n|     S      \n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n|       | K |\n+   +   +   +\n| S         |\n+---+   +---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S         |\n+   +   +   +\n            |\n+   +   +   +\n|     T | K |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          T |\n+   +   +   +\n|           |\n+   +   +   +\n| K |     S |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|     S     |\n+   +   +   +\n|           |\n+   +---+   +\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     S     |\n+   +   +   +\n| T         |\n+---+   +   +\n| K          \n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         T |\n+---+   +   +\n|           |\n+   +   +   +\n| K       S |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n| S         |\n+   +   +   +\n|       | K |\n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   |     K |\n+   +   +   +\n| S         |\n+   +   +   +\n|         T |\n+   +---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         S |\n+   +---+   +\n|     T     |\n+   +   +   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|     S     |\n+   +   +   +\n|           |\n+   +   +   +\n| T |     K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     S     |\n+   +   +   +\n| T          \n+   +---+   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+---+   +   +\n| T          \n+   +   +   +\n|     S     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       T |\n+   +   +   +\n            |\n+   +   +   +\n|   |     K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|       |   |\n+   +   +   +\n|     S     |\n+   +   +   +\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+---+   +   +\n| K         |\n+   +   +   +\n|         S |\n+---+   +---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          T |\n+   +---+   +\n| S         |\n+   +   +   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          K |\n+   +   +---+\n| S       T |\n+   +   +   +\n|           |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         S |\n+---+   +   +\n|           |\n+   +   +   +\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +---+   +\n          S |\n+   +   +   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|     S     |\n+   +   +   +\n|           |\n+---+   +   +\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|         S |\n+   +   +   +\n|           |\n+   +   +---+\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K | S |\n+   +   +   +\n|           |\n+   +   +   +\n| T         |\n+---+---+   +\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|           |\n+   +   +   +\n| S       T |\n+---+   +   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|       | T |\n+   +   +   +\n| K         |\n+   +   +   +\n|     S      \n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n| S         |\n+   +   +   +\n|         T |\n+---+   +   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +   +---+\n          S |\n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         S |\n+   +---+   +\n|     T     |\n+   +   +   +\n| K         |\n+---+---+   +\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   | K     |\n+   +   +   +\n|         T |\n+   +   +   +\n      S     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|   |     S |\n+   +   +   +\n| K         |\n+   +   +   +\n|         T |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n|           |\n+   +   +   +\n| S         |\n+---+   +   +\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         K |\n+   +   +   +\n|           |\n+   +   +---+\n| T       S |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S          \n+   +   +   +\n|       |   |\n+   +   +   +\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n      S     |\n+   +   +   +\n|         T |\n+---+   +   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n    |     K |\n+   +   +   +\n|     T     |\n+   +   +   +\n| S         |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          S |\n+   +   +   +\n|       |   |\n+   +   +   +\n| T   K     |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n      S     |\n+   +   +   +\n|   |     T |\n+   +   +   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|            \n+   +   +   +\n| K |     S |\n+   +   +   +\n|         T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         K |\n+   +   +   +\n|     S     |\n+   +   +   +\n| T     |   |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|         S |\n+   +   +---+\n|         T |\n+   +   +   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +---+\n| T       S |\n+   +   +   +\n|           |\n+---+---+   +\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|            \n+   +   +   +\n| K       S |\n+   +   +   +\n|   |     T |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          T |\n+   +   +   +\n| S         |\n+   +---+   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         S |\n+   +   +   +\n|     T     |\n+   +   +---+\n| K         |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         T |\n+   +   +---+\n|         K |\n+   +   +   +\n| S         |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n        |   |\n+   +   +   +\n|         S |\n+   +   +   +\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         K |\n+   +   +   +\n|   | T     |\n+   +   +   +\n|     S     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +   +\n| S         |\n+   +---+   +\n|         K |\n+   +---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   |     T |\n+   +   +   +\n| K         |\n+   +   +   +\n|         S |\n+---+   +---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +---+   +\n|            \n+   +   +   +\n| T       S |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n| S         |\n+---+   +   +\n| T         |\n+   +   +   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K |   |\n+   +   +   +\n|         T |\n+   +   +   +\n| S         |\n+---+   +---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +   +---+\n          T |\n+   +   +   +\n|     S     |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         S |\n+   +   +   +\n|           |\n+---+   +   +\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n| S         |\n+   +   +   +\n|   | K     |\n+   +   +   +\n| T         |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          K |\n+---+   +   +\n| S         |\n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S     | K |\n+   +   +   +\n|           |\n+   +   +   +\n| T         |\n+---+---+   +\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S     | K |\n+   +   +   +\n            |\n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+---+   +   +\n|         S |\n+   +   +   +\n| K         |\n+---+---+   +\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     S      \n+   +   +   +\n|       |   |\n+   +   +   +\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     S      \n+   +   +   +\n|   |       |\n+   +   +   +\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   | K     |\n+   +   +   +\n          T |\n+   +   +   +\n|     S     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         T |\n+   +   +   +\n| S         |\n+   +---+   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     S | K |\n+   +   +   +\n|           |\n+   +   +   +\n| T         |\n+---+---+   +\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     S      \n+   +   +   +\n| T         |\n+---+   +   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         T |\n+   +   +   +\n|     K     |\n+   +---+   +\n|         S |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+---+   +   +\n| K         |\n+   +   +   +\n|         S |\n+---+   +---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     S      \n+   +   +   +\n|           |\n+   +   +   +\n|     T | K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|           |\n+   +   +   +\n| T          \n+---+   +   +\n| K       S |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +---+   +\n|     S     |\n+   +   +   +\n| T          \n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   |     S |\n+   +   +   +\n| T          \n+   +   +   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n| K         |\n+   +   +   +\n|   | S     |\n+---+---+   +\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +   +---+\n|            \n+   +   +   +\n| T       S |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S          \n+   +   +   +\n|           |\n+---+   +   +\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       T |\n+   +---+   +\n|           |\n+   +   +   +\n          K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n| S         |\n+   +   +   +\n|   |     K |\n+   +   +   +\n| T         |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +---+   +\n|         S |\n+   +   +   +\n| K         |\n+---+---+   +\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +---+\n|         S |\n+   +   +   +\n| T         |\n+---+---+   +\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n| S         |\n+   +   +---+\n|         K |\n+   +   +   +\n| T         |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         S |\n+   +   +   +\n|           |\n+   +   +---+\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n    |     K |\n+   +   +   +\n|     T     |\n+   +   +   +\n| S         |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         T |\n+   +   +   +\n|     S     |\n+---+   +   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +---+\n| S         |\n+   +   +   +\n|         K |\n+   +---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +   +\n|           |\n+   +   +   +\n|     S | K |\n+   +---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +   +\n| K         |\n+---+   +   +\n|         S |\n+---+   +---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +---+   +\n|     S      \n+   +   +   +\n| T         |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       T |\n+   +---+   +\n            |\n+   +   +   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   |     S |\n+   +   +   +\n| K          \n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +   +\n| S         |\n+   +---+   +\n|         K |\n+   +---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +   +   +\n|   |        \n+   +   +   +\n| T       S |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n| K       S |\n+   +   +   +\n|   |       |\n+---+---+   +\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n| S         |\n+   +   +   +\n|           |\n+---+   +   +\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S     | K |\n+   +   +   +\n|           |\n+   +   +   +\n| T          \n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n| S         |\n+   +   +   +\n|         T |\n+   +   +   +\n|     K |   |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +---+\n| T       S |\n+   +   +   +\n|           |\n+---+---+   +\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|         S |\n+   +   +   +\n| K |       |\n+   +   +   +\n|         T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         T |\n+   +   +   +\n|   |     S |\n+   +   +   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|         S |\n+   +   +   +\n|           |\n+   +   +   +\n|     K | T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n|           |\n+   +   +   +\n|     S     |\n+   +   +   +\n| K |     T |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +---+   +\n| K       S |\n+   +   +   +\n|           |\n+---+---+   +\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          K |\n+   +   +   +\n|   | T     |\n+   +   +   +\n| S         |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +   +   +\n| T         |\n+---+   +   +\n|         S |\n+---+   +---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         S |\n+   +   +   +\n|     T     |\n+   +---+   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|         S |\n+   +---+   +\n| K         |\n+   +   +   +\n|         T |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +---+   +\n| S         |\n+   +   +   +\n          K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n            |\n+   +   +   +\n|     S     |\n+   +   +   +\n| T |     K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|           |\n+   +   +   +\n| S       K |\n+   +   +---+\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         S |\n+   +   +   +\n|           |\n+   +   +   +\n| T     | K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|         S |\n+   +   +   +\n| T         |\n+   +   +---+\n|         K |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          S |\n+   +   +   +\n|     T     |\n+   +---+   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   |     K |\n+   +   +   +\n|           |\n+   +   +   +\n| T   S     |\n+---+---+   +\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          S |\n+   +   +   +\n|     T     |\n+   +   +   +\n| K     |   |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +---+   +\n| S       K |\n+   +   +   +\n|           |\n+---+   +---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       T |\n+   +   +   +\n            |\n+   +---+   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         K |\n+   +   +   +\n|           |\n+   +---+   +\n| S       T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       T |\n+   +   +   +\n    |       |\n+   +   +   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       T |\n+   +   +   +\n            |\n+   +---+   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          S |\n+   +   +---+\n|         T |\n+   +   +   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +---+\n| T       S |\n+   +   +   +\n|           |\n+---+   +---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +---+   +\n|         S |\n+   +   +   +\n| K         |\n+---+---+   +\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          S |\n+   +   +   +\n|           |\n+   +---+   +\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     S      \n+   +   +   +\n|       |   |\n+   +   +   +\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          K |\n+   +   +   +\n|     S     |\n+   +---+   +\n| T         |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       K |\n+   +   +   +\n|           |\n+   +   +   +\n        | T |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n| T         |\n+   +---+   +\n|     S      \n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n|            \n+   +   +   +\n| K |     S |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         T |\n+   +   +   +\n| S         |\n+   +---+   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|       | K |\n+   +   +   +\n| T         |\n+   +   +   +\n|     S     |\n+---+---+   +\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +   +   +\n| T |     S |\n+   +   +   +\n|            \n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n| S         |\n+---+   +   +\n|           |\n+   +   +   +\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|            \n+   +   +   +\n|         S |\n+   +   +---+\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       T |\n+   +---+   +\n            |\n+   +   +   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n| T         |\n+   +   +   +\n|   |     S |\n+---+   +---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n            |\n+---+   +   +\n| S       T |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     S      \n+   +   +   +\n|           |\n+   +   +   +\n| T |     K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+---+   +   +\n|         S |\n+   +   +   +\n| K         |\n+---+---+   +\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         T |\n+   +   +---+\n|         S |\n+   +   +   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n|           |\n+   +   +   +\n| K         |\n+---+   +   +\n| S       T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     S     |\n+   +   +   +\n| T     | K |\n+   +   +   +\n|           |\n+---+   +---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n      S     |\n+   +   +   +\n|           |\n+---+   +   +\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n|           |\n+   +   +   +\n| S         |\n+   +   +   +\n|     T | K |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       T |\n+   +---+   +\n            |\n+   +   +   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          T |\n+   +   +   +\n|     S     |\n+   +---+   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|       | K |\n+   +   +   +\n|     T     |\n+   +   +   +\n| S          \n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +---+   +\n|            \n+   +   +   +\n| T       S |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|           |\n+   +   +   +\n| S       K |\n+   +   +   +\n|   | T     |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n            |\n+   +   +   +\n|     S | T |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         T |\n+   +   +   +\n|           |\n+   +   +   +\n| K |     S |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +---+   +\n|     S     |\n+   +   +   +\n| T         |\n+---+---+   +\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|       | T |\n+   +   +   +\n|     S     |\n+   +   +   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n|     T |   |\n+   +   +   +\n| S          \n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       T |\n+   +   +---+\n            |\n+   +   +   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n    |     K |\n+   +   +   +\n| S         |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         K |\n+   +   +   +\n| S         |\n+   +   +   +\n|       | T |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +   +   +\n|   |     T |\n+   +   +   +\n|     S     |\n+   +---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         S |\n+   +   +---+\n|         K |\n+   +   +   +\n| T         |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          K |\n+   +   +   +\n|           |\n+   +   +   +\n| S | T     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S         |\n+   +   +   +\n          T |\n+   +---+   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n| K     | S |\n+   +   +   +\n|           |\n+---+   +---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +---+\n          K |\n+   +   +   +\n| S         |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n| T         |\n+---+   +   +\n| S         |\n+---+   +---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          K |\n+   +   +   +\n|           |\n+   +   +---+\n| T   S     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+---+   +   +\n          K |\n+   +   +   +\n| S         |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   |     K |\n+   +   +   +\n|     S     |\n+   +   +   +\n| T          \n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +---+   +\n| T         |\n+   +   +   +\n|     S     |\n+---+---+   +\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   | K     |\n+   +   +   +\n|            \n+   +   +   +\n| T       S |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S         |\n+   +   +   +\n|     T     |\n+   +---+   +\n          K |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|           |\n+   +   +   +\n|     S     |\n+   +   +   +\n| T     | K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         S |\n+   +   +   +\n|   | T     |\n+   +   +   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n      S   T |\n+   +   +   +\n|           |\n+   +---+   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|           |\n+---+   +   +\n|     S     |\n+   +   +   +\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n|     S     |\n+   +   +   +\n|           |\n+---+   +   +\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     S      \n+   +   +   +\n| T     |   |\n+   +   +   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+---+   +   +\n            |\n+   +   +   +\n| S       T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+---+   +   +\n|     S     |\n+   +   +   +\n| T         |\n+---+---+   +\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n            |\n+   +   +   +\n| S |     T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n|     S     |\n+   +---+   +\n|           |\n+   +   +   +\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         S |\n+   +   +   +\n|           |\n+   +---+   +\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|       |    \n+   +   +   +\n|     T   S |\n+   +   +   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n            |\n+   +   +   +\n|         K |\n+   +   +---+\n| T       S |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S          \n+   +   +   +\n|           |\n+   +   +   +\n| T |     K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T |   |\n+   +   +   +\n|         S |\n+   +   +   +\n| K         |\n+---+---+   +\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          K |\n+   +   +   +\n|           |\n+   +   +---+\n| S   T     |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n| T         |\n+   +---+   +\n|     S      \n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+---+   +   +\n            |\n+   +   +   +\n| S       T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n      S     |\n+   +   +   +\n|       | T |\n+   +   +   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       T |\n+   +   +   +\n|           |\n+---+   +   +\n| K         |\n+---+---+   +\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       T |\n+   +   +   +\n            |\n+   +---+   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S |     T |\n+   +   +   +\n|           |\n+   +   +   +\n          K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n| T |       |\n+   +   +   +\n|     S     |\n+---+---+   +\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|       | K |\n+   +   +   +\n      S     |\n+   +   +   +\n|         T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         S |\n+   +   +   +\n|     T     |\n+   +   +---+\n| K          \n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n|           |\n+   +   +   +\n| K | S      \n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n| S |       |\n+   +   +   +\n|         T |\n+   +---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|         S |\n+   +   +   +\n|           |\n+---+   +   +\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +---+\n|     S     |\n+   +   +   +\n| K         |\n+---+---+   +\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n    |     S |\n+   +   +   +\n|           |\n+   +   +   +\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|     S     |\n+   +   +   +\n|       | T |\n+   +   +   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         T |\n+   +   +   +\n| S         |\n+   +   +   +\n|   |     K |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +---+\n| S       T |\n+   +   +   +\n            |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n|         S |\n+   +---+   +\n| K         |\n+---+---+   +\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K   T |\n+   +   +---+\n|           |\n+   +   +   +\n|     S      \n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   |     T |\n+   +   +   +\n| K         |\n+   +   +   +\n|         S |\n+---+   +---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+---+   +   +\n| T         |\n+   +   +   +\n|     S     |\n+---+---+   +\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n| S       K |\n+   +   +   +\n    |       |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +   +---+\n          T |\n+   +   +   +\n|     S     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          S |\n+   +   +   +\n|           |\n+---+   +   +\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       T |\n+   +   +   +\n    |       |\n+   +   +   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +---+\n| T         |\n+   +   +   +\n|         S |\n+---+   +---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          T |\n+   +   +   +\n|           |\n+   +   +   +\n| K |     S |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n|           |\n+   +   +   +\n| K       S |\n+   +   +   +\n|   |     T |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n| K       S |\n+   +   +   +\n|       |   |\n+---+---+   +\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +   +---+\n|            \n+   +   +   +\n| T       S |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n| S         |\n+---+   +   +\n| K         |\n+   +   +   +\n|         T |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|           |\n+   +   +   +\n|         K |\n+   +   +---+\n| T   S     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+---+   +   +\n|            \n+   +   +   +\n| T       S |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|         S |\n+   +   +   +\n|   |       |\n+   +   +   +\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +---+   +\n          S |\n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         K |\n+   +   +---+\n| S         |\n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S          \n+---+   +   +\n| K         |\n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       K |\n+   +   +   +\n        |   |\n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       K |\n+   +   +   +\n|           |\n+---+   +   +\n          T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +   +   +\n| T     |    \n+   +   +   +\n|         S |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n            |\n+   +   +   +\n|     S     |\n+   +   +---+\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|           |\n+   +   +   +\n| T | S      \n+   +   +   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|       | T |\n+   +   +   +\n| K         |\n+   +   +   +\n|         S |\n+---+   +---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   |     S |\n+   +   +   +\n| K          \n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|         S |\n+   +   +   +\n| T         |\n+---+   +   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n|     S     |\n+   +   +   +\n| T         |\n+   +   +---+\n|         K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +   +\n| K |       |\n+   +   +   +\n|         S |\n+---+   +---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +   +---+\n            |\n+   +   +   +\n| S       T |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n|       |    \n+   +   +   +\n| K       S |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         T |\n+   +   +   +\n|           |\n+   +   +   +\n| S | K     |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+---+   +   +\n|         S |\n+   +   +   +\n| K          \n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       T |\n+   +   +   +\n|           |\n+   +---+   +\n          K |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          K |\n+   +   +   +\n|     S     |\n+   +   +   +\n|   |     T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n            |\n+   +   +   +\n| S         |\n+   +---+   +\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S          \n+   +   +   +\n|           |\n+   +   +---+\n| T   K     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n|         S |\n+   +---+   +\n| K          \n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+---+   +   +\n| K         |\n+   +   +   +\n|         S |\n+---+   +---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n| S |     K |\n+   +   +   +\n|           |\n+---+   +---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n|     S     |\n+   +   +   +\n| K |       |\n+   +   +   +\n|         T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n| K       S |\n+   +   +   +\n|       |    \n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T   K |\n+   +---+   +\n|           |\n+   +   +   +\n| S         |\n+---+   +---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n      S     |\n+   +   +   +\n|           |\n+   +   +   +\n| T |     K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n| S         |\n+   +   +   +\n|           |\n+---+   +   +\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          T |\n+   +   +   +\n|           |\n+   +   +   +\n| K     | S |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     S      \n+   +   +---+\n| T         |\n+   +   +   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         T |\n+   +   +   +\n| S         |\n+   +---+   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n            |\n+   +   +   +\n| S | T   K |\n+   +   +   +\n|           |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n| K         |\n+   +   +   +\n|       | S |\n+---+   +---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   |     T |\n+   +   +   +\n| K         |\n+   +   +   +\n|         S |\n+---+   +---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          T |\n+   +   +   +\n|     S     |\n+   +---+   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          K |\n+   +---+   +\n| S         |\n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n            |\n+   +   +   +\n|     T | S |\n+   +   +   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          T |\n+   +   +   +\n|           |\n+   +   +   +\n|     S | K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          K |\n+   +   +   +\n|     S     |\n+   +   +---+\n| T         |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n| S         |\n+   +   +   +\n|       | K |\n+   +   +   +\n| T         |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +---+   +\n|     S      \n+   +   +   +\n| T         |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         S |\n+   +   +   +\n| T          \n+   +   +   +\n|     K |   |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|            \n+   +   +   +\n| T   S |   |\n+   +   +   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K   T |\n+---+   +   +\n| S         |\n+   +   +   +\n|           |\n+   +---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n          S |\n+   +   +   +\n|     K |   |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         K |\n+   +   +---+\n|         T |\n+   +   +   +\n| S         |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n            |\n+   +   +   +\n|     S | K |\n+   +   +   +\n| T         |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          S |\n+   +   +   +\n|           |\n+---+   +   +\n| T   K     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n| S         |\n+   +   +   +\n|   |       |\n+   +   +   +\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          K |\n+   +   +   +\n| S     |   |\n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n| S         |\n+   +   +   +\n|         T |\n+---+   +   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n        |   |\n+   +   +   +\n| S       K |\n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n            |\n+   +   +   +\n| S     | K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          S |\n+   +   +   +\n|   | T     |\n+   +   +   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n      S     |\n+   +   +   +\n|           |\n+   +   +   +\n| K |     T |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|           |\n+   +---+   +\n| K       S |\n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n| K          \n+   +   +   +\n|   |     S |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       T |\n+   +---+   +\n            |\n+   +   +   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n|            \n+   +   +   +\n| K |     S |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          K |\n+---+   +   +\n|           |\n+   +   +   +\n| T       S |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n| S         |\n+---+   +   +\n| T         |\n+   +   +   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n|         S |\n+   +   +   +\n| K |        \n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   | K     |\n+   +   +   +\n| T          \n+   +   +   +\n|     S     |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +   +\n| K | S     |\n+   +   +   +\n|           |\n+---+   +---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +---+   +\n|     T     |\n+   +   +   +\n      S     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|           |\n+   +---+   +\n| K       S |\n+   +   +   +\n| T         |\n+---+---+   +\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n            |\n+   +   +   +\n|         K |\n+   +   +---+\n| S       T |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n| T |       |\n+   +   +   +\n|     S      \n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +---+   +\n| T         |\n+   +   +   +\n|     S     |\n+---+---+   +\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|   |       |\n+   +   +   +\n| K       S |\n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n|           |\n+   +   +   +\n| T       S |\n+   +   +   +\n|   | K     |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          T |\n+   +   +---+\n| S         |\n+   +   +   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   |     T |\n+   +   +   +\n|     S     |\n+   +   +   +\n| K         |\n+---+---+   +\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          T |\n+   +   +   +\n|           |\n+   +   +   +\n| S     | K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|       | K |\n+   +   +   +\n            |\n+   +   +   +\n| S       T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   |     K |\n+   +   +   +\n|           |\n+   +   +   +\n      S   T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|         S |\n+   +   +   +\n| T         |\n+   +   +   +\n|     K |   |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K |   |\n+   +   +   +\n|            \n+   +   +   +\n| T       S |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n|           |\n+   +   +   +\n| S | T     |\n+   +   +   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n      S     |\n+   +   +---+\n|         K |\n+   +   +   +\n| T         |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +---+   +\n| T         |\n+   +   +   +\n|         S |\n+---+   +---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n      S     |\n+   +   +   +\n|   |       |\n+   +   +   +\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n| S         |\n+   +   +   +\n|           |\n+   +   +   +\n| T |     K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          T |\n+   +   +   +\n|     S     |\n+   +   +   +\n|       | K |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n| K |     S |\n+   +   +   +\n|           |\n+---+---+   +\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|           |\n+   +   +   +\n|       | K |\n+   +   +   +\n| T   S     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +   +\n|   | S     |\n+   +   +   +\n| K         |\n+---+---+   +\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     S      \n+   +   +   +\n|           |\n+   +   +   +\n| K |     T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|         S |\n+   +---+   +\n|           |\n+   +   +   +\n|     K   T |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n| K         |\n+   +---+   +\n|         S |\n+---+   +---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|           |\n+   +   +   +\n| S         |\n+   +   +   +\n|     T | K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n|   | T     |\n+   +   +   +\n| S          \n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       T |\n+   +---+   +\n            |\n+   +   +   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +---+\n      S     |\n+   +   +   +\n|         T |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n      S     |\n+   +---+   +\n|           |\n+   +   +   +\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +---+\n|         S |\n+   +   +   +\n| T          \n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T |   |\n+   +   +   +\n          K |\n+   +   +   +\n| S         |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|           |\n+   +   +   +\n| K         |\n+---+   +   +\n| S       T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|   | S     |\n+   +   +   +\n|         T |\n+   +   +   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +---+   +\n| S         |\n+   +   +   +\n          K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n            |\n+   +   +   +\n| S | T     |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +   +   +\n| T         |\n+---+   +   +\n| S          \n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|            \n+   +   +   +\n| K       S |\n+   +---+   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         T |\n+   +   +   +\n|     S     |\n+   +   +---+\n| K         |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +   +---+\n          S |\n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         S |\n+---+   +   +\n| K          \n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   | S     |\n+   +   +   +\n| K          \n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          K |\n+   +---+   +\n|     T     |\n+   +   +   +\n| S         |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          S |\n+   +   +---+\n|         T |\n+   +   +   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +   +   +\n|            \n+   +   +   +\n| T     | S |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|           |\n+   +   +   +\n| K |     S |\n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n| S          \n+   +---+   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          K |\n+   +   +   +\n|           |\n+   +   +   +\n| S     | T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|         S |\n+   +   +   +\n|       |   |\n+   +   +   +\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n      S     |\n+   +   +   +\n|         T |\n+   +---+   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          K |\n+   +---+   +\n|     S     |\n+   +   +   +\n| T         |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       T |\n+   +   +   +\n            |\n+   +---+   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n      S     |\n+   +   +   +\n|       | K |\n+   +   +   +\n| T         |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +   +\n| K         |\n+---+   +   +\n| S         |\n+---+   +---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n|     T     |\n+   +---+   +\n| S          \n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T |   |\n+   +   +   +\n            |\n+   +   +   +\n| S       K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S          \n+   +   +   +\n|           |\n+---+   +   +\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n            |\n+   +   +   +\n| S | T     |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n      S     |\n+   +   +   +\n|   |     T |\n+   +   +   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     S     |\n+   +   +   +\n|         T |\n+   +   +---+\n|         K |\n+   +---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|   |     S |\n+   +   +   +\n| T         |\n+   +   +   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T   K |\n+   +   +   +\n|           |\n+---+   +   +\n|     S      \n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       T |\n+   +   +   +\n    |       |\n+   +   +   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n            |\n+   +   +   +\n| S     | K |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         S |\n+   +---+   +\n|           |\n+   +   +   +\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +---+   +\n|            \n+   +   +   +\n| T       S |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K   T |\n+   +   +   +\n            |\n+   +---+   +\n|     S     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n| S         |\n+   +   +   +\n|           |\n+   +   +   +\n| T | K     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +---+   +\n|     S     |\n+   +   +   +\n| T         |\n+---+---+   +\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       T |\n+   +   +   +\n|           |\n+   +   +   +\n    |     K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n|     K     |\n+   +---+   +\n|     S     |\n+   +---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|   |       |\n+   +   +   +\n| T       K |\n+   +   +   +\n| S         |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n| S         |\n+   +   +   +\n|         T |\n+---+   +   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|           |\n+   +   +   +\n| T   S |   |\n+   +   +   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +   +\n            |\n+   +   +   +\n|     K | S |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   |     T |\n+   +   +   +\n| K       S |\n+   +   +   +\n|           |\n+---+---+   +\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|           |\n+   +   +   +\n|   | K     |\n+   +   +   +\n| S       T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n|           |\n+   +   +   +\n|     S     |\n+   +   +   +\n| T     | K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+---+   +   +\n| K          \n+   +   +   +\n|         S |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         S |\n+   +   +   +\n|     T |   |\n+   +   +   +\n| K         |\n+---+---+   +\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n| K |       |\n+   +   +   +\n|     S      \n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n            |\n+   +   +   +\n| S |     K |\n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n|     S     |\n+   +   +   +\n|           |\n+   +   +   +\n| K     | T |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n| T         |\n+   +   +   +\n|     S |   |\n+---+---+   +\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|     S     |\n+   +   +   +\n|   |     T |\n+   +   +   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     S     |\n+   +   +   +\n          T |\n+   +---+   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+---+   +   +\n| T         |\n+   +   +   +\n|     S     |\n+---+---+   +\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     S      \n+   +   +   +\n| T     |   |\n+   +   +   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|           |\n+   +   +   +\n|     S | K |\n+   +   +   +\n          T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|            \n+   +   +   +\n|     S     |\n+   +   +   +\n| T     | K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K |   |\n+   +   +   +\n            |\n+   +   +   +\n| S       T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +---+   +\n| S         |\n+   +   +   +\n|         K |\n+   +---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n|       | K |\n+   +   +   +\n| S         |\n+---+   +---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S          \n+---+   +   +\n| T         |\n+   +   +   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       T |\n+   +   +   +\n            |\n+   +   +---+\n|         K |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n| T         |\n+   +   +   +\n|     S |   |\n+---+---+   +\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +---+   +\n            |\n+   +   +   +\n| S       T |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         T |\n+   +   +   +\n|           |\n+   +   +---+\n| K       S |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|   |     S |\n+   +   +   +\n| K         |\n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   |     S |\n+   +   +   +\n| K          \n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K | S |\n+   +   +   +\n|           |\n+   +   +   +\n          T |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +   +   +\n|            \n+   +---+   +\n| T       S |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|   |       |\n+   +   +   +\n|     S     |\n+   +   +   +\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   | S      \n+   +   +   +\n| K         |\n+   +   +   +\n|         T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S         |\n+   +   +   +\n|            \n+   +   +   +\n| T | K     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S         |\n+   +   +   +\n          T |\n+   +   +---+\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         K |\n+   +   +   +\n|           |\n+---+   +   +\n| S       T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|           |\n+   +   +   +\n| K     | S |\n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +---+\n| S         |\n+   +   +   +\n          K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +   +   +\n    |       |\n+   +   +   +\n| S       T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         T |\n+   +   +   +\n|     S     |\n+   +   +   +\n| K |       |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n      S     |\n+   +---+   +\n|     K     |\n+   +   +   +\n|         T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n| S         |\n+   +   +   +\n|   |       |\n+   +   +   +\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n    |     S |\n+   +   +   +\n|     T     |\n+   +   +   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T |   |\n+   +   +   +\n|         S |\n+   +   +   +\n| K          \n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n| S         |\n+---+   +   +\n|         K |\n+   +   +   +\n| T         |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|     S     |\n+   +---+   +\n|           |\n+   +   +   +\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|       | K |\n+   +   +   +\n| T         |\n+   +   +   +\n|         S |\n+---+   +---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         T |\n+   +   +   +\n|     S     |\n+   +---+   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       T |\n+   +   +   +\n|   |       |\n+   +   +   +\n| K          \n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          S |\n+   +   +   +\n|           |\n+   +   +---+\n|     K   T |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n| S     |   |\n+   +   +   +\n|           |\n+   +   +   +\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S |     T |\n+   +   +   +\n|           |\n+   +   +   +\n|         K |\n+   +---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   | S      \n+   +   +   +\n| T         |\n+   +   +   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n| T         |\n+---+   +   +\n| S         |\n+---+---+   +\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          K |\n+   +   +   +\n| S         |\n+   +   +   +\n|       | T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +---+\n| T         |\n+   +   +   +\n|     S      \n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n| K       S |\n+   +   +   +\n|   |       |\n+---+   +---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         S |\n+   +   +---+\n|         K |\n+   +   +   +\n| T         |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n|   |     K |\n+   +   +   +\n| S         |\n+---+   +---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S         |\n+   +   +   +\n|     T     |\n+   +---+   +\n|         K |\n+   +---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         S |\n+   +   +   +\n|            \n+   +   +   +\n| K | T     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|           |\n+   +   +   +\n|         S |\n+   +   +   +\n| K | T     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n      S     |\n+   +   +---+\n|         T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|         S |\n+---+   +   +\n| K         |\n+   +   +   +\n|         T |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n|   | S     |\n+   +   +   +\n|           |\n+   +   +   +\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T   S |\n+   +---+   +\n|            \n+   +   +   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +---+   +\n|         T |\n+   +   +   +\n|     S     |\n+   +---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          T |\n+   +   +   +\n| S         |\n+---+   +   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+---+   +   +\n| T          \n+   +   +   +\n|     S     |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          K |\n+   +   +   +\n| S     |   |\n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n            |\n+   +   +   +\n|     K | S |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          K |\n+   +   +   +\n|     S     |\n+   +   +   +\n| T |       |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          K |\n+   +   +---+\n|           |\n+   +   +   +\n| T       S |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       T |\n+   +---+   +\n            |\n+   +   +   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +---+\n          K |\n+   +   +   +\n| S         |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|   |     T |\n+   +   +   +\n|           |\n+   +   +   +\n| K       S |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n|           |\n+   +   +   +\n|     S | T |\n+   +---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|   |     S |\n+   +   +   +\n| K         |\n+   +   +   +\n|         T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +   +\n| K         |\n+   +---+   +\n|         S |\n+---+   +---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         K |\n+   +   +   +\n|           |\n+   +   +   +\n| T | S     |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +   +   +\n| T         |\n+---+   +   +\n|     S      \n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +   +   +\n| T          \n+   +---+   +\n|     S     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       T |\n+   +   +   +\n|           |\n+   +   +---+\n          K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         S |\n+   +   +   +\n|     T     |\n+   +   +   +\n| K     |   |\n+---+---+   +\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|           |\n+   +   +   +\n|     T | S |\n+   +   +   +\n| K          \n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +---+\n| S         |\n+   +   +   +\n|         K |\n+   +---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          T |\n+   +   +   +\n|           |\n+   +   +   +\n|     K | S |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         K |\n+   +   +   +\n| S     |   |\n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          T |\n+   +   +   +\n| S         |\n+   +---+   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|           |\n+   +   +   +\n|     S     |\n+   +   +   +\n| T     | K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +   +---+\n|         S |\n+   +   +   +\n| T          \n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n| T         |\n+   +   +---+\n|         S |\n+---+   +---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +   +\n| K         |\n+   +   +   +\n|   | S      \n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n      S     |\n+   +   +   +\n|         T |\n+   +   +---+\n|         K |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +   +   +\n    |       |\n+   +   +   +\n| S       T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         K |\n+---+   +   +\n| S         |\n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +   +\n| K         |\n+---+   +   +\n|     S     |\n+---+---+   +\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|     S     |\n+   +   +   +\n|         T |\n+   +---+   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n| S         |\n+   +   +   +\n|   |     T |\n+   +---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +   +   +\n|     S      \n+   +   +   +\n| T     |   |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S       T |\n+   +   +   +\n|           |\n+   +   +   +\n    |     K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         K |\n+   +   +   +\n| T     |   |\n+   +   +   +\n|     S     |\n+---+---+   +\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +---+\n      S     |\n+   +   +   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T | K |\n+   +   +   +\n| S         |\n+   +   +   +\n            |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n      S     |\n+   +---+   +\n|         T |\n+   +   +   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|         S |\n+   +   +   +\n| T         |\n+---+   +   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S         |\n+   +   +   +\n          T |\n+   +   +   +\n|   | K     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|            \n+   +   +   +\n|         S |\n+   +   +---+\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +   +   +\n|         S |\n+---+   +   +\n| T          \n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +---+   +\n|            \n+   +   +   +\n| T       S |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          K |\n+   +---+   +\n| S         |\n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K |   |\n+   +   +   +\n            |\n+   +   +   +\n| S       T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         K |\n+   +---+   +\n| S         |\n+   +   +   +\n|         T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>right</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S         |\n+   +   +   +\n    |     T |\n+   +   +   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          K |\n+   +   +   +\n|     S     |\n+   +   +   +\n|       | T |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     S   T |\n+   +   +---+\n            |\n+   +   +   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          S |\n+   +---+   +\n|     T     |\n+   +   +   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     S |    \n+   +   +   +\n|           |\n+   +   +   +\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +---+\n|         S |\n+   +   +   +\n| K          \n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|         K |\n+   +   +   +\n| S         |\n+   +---+   +\n|         T |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S         |\n+   +   +   +\n            |\n+   +   +   +\n|     K | T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|   |       |\n+   +   +   +\n|         S |\n+   +   +   +\n| T   K     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|     S     |\n+   +   +   +\n|         T |\n+   +---+   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S |     K |\n+   +   +   +\n|           |\n+   +   +   +\n          T |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S     | K |\n+   +   +   +\n|           |\n+   +   +   +\n| T          \n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|         S |\n+---+   +   +\n|           |\n+   +   +   +\n| T   K     |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +   +\n|     S     |\n+---+   +   +\n| K         |\n+---+---+   +\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 0)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|         S |\n+   +   +---+\n| T         |\n+   +   +   +\n|         K |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|         S |\n+   +   +   +\n|   |       |\n+   +   +   +\n| K       T |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n| S         |\n+   +   +   +\n|       | K |\n+   +   +   +\n| T         |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n| S |       |\n+   +   +   +\n|         K |\n+   +---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|           |\n+   +   +   +\n| K | S     |\n+   +   +   +\n|         T |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+   +---+---+\n|   | S     |\n+   +   +   +\n|           |\n+   +   +   +\n| T   K     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +   +   +\n|         T |\n+   +---+   +\n|     S     |\n+   +---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          K |\n+   +   +   +\n|     S     |\n+   +   +   +\n|   |     T |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|       |   |\n+   +   +   +\n|     S     |\n+   +   +   +\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|   | T     |\n+   +   +   +\n| K       S |\n+   +   +   +\n|           |\n+---+   +---+\n</MAP>\n<ACT>up</ACT>\n<ACT>right</ACT>","target":"<POS>(0, 2)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n|         S |\n+---+   +   +\n| T         |\n+   +   +   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+   +---+\n| S         |\n+   +   +   +\n|   |     K |\n+   +   +   +\n|     T     |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          S |\n+   +---+   +\n|     T     |\n+   +   +   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K |   |\n+   +   +   +\n|            \n+   +   +   +\n| T       S |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n| K |     S |\n+   +   +   +\n|            \n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n    | S     |\n+   +   +   +\n|         T |\n+   +   +   +\n| K         |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>down</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n          K |\n+   +---+   +\n|           |\n+   +   +   +\n|     S   T |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +---+   +\n|            \n+   +   +   +\n| K       S |\n+---+---+---+\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     K     |\n+   +   +   +\n| T          \n+---+   +   +\n|         S |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>up</ACT>","target":"<POS>(1, 2)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|       | T |\n+   +   +   +\n|         K |\n+   +   +   +\n| S         |\n+---+   +---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         S |\n+   +---+   +\n| T          \n+   +   +   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>down</ACT>\n<ACT>left</ACT>","target":"<POS>(1, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|         T |\n+   +   +   +\n|           |\n+   +   +   +\n| K | S     |\n+---+---+   +\n</MAP>\n<ACT>left</ACT>\n<ACT>down</ACT>","target":"<POS>(2, 1)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n| S         |\n+   +   +   +\n          T |\n+   +---+   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>up</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+   +\n| S         |\n+   +   +   +\n|       |   |\n+   +   +   +\n| T       K |\n+---+---+---+\n</MAP>\n<ACT>up</ACT>\n<ACT>left</ACT>","target":"<POS>(0, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|           |\n+   +   +   +\n| K       T |\n+---+   +   +\n| S         |\n+---+   +---+\n</MAP>\n<ACT>down</ACT>\n<ACT>up</ACT>","target":"<POS>(2, 0)</POS>"}
+{"input":"<MAP>\n+---+---+---+\n|     T     |\n+   +   +   +\n          S |\n+   +---+   +\n|     K     |\n+---+---+---+\n</MAP>\n<ACT>right</ACT>\n<ACT>right</ACT>","target":"<POS>(1, 2)</POS>"}

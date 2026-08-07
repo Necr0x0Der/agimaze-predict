@@ -1,0 +1,39 @@
+# n-step prediction
+
+[data]
+train_files = [
+    "../../../datasets/seq/4x4-keys-1step-rnd-train1.jsonl",
+    "../../../datasets/seq/4x4-keys-1step-rnd-train2.jsonl",
+    "../../../datasets/seq/4x4-keys-4step-rnd-train1.jsonl",
+    "../../../datasets/seq/4x4-keys-4step-rnd-train2.jsonl",
+    "../../../datasets/seq/3x3-keys-1step-rnd-train1.jsonl",
+    "../../../datasets/seq/3x3-keys-1step-rnd-train2.jsonl",
+    "../../../datasets/seq/3x3-keys-2step-rnd-train1.jsonl",
+    "../../../datasets/seq/3x3-keys-2step-rnd-train2.jsonl",
+    "../../../datasets/seq/4x4-keys-2step-rnd-train1.jsonl",
+    "../../../datasets/seq/4x4-keys-2step-rnd-train2.jsonl",
+]
+validation_files = ["../../../datasets/seq/4x4-keys-2step-rnd-valid.jsonl"]
+
+[model]
+context_length = 512
+d_model = 128
+n_heads = 4
+n_layers = 5
+mlp_multiplier = 4
+dropout = 0.05
+
+[training]
+seed = 111
+epochs = 240
+evaluate_every = 5
+batch_size = 32
+learning_rate = 0.0002
+weight_decay = 0.01
+grad_clip = 1.0
+
+[run]
+output = "../../../runs/byte-transformer-4x4-keys.pt"
+overwrite = true
+# device = "cuda"
+# validation_greedy_error_log = "../../../runs/validation-errors.txt"
