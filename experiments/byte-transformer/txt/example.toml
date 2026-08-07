@@ -1,0 +1,36 @@
+# Composed TXT-trace rollout experiment. Run with:
+# python scripts/train_txt_byte_transformer.py --config experiments/byte-transformer/txt/example.toml
+#
+# `initial_context` selects exactly one initial representation.  MAP is the
+# rendered board; START is the textual initial observation.  During training,
+# ACT-TXT-ACT-TXT... is expanded to `depth` pairs. Loss is computed only on each
+# complete <TXT>...</TXT> block; prior TXT blocks are ground truth context.
+
+[data]
+train_files = ["../../../datasets/txt/example-train.jsonl"]
+validation_files = ["../../../datasets/txt/example-valid.jsonl"]
+initial_context = "MAP" # exactly "MAP" or "START"
+depth = 4
+
+[model]
+# Text observations can be verbose; raise this after measuring real traces.
+context_length = 2048
+d_model = 128
+n_heads = 4
+n_layers = 4
+mlp_multiplier = 4
+dropout = 0.0
+
+[training]
+seed = 0
+epochs = 50
+evaluate_every = 5
+batch_size = 32
+learning_rate = 0.0003
+weight_decay = 0.01
+grad_clip = 1.0
+
+[run]
+output = "../../../runs/byte-transformer-txt-example.pt"
+overwrite = false
+# device = "cuda"
