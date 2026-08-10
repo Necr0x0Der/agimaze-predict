@@ -23,7 +23,7 @@ from agimaze_predict.data.prepared import PreparedExample, PreparedMapActionsToP
 from .config import resolve_training_arguments
 from .evaluate import evaluate_examples
 from .model import ByteTransformer, ByteTransformerConfig, target_cross_entropy
-from .tokenizer import collate_byte_examples
+from .tokenizer import VOCAB_SIZE, VOCAB_SIZE_WITH_STATE, collate_byte_examples
 
 
 def seed_everything(seed: int) -> None:
@@ -57,9 +57,13 @@ def split_examples(
     return train, validation
 
 
-def _collator(context_length: int):
+def _collator(context_length: int, *, state_tokens: int = 0):
     def collate(examples: Sequence[PreparedExample]) -> dict[str, Tensor]:
-        batch = collate_byte_examples(examples, context_length=context_length)
+        batch = collate_byte_examples(
+            examples,
+            context_length=context_length,
+            state_tokens=state_tokens,
+        )
         return {
             "input_ids": torch.tensor(batch["input_ids"], dtype=torch.long),
             "labels": torch.tensor(batch["labels"], dtype=torch.long),
@@ -73,13 +77,14 @@ def make_dataloader(
     *,
     batch_size: int,
     context_length: int,
+    state_tokens: int = 0,
     shuffle: bool,
 ) -> DataLoader[PreparedExample]:
     return DataLoader(
         examples,
         batch_size=batch_size,
         shuffle=shuffle,
-        collate_fn=_collator(context_length),
+        collate_fn=_collator(context_length, state_tokens=state_tokens),
     )
 
 
@@ -105,6 +110,8 @@ def train(args: argparse.Namespace) -> dict[str, object]:
         n_layers=args.n_layers,
         mlp_multiplier=args.mlp_multiplier,
         dropout=args.dropout,
+        state_tokens=args.state_tokens,
+        vocab_size=VOCAB_SIZE_WITH_STATE if args.state_tokens else VOCAB_SIZE,
     )
     model = ByteTransformer(config).to(device)
     optimizer = AdamW(model.parameters(), lr=args.learning_rate, weight_decay=args.weight_decay)
@@ -112,6 +119,7 @@ def train(args: argparse.Namespace) -> dict[str, object]:
         train_examples,
         batch_size=args.batch_size,
         context_length=config.context_length,
+        state_tokens=config.state_tokens,
         shuffle=True,
     )
     print("Training set size: ", len(train_loader.dataset))
@@ -222,6 +230,11 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--n-layers", type=int)
     parser.add_argument("--mlp-multiplier", type=int)
     parser.add_argument("--dropout", type=float)
+    parser.add_argument(
+        "--state-tokens",
+        type=int,
+        help="fixed latent slots inserted after each complete <ACT> block; default: 0",
+    )
     return parser
 
 
@@ -233,6 +246,8 @@ def main() -> int:
         parser.error(str(exc))
     if args.epochs <= 0 or args.evaluate_every <= 0 or args.batch_size <= 0:
         parser.error("epochs, evaluate-every, and batch-size must be positive")
+    if args.state_tokens < 0:
+        parser.error("state-tokens must be non-negative")
     try:
         train(args)
     except (FileNotFoundError, FileExistsError, ValueError) as exc:

@@ -1,0 +1,36 @@
+# n-step prediction with four deterministic latent state slots after every action.
+# This is comparable to 3x3-keys-4step.toml, but writes a separate checkpoint.
+
+[data]
+train_files = [
+    "../../../datasets/seq/3x3-keys-2step-rnd-train1.jsonl",
+    "../../../datasets/seq/3x3-keys-2step-rnd-train2.jsonl",
+    "../../../datasets/seq/3x3-keys-8step-rnd-train1.jsonl",
+    "../../../datasets/seq/3x3-keys-8step-rnd-train2.jsonl",
+    "../../../datasets/seq/3x3-keys-4step-rnd-train1.jsonl",
+    "../../../datasets/seq/3x3-keys-4step-rnd-train2.jsonl"
+]
+validation_files = ["../../../datasets/seq/3x3-keys-4step-rnd-valid.jsonl"]
+
+[model]
+context_length = 512
+d_model = 128
+n_heads = 4
+n_layers = 4
+mlp_multiplier = 4
+dropout = 0.0
+state_tokens = 4
+
+[training]
+seed = 111
+epochs = 300
+evaluate_every = 5
+batch_size = 32
+learning_rate = 0.0002
+weight_decay = 0.01
+grad_clip = 1.0
+
+[run]
+output = "../../../runs/byte-transformer-3x3-keys-state4.pt"
+overwrite = false
+# device = "cuda"

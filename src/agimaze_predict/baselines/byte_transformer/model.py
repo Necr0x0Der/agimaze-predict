@@ -8,7 +8,7 @@ import torch
 from torch import Tensor, nn
 from torch.nn import functional as F
 
-from .tokenizer import PAD_TOKEN_ID, VOCAB_SIZE
+from .tokenizer import PAD_TOKEN_ID, VOCAB_SIZE, VOCAB_SIZE_WITH_STATE
 
 
 @dataclass(frozen=True)
@@ -19,7 +19,10 @@ class ByteTransformerConfig:
     n_layers: int = 4
     mlp_multiplier: int = 4
     dropout: float = 0.0
-    vocab_size: int = VOCAB_SIZE
+    state_tokens: int = 0
+    # None selects the vocabulary required by state_tokens. An explicit value
+    # remains accepted so historical checkpoint model_config dictionaries load.
+    vocab_size: int | None = None
     pad_token_id: int = PAD_TOKEN_ID
 
     def __post_init__(self) -> None:
@@ -31,6 +34,16 @@ class ByteTransformerConfig:
             raise ValueError("d_model must be divisible by n_heads")
         if self.mlp_multiplier <= 0:
             raise ValueError("mlp_multiplier must be positive")
+        if self.state_tokens < 0:
+            raise ValueError("state_tokens must be non-negative")
+        expected_vocab_size = VOCAB_SIZE_WITH_STATE if self.state_tokens else VOCAB_SIZE
+        if self.vocab_size is None:
+            object.__setattr__(self, "vocab_size", expected_vocab_size)
+        elif self.vocab_size != expected_vocab_size:
+            raise ValueError(
+                "vocab_size must match state_tokens: "
+                f"expected {expected_vocab_size} for state_tokens={self.state_tokens}"
+            )
 
     def to_dict(self) -> dict[str, int | float]:
         return asdict(self)

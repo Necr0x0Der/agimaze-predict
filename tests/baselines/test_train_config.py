@@ -23,6 +23,7 @@ class TrainConfigTest(unittest.TestCase):
         self.parser.add_argument("--output", type=Path)
         self.parser.add_argument("--epochs", type=int)
         self.parser.add_argument("--d-model", type=int)
+        self.parser.add_argument("--state-tokens", type=int)
         overwrite_group = self.parser.add_mutually_exclusive_group()
         overwrite_group.add_argument("--overwrite", action="store_true")
         overwrite_group.add_argument("--no-overwrite", dest="overwrite", action="store_false")
@@ -46,6 +47,7 @@ test_files = ["data/test.jsonl"]
 [model]
 d_model = 96
 n_heads = 3
+state_tokens = 4
 
 [training]
 epochs = 12
@@ -63,6 +65,7 @@ output = "runs/model.pt"
             self.assertEqual(values["output"], base / "runs/model.pt")
             self.assertEqual(values["d_model"], 96)
             self.assertEqual(values["n_heads"], 3)
+            self.assertEqual(values["state_tokens"], 4)
             self.assertEqual(values["epochs"], 12)
 
     def test_explicit_cli_options_override_config(self) -> None:
@@ -80,6 +83,7 @@ epochs = 12
 
 [model]
 d_model = 96
+state_tokens = 4
 
 [run]
 output = "runs/config.pt"
@@ -102,6 +106,8 @@ overwrite = true
                     "3",
                     "--d-model",
                     "64",
+                    "--state-tokens",
+                    "1",
                     "--no-overwrite",
                 ],
             )
@@ -111,7 +117,19 @@ overwrite = true
             self.assertEqual(args.output, Path("cli.pt"))
             self.assertEqual(args.epochs, 3)
             self.assertEqual(args.d_model, 64)
+            self.assertEqual(args.state_tokens, 1)
             self.assertFalse(args.overwrite)
+
+    def test_rejects_negative_or_boolean_state_tokens(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            negative = self.write_config(Path(temp_dir), "[model]\nstate_tokens = -1\n")
+            with self.assertRaisesRegex(ValueError, "state_tokens must be a non-negative integer"):
+                load_training_config(negative)
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            boolean = self.write_config(Path(temp_dir), "[model]\nstate_tokens = true\n")
+            with self.assertRaisesRegex(ValueError, "state_tokens must be a non-negative integer"):
+                load_training_config(boolean)
 
     def test_rejects_unknown_configuration_keys(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:

@@ -24,6 +24,9 @@ DEFAULT_TRAINING_ARGUMENTS: dict[str, object] = {
     "n_layers": 4,
     "mlp_multiplier": 4,
     "dropout": 0.0,
+    # Number of fixed latent slots inserted after each complete <ACT> block.
+    # Zero retains the historical byte-only serialization exactly.
+    "state_tokens": 0,
     "overwrite": False,
 }
 
@@ -32,7 +35,15 @@ _CONFIG_SECTIONS: dict[str, frozenset[str]] = {
         {"train_datasets", "train_files", "validation_datasets", "validation_files", "test_datasets", "test_files"}
     ),
     "model": frozenset(
-        {"context_length", "d_model", "n_heads", "n_layers", "mlp_multiplier", "dropout"}
+        {
+            "context_length",
+            "d_model",
+            "n_heads",
+            "n_layers",
+            "mlp_multiplier",
+            "dropout",
+            "state_tokens",
+        }
     ),
     "training": frozenset(
         {
@@ -144,6 +155,17 @@ def load_training_config(path: str | Path) -> dict[str, object]:
                 )
         else:
             values.update(section)
+            if section_name == "model" and "state_tokens" in section:
+                state_tokens = section["state_tokens"]
+                if (
+                    not isinstance(state_tokens, int)
+                    or isinstance(state_tokens, bool)
+                    or state_tokens < 0
+                ):
+                    raise _config_error(
+                        config_path,
+                        "[model] state_tokens must be a non-negative integer",
+                    )
 
     if raw:
         raise _config_error(config_path, f"unsupported top-level sections: {', '.join(sorted(raw))}")

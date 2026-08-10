@@ -9,28 +9,63 @@ from agimaze_predict.data.prepared import PreparedExample
 
 BYTE_VOCAB_SIZE = 256
 PAD_TOKEN_ID = 256
+# State slots are deterministic latent positions, never byte targets.  They use
+# one additional vocabulary entry only in state-token experiments, keeping the
+# state_tokens=0 model vocabulary/checkpoints exactly as before.
+STATE_TOKEN_ID = 257
 VOCAB_SIZE = 257
+VOCAB_SIZE_WITH_STATE = 258
 IGNORE_INDEX = -100
 
 
 @dataclass(frozen=True)
 class SerializedExample:
-    """UTF-8 bytes for one causal example and the first target-byte offset."""
+    """One causal sequence and the first target-byte offset."""
 
     token_ids: list[int]
     target_start: int
 
 
-def serialize_example(example: PreparedExample) -> SerializedExample:
-    """Serialize one record as ``input + newline + target`` UTF-8 bytes.
+def _input_with_state_slots(model_input: str, *, state_tokens: int) -> list[int]:
+    """Encode input, inserting fixed latent slots after every complete ACT block.
 
-    The target's first byte is the first byte of ``<POS>``.  No separate BOS/EOS
-    tokens are used: the baseline's vocabulary consists of literal byte values,
-    plus a single PAD token used only for batching.
+    Prepared examples delimit each action as ``<ACT>...</ACT>``.  Slots are
+    token IDs rather than textual bytes, so no delimiter is needed between the
+    action's final byte and the first slot.  The zero-slot path intentionally
+    returns the old literal UTF-8 representation byte-for-byte.
     """
 
-    prefix = (example.input + "\n").encode("utf-8")
-    target = example.target.encode("utf-8")
+    if state_tokens < 0:
+        raise ValueError("state_tokens must be non-negative")
+    if state_tokens == 0:
+        return list(model_input.encode("utf-8"))
+
+    token_ids: list[int] = []
+    cursor = 0
+    while True:
+        action_end = model_input.find("</ACT>", cursor)
+        if action_end < 0:
+            token_ids.extend(model_input[cursor:].encode("utf-8"))
+            return token_ids
+        action_end += len("</ACT>")
+        token_ids.extend(model_input[cursor:action_end].encode("utf-8"))
+        token_ids.extend([STATE_TOKEN_ID] * state_tokens)
+        cursor = action_end
+
+
+def serialize_example(example: PreparedExample, *, state_tokens: int = 0) -> SerializedExample:
+    """Serialize as input + newline + target, with optional post-action slots.
+
+    The target's first byte is the first byte of ``<POS>``.  No separate BOS/EOS
+    tokens are used.  With ``state_tokens=0`` this is exactly the original
+    literal-byte serialization.  With a positive value, each completed action
+    receives that many fixed ``STATE_TOKEN_ID`` positions before the following
+    newline/action or target; their hidden activations are the latent state.
+    """
+
+    prefix = _input_with_state_slots(example.input, state_tokens=state_tokens)
+    prefix.append(ord("\n"))
+    target = list(example.target.encode("utf-8"))
     return SerializedExample(token_ids=[*prefix, *target], target_start=len(prefix))
 
 
@@ -38,6 +73,7 @@ def collate_byte_examples(
     examples: Sequence[PreparedExample],
     *,
     context_length: int,
+    state_tokens: int = 0,
 ) -> dict[str, list[list[int]]]:
     """Create padded causal input/label arrays with loss only on target bytes.
 
@@ -52,7 +88,7 @@ def collate_byte_examples(
     if context_length < 2:
         raise ValueError("context_length must be at least 2")
 
-    serialized = [serialize_example(example) for example in examples]
+    serialized = [serialize_example(example, state_tokens=state_tokens) for example in examples]
     lengths = [len(item.token_ids) for item in serialized]
     longest = max(lengths)
     if longest > context_length:

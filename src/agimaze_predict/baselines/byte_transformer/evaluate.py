@@ -16,16 +16,17 @@ from .tokenizer import collate_byte_examples, serialize_example
 
 
 @torch.no_grad()
-def greedy_target_bytes(model: ByteTransformer, prefix: bytes, *, target_bytes: int) -> bytes:
-    """Autoregressively decode a fixed-length target after a UTF-8 byte prefix.
+def greedy_target_bytes(model: ByteTransformer, prefix: Sequence[int], *, target_bytes: int) -> bytes:
+    """Autoregressively decode after a byte/state-token prefix.
 
     Target length comes from the known evaluation label. This avoids conflating
     the first smoke-test's transition metric with a separate EOS-generation
-    problem. The returned bytes are decoded/compared exactly as the POS span.
+    problem. State-token slots, when enabled, are deterministic input positions;
+    only generated literal bytes are returned and compared to the POS span.
     """
 
     if not prefix:
-        raise ValueError("prefix must contain at least one byte")
+        raise ValueError("prefix must contain at least one token")
     if len(prefix) + target_bytes - 1 > model.config.context_length:
         raise ValueError("prefix plus target exceeds model context length")
 
@@ -64,7 +65,11 @@ def evaluate_examples(
 
     for start in range(0, len(examples), batch_size):
         batch_examples = examples[start : start + batch_size]
-        batch = collate_byte_examples(batch_examples, context_length=model.config.context_length)
+        batch = collate_byte_examples(
+            batch_examples,
+            context_length=model.config.context_length,
+            state_tokens=model.config.state_tokens,
+        )
         input_ids = torch.tensor(batch["input_ids"], dtype=torch.long, device=device)
         labels = torch.tensor(batch["labels"], dtype=torch.long, device=device)
         logits = model(input_ids)
@@ -75,8 +80,8 @@ def evaluate_examples(
         total_target_bytes += target_bytes
 
         for example in batch_examples:
-            item = serialize_example(example)
-            prefix = bytes(item.token_ids[: item.target_start])
+            item = serialize_example(example, state_tokens=model.config.state_tokens)
+            prefix = item.token_ids[: item.target_start]
             expected = bytes(item.token_ids[item.target_start :])
             predicted = greedy_target_bytes(model, prefix, target_bytes=len(expected))
             greedy_exact += int(predicted == expected)
