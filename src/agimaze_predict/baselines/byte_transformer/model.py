@@ -136,7 +136,14 @@ class ByteTransformer(nn.Module):
         # query rows from producing NaNs.
         for block in self.blocks:
             x = block(x)
-        return self.output(self.norm(x))
+        # STATE_TOKEN_ID is an input-only latent-slot embedding.  It is never a
+        # valid prediction target: making it an output class would add a
+        # permanent "wrong" logit to every target-byte softmax in the state-slot
+        # arm, which is an avoidable and K-dependent ablation confound.  Keep
+        # ``self.output`` at the full vocabulary size so checkpoints from the
+        # initial implementation remain loadable, but expose only the legacy
+        # byte + PAD prediction vocabulary to the loss and decoder.
+        return self.output(self.norm(x))[..., :VOCAB_SIZE]
 
 
 def target_cross_entropy(logits: Tensor, labels: Tensor, *, ignore_index: int = -100) -> Tensor:

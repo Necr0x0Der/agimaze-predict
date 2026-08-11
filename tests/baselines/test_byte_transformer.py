@@ -74,7 +74,9 @@ class ByteTransformerTest(unittest.TestCase):
         loss.backward()
 
         self.assertEqual(model.config.vocab_size, VOCAB_SIZE_WITH_STATE)
-        self.assertEqual(logits.shape[-1], VOCAB_SIZE_WITH_STATE)
+        # The latent-slot ID is input-only, never a class competing with bytes
+        # in the output softmax.
+        self.assertEqual(logits.shape[-1], VOCAB_SIZE_WITH_STATE - 1)
         self.assertTrue(math.isfinite(float(loss.item())))
 
 
