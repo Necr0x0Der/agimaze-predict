@@ -67,6 +67,7 @@ def _collator(context_length: int, *, state_tokens: int = 0):
         return {
             "input_ids": torch.tensor(batch["input_ids"], dtype=torch.long),
             "labels": torch.tensor(batch["labels"], dtype=torch.long),
+            "aux_lengths": torch.tensor(batch["aux_lengths"], dtype=torch.long),
         }
 
     return collate
@@ -111,6 +112,10 @@ def train(args: argparse.Namespace) -> dict[str, object]:
         mlp_multiplier=args.mlp_multiplier,
         dropout=args.dropout,
         state_tokens=args.state_tokens,
+        aux_latents_per_token=args.aux_latents_per_token,
+        aux_gate_mode=args.aux_gate_mode,
+        aux_scale=args.aux_scale,
+        aux_gate_init=args.aux_gate_init,
         vocab_size=VOCAB_SIZE_WITH_STATE if args.state_tokens else VOCAB_SIZE,
     )
     model = ByteTransformer(config).to(device)
@@ -131,8 +136,13 @@ def train(args: argparse.Namespace) -> dict[str, object]:
         for batch in train_loader:
             input_ids = batch["input_ids"].to(device)
             labels = batch["labels"].to(device)
+            aux_lengths = batch["aux_lengths"].to(device)
             optimizer.zero_grad(set_to_none=True)
-            logits = model(input_ids)
+            logits, aux_diagnostics = model(
+                input_ids,
+                aux_lengths=aux_lengths if config.aux_latents_per_token else None,
+                return_aux_diagnostics=True,
+            )
             loss = target_cross_entropy(logits, labels)
             loss.backward()
             if args.grad_clip > 0:
@@ -144,10 +154,18 @@ def train(args: argparse.Namespace) -> dict[str, object]:
 
         if epoch == 1 or epoch % args.evaluate_every == 0 or epoch == args.epochs:
             validation = evaluate_examples(model, validation_examples, device=device)
+            aux_text = ""
+            if aux_diagnostics:
+                gates = [
+                    f"gate_l{i}={aux_diagnostics[f'gate/layer_{i}']:.3f}"
+                    for i in range(config.n_layers)
+                ]
+                aux_text = " " + " ".join(gates)
             print(
                 f"epoch={epoch} train_target_byte_nll={loss_sum / target_bytes:.6f} "
                 f"val_target_byte_nll={validation['target_byte_nll']:.6f} "
-                f"val_greedy_exact_target_accuracy={validation['greedy_exact_target_accuracy']:.4f}",
+                f"val_greedy_exact_target_accuracy={validation['greedy_exact_target_accuracy']:.4f}"
+                f"{aux_text}",
                 flush=True,
             )
 
@@ -235,6 +253,22 @@ def build_parser() -> argparse.ArgumentParser:
         type=int,
         help="fixed latent slots inserted after each complete <ACT> block; default: 0",
     )
+    parser.add_argument(
+        "--aux-latents-per-token",
+        type=int,
+        help="zero-content auxiliary latent slots per non-target source byte; default: 0",
+    )
+    parser.add_argument(
+        "--aux-gate-mode",
+        choices=("off", "fixed", "open", "learned"),
+        help="main<-aux gate: off, fixed, open, or learned; default: learned",
+    )
+    parser.add_argument("--aux-scale", type=float, help="external scale for main<-aux residual; default: 1")
+    parser.add_argument(
+        "--aux-gate-init",
+        type=float,
+        help="initial learned gate value in (0, 1); default: 0.05",
+    )
     return parser
 
 
@@ -246,8 +280,14 @@ def main() -> int:
         parser.error(str(exc))
     if args.epochs <= 0 or args.evaluate_every <= 0 or args.batch_size <= 0:
         parser.error("epochs, evaluate-every, and batch-size must be positive")
-    if args.state_tokens < 0:
-        parser.error("state-tokens must be non-negative")
+    if args.state_tokens < 0 or args.aux_latents_per_token < 0:
+        parser.error("state-tokens and aux-latents-per-token must be non-negative")
+    if args.state_tokens and args.aux_latents_per_token:
+        parser.error("state-tokens and aux-latents-per-token are mutually exclusive")
+    if args.aux_scale < 0:
+        parser.error("aux-scale must be non-negative")
+    if not 0.0 < args.aux_gate_init < 1.0:
+        parser.error("aux-gate-init must be strictly between zero and one")
     try:
         train(args)
     except (FileNotFoundError, FileExistsError, ValueError) as exc:

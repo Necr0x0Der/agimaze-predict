@@ -103,6 +103,10 @@ def collate_byte_examples(
     width = longest - 1
     input_ids: list[list[int]] = []
     labels: list[list[int]] = []
+    # Number of main input positions available to the auxiliary stream.  It is
+    # exactly the serialized prefix length, ending with the newline before the
+    # first target byte; POS bytes are deliberately excluded.
+    aux_lengths: list[int] = []
 
     for item in serialized:
         ids = item.token_ids
@@ -113,5 +117,6 @@ def collate_byte_examples(
             row_labels[index] = ids[index + 1]
         input_ids.append(row_input)
         labels.append(row_labels)
+        aux_lengths.append(item.target_start)
 
-    return {"input_ids": input_ids, "labels": labels}
+    return {"input_ids": input_ids, "labels": labels, "aux_lengths": aux_lengths}

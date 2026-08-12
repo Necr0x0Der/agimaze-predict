@@ -43,6 +43,10 @@ class TrainCliDefinitionTest(unittest.TestCase):
         self.assertIn("--test-dataset", options)
         self.assertIn("--no-overwrite", options)
         self.assertIn("--state-tokens", options)
+        self.assertIn("--aux-latents-per-token", options)
+        self.assertIn("--aux-gate-mode", options)
+        self.assertIn("--aux-scale", options)
+        self.assertIn("--aux-gate-init", options)
         self.assertNotIn("--dataset", options)
         self.assertNotIn("--validation-fraction", options)
 

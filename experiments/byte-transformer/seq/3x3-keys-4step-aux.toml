@@ -1,0 +1,41 @@
+# Parallel causal auxiliary-latent stream, comparable to the four-state-slot arm.
+# Every source byte gets one zero-content latent position. The latent stream
+# sees only the prefix through the newline before <POS>; POS target bytes never
+# enter it. Main and aux exchange cross-attention layer-by-layer.
+
+[data]
+train_files = [
+    "../../../datasets/seq/3x3-keys-2step-rnd-train1.jsonl",
+    "../../../datasets/seq/3x3-keys-2step-rnd-train2.jsonl",
+    "../../../datasets/seq/3x3-keys-8step-rnd-train1.jsonl",
+    "../../../datasets/seq/3x3-keys-8step-rnd-train2.jsonl",
+    "../../../datasets/seq/3x3-keys-4step-rnd-train1.jsonl",
+    "../../../datasets/seq/3x3-keys-4step-rnd-train2.jsonl"
+]
+validation_files = ["../../../datasets/seq/3x3-keys-4step-rnd-valid.jsonl"]
+
+[model]
+context_length = 512
+d_model = 128
+n_heads = 4
+n_layers = 4
+mlp_multiplier = 4
+dropout = 0.0
+state_tokens = 0
+aux_latents_per_token = 1
+aux_gate_mode = "learned"
+aux_gate_init = 0.05
+aux_scale = 1.0
+
+[training]
+seed = 111
+epochs = 300
+evaluate_every = 5
+batch_size = 32
+learning_rate = 0.0002
+weight_decay = 0.01
+grad_clip = 1.0
+
+[run]
+output = "../../../runs/byte-transformer-3x3-keys-aux.pt"
+overwrite = false

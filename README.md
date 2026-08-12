@@ -59,6 +59,20 @@ state-token vocabulary entry, so their checkpoints are intentionally distinct.
 For example, see
 [`experiments/byte-transformer/seq/3x3-keys-4step-state4.toml`](experiments/byte-transformer/seq/3x3-keys-4step-state4.toml).
 
+An independent alternative is `[model] aux_latents_per_token > 0`: a second causal
+Transformer runs over zero-content learned-position latent slots and exchanges
+cross-attention with the ordinary byte Transformer at each layer. The auxiliary
+stream is constructed only from the input prefix ending immediately before the
+first target `<POS>` byte, so no target byte is reachable through it. The main
+stream reads the auxiliary states through an `off`, `fixed`, `open`, or `learned`
+per-layer gate. `aux_scale` controls fixed/learned residual strength; learned gates
+start at `aux_gate_init`. Training logs gate values, and evaluation reports the
+cross-residual ratios plus `aux_ablation_delta_target_byte_nll`, the loss change when
+only main←aux residuals are disabled. This architecture is not coupled to ACT
+boundaries: its initial scheduler simply assigns latent slots to source-byte clocks.
+See
+[`experiments/byte-transformer/seq/3x3-keys-4step-aux.toml`](experiments/byte-transformer/seq/3x3-keys-4step-aux.toml).
+
 Install the optional PyTorch dependency, then run it against a locally prepared
 dataset:
 
