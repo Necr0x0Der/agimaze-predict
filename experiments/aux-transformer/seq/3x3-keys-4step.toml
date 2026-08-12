@@ -21,7 +21,6 @@ n_heads = 4
 n_layers = 4
 mlp_multiplier = 4
 dropout = 0.0
-state_tokens = 0
 aux_latents_per_token = 1
 aux_gate_mode = "learned"
 aux_gate_init = 0.05
@@ -37,5 +36,5 @@ weight_decay = 0.01
 grad_clip = 1.0
 
 [run]
-output = "../../../runs/byte-transformer-3x3-keys-aux.pt"
+output = "../../../runs/aux-transformer-3x3-keys-4step.pt"
 overwrite = false

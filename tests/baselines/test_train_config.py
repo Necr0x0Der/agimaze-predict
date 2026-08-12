@@ -24,10 +24,6 @@ class TrainConfigTest(unittest.TestCase):
         self.parser.add_argument("--epochs", type=int)
         self.parser.add_argument("--d-model", type=int)
         self.parser.add_argument("--state-tokens", type=int)
-        self.parser.add_argument("--aux-latents-per-token", type=int)
-        self.parser.add_argument("--aux-gate-mode")
-        self.parser.add_argument("--aux-scale", type=float)
-        self.parser.add_argument("--aux-gate-init", type=float)
         overwrite_group = self.parser.add_mutually_exclusive_group()
         overwrite_group.add_argument("--overwrite", action="store_true")
         overwrite_group.add_argument("--no-overwrite", dest="overwrite", action="store_false")
@@ -52,10 +48,6 @@ test_files = ["data/test.jsonl"]
 d_model = 96
 n_heads = 3
 state_tokens = 4
-aux_latents_per_token = 2
-aux_gate_mode = "learned"
-aux_scale = 0.2
-aux_gate_init = 0.1
 
 [training]
 epochs = 12
@@ -74,10 +66,6 @@ output = "runs/model.pt"
             self.assertEqual(values["d_model"], 96)
             self.assertEqual(values["n_heads"], 3)
             self.assertEqual(values["state_tokens"], 4)
-            self.assertEqual(values["aux_latents_per_token"], 2)
-            self.assertEqual(values["aux_gate_mode"], "learned")
-            self.assertEqual(values["aux_scale"], 0.2)
-            self.assertEqual(values["aux_gate_init"], 0.1)
             self.assertEqual(values["epochs"], 12)
 
     def test_explicit_cli_options_override_config(self) -> None:
@@ -142,17 +130,6 @@ overwrite = true
             boolean = self.write_config(Path(temp_dir), "[model]\nstate_tokens = true\n")
             with self.assertRaisesRegex(ValueError, "state_tokens must be a non-negative integer"):
                 load_training_config(boolean)
-
-    def test_rejects_invalid_auxiliary_configuration(self) -> None:
-        with tempfile.TemporaryDirectory() as temp_dir:
-            negative = self.write_config(Path(temp_dir), "[model]\naux_latents_per_token = -1\n")
-            with self.assertRaisesRegex(ValueError, "aux_latents_per_token must be a non-negative integer"):
-                load_training_config(negative)
-
-        with tempfile.TemporaryDirectory() as temp_dir:
-            bad_mode = self.write_config(Path(temp_dir), '[model]\naux_gate_mode = "bad"\n')
-            with self.assertRaisesRegex(ValueError, "aux_gate_mode must be one of"):
-                load_training_config(bad_mode)
 
     def test_rejects_unknown_configuration_keys(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:

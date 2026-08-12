@@ -10,12 +10,12 @@ TRAIN_PATH = (
     / "src"
     / "agimaze_predict"
     / "baselines"
-    / "byte_transformer"
+    / "aux_transformer"
     / "train.py"
 )
 
 
-class TrainCliDefinitionTest(unittest.TestCase):
+class AuxTrainCliDefinitionTest(unittest.TestCase):
     def test_supports_optional_config_and_dataset_shards(self) -> None:
         """Inspect the parser definition without importing optional PyTorch."""
 
@@ -42,7 +42,11 @@ class TrainCliDefinitionTest(unittest.TestCase):
         self.assertIn("--validation-dataset", options)
         self.assertIn("--test-dataset", options)
         self.assertIn("--no-overwrite", options)
-        self.assertIn("--state-tokens", options)
+        self.assertNotIn("--state-tokens", options)
+        self.assertIn("--aux-latents-per-token", options)
+        self.assertIn("--aux-gate-mode", options)
+        self.assertIn("--aux-scale", options)
+        self.assertIn("--aux-gate-init", options)
         self.assertNotIn("--dataset", options)
         self.assertNotIn("--validation-fraction", options)
 

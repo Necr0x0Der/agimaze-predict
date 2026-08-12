@@ -59,19 +59,28 @@ state-token vocabulary entry, so their checkpoints are intentionally distinct.
 For example, see
 [`experiments/byte-transformer/seq/3x3-keys-4step-state4.toml`](experiments/byte-transformer/seq/3x3-keys-4step-state4.toml).
 
-An independent alternative is `[model] aux_latents_per_token > 0`: a second causal
-Transformer runs over zero-content learned-position latent slots and exchanges
-cross-attention with the ordinary byte Transformer at each layer. The auxiliary
-stream is constructed only from the input prefix ending immediately before the
-first target `<POS>` byte, so no target byte is reachable through it. The main
-stream reads the auxiliary states through an `off`, `fixed`, `open`, or `learned`
-per-layer gate. `aux_scale` controls fixed/learned residual strength; learned gates
-start at `aux_gate_init`. Training logs gate values, and evaluation reports the
-cross-residual ratios plus `aux_ablation_delta_target_byte_nll`, the loss change when
-only main←aux residuals are disabled. This architecture is not coupled to ACT
-boundaries: its initial scheduler simply assigns latent slots to source-byte clocks.
-See
-[`experiments/byte-transformer/seq/3x3-keys-4step-aux.toml`](experiments/byte-transformer/seq/3x3-keys-4step-aux.toml).
+## Parallel auxiliary Transformer experiment
+
+The two-stream latent experiment is deliberately isolated from the baseline:
+`baselines/aux_transformer/`, its own tokenizer, and its own checkpoint format
+(`agimaze_predict.aux_transformer.v1`). Existing byte-Transformer code, scripts,
+serialization, configuration and checkpoints remain unchanged.
+
+The auxiliary Transformer runs over learned-position slots with zero initial
+content. At every layer it exchanges causal cross-attention with the byte main
+Transformer. The aux source ends before the first target `<POS>` byte, and the
+cross-attention masks enforce that target bytes cannot reach it. Training logs the
+per-layer gates and residual ratios; evaluation includes a main←aux ablation NLL
+metric.
+
+Run the example with:
+
+```bash
+python scripts/train_aux_transformer.py \
+  --config experiments/aux-transformer/seq/3x3-keys-4step.toml
+```
+
+Evaluate a resulting checkpoint with `scripts/evaluate_aux_transformer.py`.
 
 Install the optional PyTorch dependency, then run it against a locally prepared
 dataset:

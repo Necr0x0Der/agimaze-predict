@@ -1,4 +1,4 @@
-"""TOML configuration support for byte-Transformer training."""
+"""TOML configuration support for auxiliary Transformer training."""
 
 from __future__ import annotations
 
@@ -24,9 +24,12 @@ DEFAULT_TRAINING_ARGUMENTS: dict[str, object] = {
     "n_layers": 4,
     "mlp_multiplier": 4,
     "dropout": 0.0,
-    # Number of fixed latent slots inserted after each complete <ACT> block.
-    # Zero retains the historical byte-only serialization exactly.
-    "state_tokens": 0,
+    # One or more zero-content latent slots are created per source byte,
+    # never per target byte.
+    "aux_latents_per_token": 1,
+    "aux_gate_mode": "learned",
+    "aux_scale": 1.0,
+    "aux_gate_init": 0.05,
     "overwrite": False,
 }
 
@@ -42,7 +45,10 @@ _CONFIG_SECTIONS: dict[str, frozenset[str]] = {
             "n_layers",
             "mlp_multiplier",
             "dropout",
-            "state_tokens",
+            "aux_latents_per_token",
+            "aux_gate_mode",
+            "aux_scale",
+            "aux_gate_init",
         }
     ),
     "training": frozenset(
@@ -84,7 +90,7 @@ def _as_path(config_path: Path, section: str, value: object) -> Path:
 
 
 def load_training_config(path: str | Path) -> dict[str, object]:
-    """Load and validate a byte-Transformer training TOML file.
+    """Load and validate a auxiliary Transformer training TOML file.
 
     Relative dataset, output, and error-log paths are interpreted relative to the
     TOML file, rather than the shell's current working directory.
@@ -155,17 +161,29 @@ def load_training_config(path: str | Path) -> dict[str, object]:
                 )
         else:
             values.update(section)
-            if section_name == "model" and "state_tokens" in section:
-                state_tokens = section["state_tokens"]
-                if (
-                    not isinstance(state_tokens, int)
-                    or isinstance(state_tokens, bool)
-                    or state_tokens < 0
-                ):
+            if section_name == "model":
+                if "aux_latents_per_token" in section:
+                    value = section["aux_latents_per_token"]
+                    if not isinstance(value, int) or isinstance(value, bool) or value <= 0:
+                        raise _config_error(
+                            config_path,
+                            "[model] aux_latents_per_token must be a positive integer",
+                        )
+                if "aux_gate_mode" in section and section["aux_gate_mode"] not in {
+                    "off",
+                    "fixed",
+                    "open",
+                    "learned",
+                }:
                     raise _config_error(
                         config_path,
-                        "[model] state_tokens must be a non-negative integer",
+                        "[model] aux_gate_mode must be one of: off, fixed, open, learned",
                     )
+                for key in ("aux_scale", "aux_gate_init"):
+                    if key in section and (
+                        not isinstance(section[key], (int, float)) or isinstance(section[key], bool)
+                    ):
+                        raise _config_error(config_path, f"[model] {key} must be numeric")
 
     if raw:
         raise _config_error(config_path, f"unsupported top-level sections: {', '.join(sorted(raw))}")
