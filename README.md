@@ -63,7 +63,7 @@ For example, see
 
 The two-stream latent experiment is deliberately isolated from the baseline:
 `baselines/aux_transformer/`, its own tokenizer, and its own checkpoint format
-(`agimaze_predict.aux_transformer.v1`). Existing byte-Transformer code, scripts,
+(`agimaze_predict.aux_transformer.v2`). Existing byte-Transformer code, scripts,
 serialization, configuration and checkpoints remain unchanged.
 
 The auxiliary Transformer runs over learned-position slots with zero initial
@@ -72,6 +72,16 @@ Transformer. The aux source ends before the first target `<POS>` byte, and the
 cross-attention masks enforce that target bytes cannot reach it. Training logs the
 per-layer gates and residual ratios; evaluation includes a main←aux ablation NLL
 metric.
+
+The aux trainer optionally adds source-only masked-byte denoising supervision.
+It corrupts contiguous source-byte spans with the PAD token for a separate aux
+path, then a disposable head predicts those original bytes from final latents.
+The clean main LM pass and POS targets are unchanged; the corrupted main states
+are detached, so this auxiliary CE cannot reduce to copying clean bytes through
+main→aux cross-attention or directly update the main Transformer. Enable it with
+`aux_denoise_weight > 0`, `aux_mask_rate > 0`, and (optionally)
+`aux_mask_span_length` in `[model]`; the supplied aux TOML starts at weight 0.1,
+20% masking, and four-byte spans.
 
 Run the example with:
 

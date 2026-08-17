@@ -3,7 +3,10 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Sequence
+from typing import TYPE_CHECKING, Sequence
+
+if TYPE_CHECKING:
+    import torch
 
 from agimaze_predict.data.prepared import PreparedExample
 
@@ -67,3 +70,78 @@ def collate_aux_examples(
         aux_lengths.append(item.target_start)
 
     return {"input_ids": input_ids, "labels": labels, "aux_lengths": aux_lengths}
+
+
+def collate_aux_denoising_examples(
+    examples: Sequence[PreparedExample],
+    *,
+    context_length: int,
+    mask_rate: float,
+    mask_span_length: int,
+    generator: "torch.Generator | None" = None,
+) -> dict[str, list[list[int]]]:
+    """Add source-only span corruption and latent-aligned reconstruction labels.
+
+    The corruption placeholder is PAD, which cannot occur in an unpadded byte
+    sequence.  It is applied only before ``aux_lengths``; POS target bytes and
+    ordinary target-LM labels are untouched.  Each latent slot clocked to a
+    masked source byte receives that byte as its reconstruction label.
+    """
+
+    if not 0.0 < mask_rate < 1.0:
+        raise ValueError("mask_rate must be strictly between zero and one")
+    if mask_span_length <= 0:
+        raise ValueError("mask_span_length must be positive")
+
+    # Keep ordinary serialization usable without the optional PyTorch package.
+    import torch
+
+    batch = collate_aux_examples(examples, context_length=context_length)
+    masked_input_ids = [row.copy() for row in batch["input_ids"]]
+    # Record byte-level labels first.  The training collator expands each one
+    # to its configured latent-slot count, because that count is model rather
+    # than dataset serialization state.
+    source_denoise_labels: list[list[int]] = []
+    for row, aux_length in zip(masked_input_ids, batch["aux_lengths"], strict=True):
+        source_labels = [IGNORE_INDEX] * aux_length
+        target_count = max(1, round(aux_length * mask_rate))
+        masked_count = 0
+        # Draw starts independently and fill consecutive source positions. The
+        # loop always progresses: each span wraps within the finite source and
+        # stops exactly at the requested number of masked bytes.
+        while masked_count < target_count:
+            start = int(torch.randint(aux_length, (1,), generator=generator).item())
+            for offset in range(mask_span_length):
+                position = (start + offset) % aux_length
+                if source_labels[position] != IGNORE_INDEX:
+                    continue
+                source_labels[position] = row[position]
+                row[position] = PAD_TOKEN_ID
+                masked_count += 1
+                if masked_count == target_count:
+                    break
+        source_denoise_labels.append(source_labels)
+
+    max_aux_length = max(batch["aux_lengths"])
+    padded_source_labels = [
+        row + [IGNORE_INDEX] * (max_aux_length - len(row)) for row in source_denoise_labels
+    ]
+
+    return {
+        **batch,
+        "denoise_input_ids": masked_input_ids,
+        "denoise_source_labels": padded_source_labels,
+    }
+
+
+def expand_denoise_labels_for_latents(
+    source_labels: list[list[int]], *, aux_latents_per_token: int
+) -> list[list[int]]:
+    """Repeat each source reconstruction target for every associated latent."""
+
+    if aux_latents_per_token <= 0:
+        raise ValueError("aux_latents_per_token must be positive")
+    return [
+        [label for label in row for _ in range(aux_latents_per_token)]
+        for row in source_labels
+    ]

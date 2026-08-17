@@ -3,7 +3,7 @@
 This package is intentionally separate from `baselines/byte_transformer`.
 It implements the two-stream causal model: a byte main stream and a latent aux
 stream with bidirectional causal cross-attention. Its checkpoints use the
-separate `agimaze_predict.aux_transformer.v1` format and must be trained and
+separate `agimaze_predict.aux_transformer.v2` format and must be trained and
 evaluated with `scripts/train_aux_transformer.py` and
 `scripts/evaluate_aux_transformer.py` respectively.
 

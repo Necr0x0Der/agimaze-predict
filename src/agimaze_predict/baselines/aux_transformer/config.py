@@ -30,6 +30,9 @@ DEFAULT_TRAINING_ARGUMENTS: dict[str, object] = {
     "aux_gate_mode": "learned",
     "aux_scale": 1.0,
     "aux_gate_init": 0.05,
+    "aux_denoise_weight": 0.0,
+    "aux_mask_rate": 0.0,
+    "aux_mask_span_length": 4,
     "overwrite": False,
 }
 
@@ -49,6 +52,9 @@ _CONFIG_SECTIONS: dict[str, frozenset[str]] = {
             "aux_gate_mode",
             "aux_scale",
             "aux_gate_init",
+            "aux_denoise_weight",
+            "aux_mask_rate",
+            "aux_mask_span_length",
         }
     ),
     "training": frozenset(
@@ -179,11 +185,21 @@ def load_training_config(path: str | Path) -> dict[str, object]:
                         config_path,
                         "[model] aux_gate_mode must be one of: off, fixed, open, learned",
                     )
-                for key in ("aux_scale", "aux_gate_init"):
+                for key in ("aux_scale", "aux_gate_init", "aux_denoise_weight", "aux_mask_rate"):
                     if key in section and (
                         not isinstance(section[key], (int, float)) or isinstance(section[key], bool)
                     ):
                         raise _config_error(config_path, f"[model] {key} must be numeric")
+                if "aux_denoise_weight" in section and section["aux_denoise_weight"] < 0:
+                    raise _config_error(config_path, "[model] aux_denoise_weight must be non-negative")
+                if "aux_mask_rate" in section and not 0.0 <= section["aux_mask_rate"] < 1.0:
+                    raise _config_error(config_path, "[model] aux_mask_rate must be in [0, 1)")
+                if "aux_mask_span_length" in section and (
+                    not isinstance(section["aux_mask_span_length"], int)
+                    or isinstance(section["aux_mask_span_length"], bool)
+                    or section["aux_mask_span_length"] <= 0
+                ):
+                    raise _config_error(config_path, "[model] aux_mask_span_length must be a positive integer")
 
     if raw:
         raise _config_error(config_path, f"unsupported top-level sections: {', '.join(sorted(raw))}")

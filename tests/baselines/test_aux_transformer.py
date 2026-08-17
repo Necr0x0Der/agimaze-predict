@@ -6,6 +6,8 @@ import unittest
 
 from agimaze_predict.baselines.aux_transformer.tokenizer import (
     collate_aux_examples,
+    collate_aux_denoising_examples,
+    expand_denoise_labels_for_latents,
 )
 from agimaze_predict.data.per_step import PerStepExample
 
@@ -98,6 +100,52 @@ class AuxTransformerTest(unittest.TestCase):
         logits = model(input_ids, aux_lengths=aux_lengths)
         ablated_logits = model(input_ids, aux_lengths=aux_lengths, disable_aux=True)
         self.assertTrue(torch.equal(logits, ablated_logits))
+
+    def test_masked_denoising_is_source_only_and_reaches_aux(self) -> None:
+        example = PerStepExample(
+            input="<MAP>xyz</MAP>\n<ACT>right</ACT>",
+            target="<POS>(0, 1)</POS>",
+        )
+        batch = collate_aux_denoising_examples(
+            [example],
+            context_length=128,
+            mask_rate=0.2,
+            mask_span_length=3,
+            generator=torch.Generator().manual_seed(7),
+        )
+        source_labels = batch["denoise_source_labels"][0]
+        aux_length = batch["aux_lengths"][0]
+        self.assertEqual(len(source_labels), aux_length)
+        self.assertGreater(sum(label != -100 for label in source_labels), 0)
+        self.assertEqual(batch["denoise_input_ids"][0][aux_length:], batch["input_ids"][0][aux_length:])
+
+        input_ids = torch.tensor(batch["input_ids"], dtype=torch.long)
+        denoise_input_ids = torch.tensor(batch["denoise_input_ids"], dtype=torch.long)
+        aux_lengths = torch.tensor(batch["aux_lengths"], dtype=torch.long)
+        denoise_labels = torch.tensor(
+            expand_denoise_labels_for_latents(source_labels=[source_labels], aux_latents_per_token=2),
+            dtype=torch.long,
+        )
+        model = AuxTransformer(
+            AuxTransformerConfig(
+                context_length=128,
+                d_model=32,
+                n_heads=4,
+                n_layers=2,
+                aux_latents_per_token=2,
+                aux_denoise_weight=0.1,
+                aux_mask_rate=0.2,
+                aux_mask_span_length=3,
+            )
+        )
+        # The main path stays clean; the auxiliary reconstruction path is separate.
+        main_loss = target_cross_entropy(model(input_ids, aux_lengths=aux_lengths), torch.tensor(batch["labels"]))
+        denoise_logits = model.auxiliary_denoising_logits(denoise_input_ids, aux_lengths=aux_lengths)
+        denoise_loss = target_cross_entropy(denoise_logits, denoise_labels)
+        (main_loss + 0.1 * denoise_loss).backward()
+        self.assertEqual(denoise_logits.shape[:2], denoise_labels.shape)
+        self.assertIsNotNone(model.aux_denoise_head.weight.grad)
+        self.assertIsNotNone(model.aux_blocks[0].attention.qkv.weight.grad)
 
 
 

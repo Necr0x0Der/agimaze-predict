@@ -25,6 +25,12 @@ aux_latents_per_token = 1
 aux_gate_mode = "learned"
 aux_gate_init = 0.05
 aux_scale = 1.0
+# First denoising-auxiliary experiment.  Source-only byte spans are replaced
+# with PAD for the aux path; the disposable head predicts original bytes from
+# final latent slots.  POS targets remain clean and exclusive to LM loss.
+aux_denoise_weight = 0.1
+aux_mask_rate = 0.2
+aux_mask_span_length = 4
 
 [training]
 seed = 111

@@ -34,7 +34,7 @@ def main() -> int:
     args = build_parser().parse_args()
     device = torch.device(args.device or ("cuda" if torch.cuda.is_available() else "cpu"))
     checkpoint = torch.load(args.checkpoint, map_location=device, weights_only=False)
-    if checkpoint.get("format") != "agimaze_predict.aux_transformer.v1":
+    if checkpoint.get("format") not in {"agimaze_predict.aux_transformer.v1", "agimaze_predict.aux_transformer.v2"}:
         raise ValueError(f"unsupported checkpoint format: {checkpoint.get('format')!r}")
 
     model = AuxTransformer(AuxTransformerConfig(**checkpoint["model_config"])).to(device)

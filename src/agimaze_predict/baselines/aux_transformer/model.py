@@ -30,6 +30,12 @@ class AuxTransformerConfig:
     aux_gate_mode: AuxGateMode = "learned"
     aux_scale: float = 1.0
     aux_gate_init: float = 0.05
+    # Optional masked-byte denoising supervision for the latent stream.  The
+    # clean main LM path is kept separate; this objective runs the aux stream
+    # against a corrupted source and does not backpropagate into main states.
+    aux_denoise_weight: float = 0.0
+    aux_mask_rate: float = 0.0
+    aux_mask_span_length: int = 4
     # The aux model always uses the ordinary byte + PAD input vocabulary.
     vocab_size: int | None = None
     pad_token_id: int = PAD_TOKEN_ID
@@ -51,6 +57,14 @@ class AuxTransformerConfig:
             raise ValueError("aux_scale must be non-negative")
         if not 0.0 < self.aux_gate_init < 1.0:
             raise ValueError("aux_gate_init must be strictly between zero and one")
+        if self.aux_denoise_weight < 0:
+            raise ValueError("aux_denoise_weight must be non-negative")
+        if not 0.0 <= self.aux_mask_rate < 1.0:
+            raise ValueError("aux_mask_rate must be in [0, 1)")
+        if self.aux_mask_span_length <= 0:
+            raise ValueError("aux_mask_span_length must be positive")
+        if self.aux_denoise_weight > 0.0 and self.aux_mask_rate == 0.0:
+            raise ValueError("aux_mask_rate must be positive when aux_denoise_weight is positive")
         if self.vocab_size is None:
             object.__setattr__(self, "vocab_size", VOCAB_SIZE)
         elif self.vocab_size != VOCAB_SIZE:
@@ -247,6 +261,8 @@ class AuxTransformer(nn.Module):
             self.aux_blocks = nn.ModuleList(
                 [AuxiliaryTransformerBlock(config) for _ in range(config.n_layers)]
             )
+            if config.aux_denoise_weight > 0.0:
+                self.aux_denoise_head = nn.Linear(config.d_model, config.vocab_size)
         self.norm = nn.LayerNorm(config.d_model)
         self.output = nn.Linear(config.d_model, config.vocab_size, bias=False)
         self.output.weight = self.token_embedding.weight
@@ -354,6 +370,64 @@ class AuxTransformer(nn.Module):
         if return_aux_diagnostics:
             return logits, diagnostics
         return logits
+
+    def auxiliary_denoising_logits(self, masked_input_ids: Tensor, *, aux_lengths: Tensor) -> Tensor:
+        """Predict masked source bytes from final auxiliary latent states.
+
+        This deliberately does *not* reuse clean main states from the language
+        model forward: doing so would let the aux stream copy the answer via
+        main-to-aux cross-attention.  Main states are instead recomputed from
+        the corrupted source under ``no_grad``.  Thus the denoising objective
+        trains the aux positions, aux blocks, and its disposable head, while
+        the ordinary clean LM loss remains the sole direct update to main.
+        """
+
+        if not hasattr(self, "aux_denoise_head"):
+            raise ValueError("auxiliary denoising is not enabled in this model configuration")
+        if masked_input_ids.ndim != 2:
+            raise ValueError("masked_input_ids must have shape [batch, sequence]")
+        batch_size, sequence_length = masked_input_ids.shape
+        if sequence_length > self.config.context_length:
+            raise ValueError(
+                f"sequence length {sequence_length} exceeds context length {self.config.context_length}"
+            )
+        if aux_lengths.shape != (batch_size,):
+            raise ValueError("aux_lengths must have shape [batch]")
+
+        aux_lengths = aux_lengths.to(device=masked_input_ids.device, dtype=torch.long)
+        aux_to_main, main_to_aux, auxiliary_length = self._auxiliary_masks(
+            sequence_length=sequence_length, aux_lengths=aux_lengths
+        )
+        positions = torch.arange(sequence_length, device=masked_input_ids.device)
+        # These states serve only as a fixed, corrupted contextual input to
+        # aux.  Keeping this branch gradient-free prevents denoising from
+        # quietly becoming another objective for the main Transformer.
+        with torch.no_grad():
+            main_states = self.dropout(
+                self.token_embedding(masked_input_ids)
+                + self.position_embedding(positions)[None, :, :]
+            )
+
+        aux_positions = torch.arange(auxiliary_length, device=masked_input_ids.device)
+        auxiliary_states = self.aux_position_embedding(aux_positions)[None, :, :].expand(
+            batch_size, -1, -1
+        )
+        aux_valid = aux_positions[None, :] < (
+            aux_lengths[:, None] * self.config.aux_latents_per_token
+        )
+        auxiliary_states = auxiliary_states * aux_valid[:, :, None]
+
+        for main_block, aux_block in zip(self.blocks, self.aux_blocks, strict=True):
+            previous_main, previous_aux = main_states, auxiliary_states
+            with torch.no_grad():
+                main_states, _ = main_block(
+                    previous_main,
+                    auxiliary_states=previous_aux.detach(),
+                    aux_key_max_indices=main_to_aux,
+                    disable_aux=True,
+                )
+            auxiliary_states = aux_block(previous_aux, previous_main, aux_to_main)
+        return self.aux_denoise_head(auxiliary_states)
 
 
 def target_cross_entropy(logits: Tensor, labels: Tensor, *, ignore_index: int = -100) -> Tensor:
