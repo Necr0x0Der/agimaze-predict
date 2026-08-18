@@ -22,9 +22,8 @@ aux_latents_per_token = 2
 aux_gate_mode = "learned"
 aux_gate_init = 0.1
 aux_scale = 0.3
-aux_denoise_weight = 0.1
-aux_mask_rate = 0.2
-aux_mask_span_length = 3
+aux_target_weight = 0.1
+aux_target_decoder_layers = 2
 
 [run]
 output = "run.pt"
@@ -37,9 +36,8 @@ output = "run.pt"
         self.assertEqual(values["aux_gate_mode"], "learned")
         self.assertEqual(values["aux_gate_init"], 0.1)
         self.assertEqual(values["aux_scale"], 0.3)
-        self.assertEqual(values["aux_denoise_weight"], 0.1)
-        self.assertEqual(values["aux_mask_rate"], 0.2)
-        self.assertEqual(values["aux_mask_span_length"], 3)
+        self.assertEqual(values["aux_target_weight"], 0.1)
+        self.assertEqual(values["aux_target_decoder_layers"], 2)
 
     def test_rejects_invalid_auxiliary_mode(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:

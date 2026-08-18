@@ -1,7 +1,6 @@
-# Parallel causal auxiliary-latent stream, comparable to the four-state-slot arm.
-# Every source byte gets one zero-content latent position. The latent stream
-# sees only the prefix through the newline before <POS>; POS target bytes never
-# enter it. Main and aux exchange cross-attention layer-by-layer.
+# Control for 3x3 keys, 4-step prediction: the target-aligned decoder and its
+# loss are active, but aux states cannot enter the main stream. Compare this
+# arm directly against 3x3-keys-4step.toml (gate on) and the plain byte model.
 
 [data]
 train_files = [
@@ -22,12 +21,9 @@ n_layers = 4
 mlp_multiplier = 4
 dropout = 0.0
 aux_latents_per_token = 1
-aux_gate_mode = "learned"
+aux_gate_mode = "off"
 aux_gate_init = 0.05
 aux_scale = 1.0
-# Target-aligned supervision: a disposable causal decoder predicts POS from
-# source-derived aux states and teacher-forced prior target bytes. POS never
-# enters the aux stream itself. Set aux_gate_mode = "off" for the control arm.
 aux_target_weight = 0.1
 aux_target_decoder_layers = 1
 
@@ -41,5 +37,5 @@ weight_decay = 0.01
 grad_clip = 1.0
 
 [run]
-output = "../../../runs/aux-transformer-3x3-keys-4step-target-head.pt"
+output = "../../../runs/aux-transformer-3x3-keys-4step-target-head-gate-off.pt"
 overwrite = false

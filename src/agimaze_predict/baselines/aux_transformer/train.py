@@ -24,9 +24,8 @@ from .config import resolve_training_arguments
 from .evaluate import evaluate_examples
 from .model import AuxTransformer, AuxTransformerConfig, target_cross_entropy
 from .tokenizer import (
-    collate_aux_denoising_examples,
     collate_aux_examples,
-    expand_denoise_labels_for_latents,
+    collate_aux_target_examples,
 )
 
 
@@ -64,35 +63,22 @@ def split_examples(
 def _collator(
     context_length: int,
     *,
-    aux_latents_per_token: int,
-    aux_denoise_weight: float = 0.0,
-    aux_mask_rate: float = 0.0,
-    aux_mask_span_length: int = 4,
+    aux_target_weight: float = 0.0,
 ):
     def collate(examples: Sequence[PreparedExample]) -> dict[str, Tensor]:
-        if aux_denoise_weight > 0.0:
-            batch = collate_aux_denoising_examples(
-                examples,
-                context_length=context_length,
-                mask_rate=aux_mask_rate,
-                mask_span_length=aux_mask_span_length,
-            )
-        else:
-            batch = collate_aux_examples(examples, context_length=context_length)
+        batch = (
+            collate_aux_target_examples(examples, context_length=context_length)
+            if aux_target_weight > 0.0
+            else collate_aux_examples(examples, context_length=context_length)
+        )
         result = {
             "input_ids": torch.tensor(batch["input_ids"], dtype=torch.long),
             "labels": torch.tensor(batch["labels"], dtype=torch.long),
             "aux_lengths": torch.tensor(batch["aux_lengths"], dtype=torch.long),
         }
-        if aux_denoise_weight > 0.0:
-            result["denoise_input_ids"] = torch.tensor(batch["denoise_input_ids"], dtype=torch.long)
-            result["denoise_labels"] = torch.tensor(
-                expand_denoise_labels_for_latents(
-                    batch["denoise_source_labels"],
-                    aux_latents_per_token=aux_latents_per_token,
-                ),
-                dtype=torch.long,
-            )
+        if aux_target_weight > 0.0:
+            result["aux_target_input_ids"] = torch.tensor(batch["aux_target_input_ids"], dtype=torch.long)
+            result["aux_target_labels"] = torch.tensor(batch["aux_target_labels"], dtype=torch.long)
         return result
 
     return collate
@@ -103,10 +89,7 @@ def make_dataloader(
     *,
     batch_size: int,
     context_length: int,
-    aux_latents_per_token: int,
-    aux_denoise_weight: float,
-    aux_mask_rate: float,
-    aux_mask_span_length: int,
+    aux_target_weight: float,
     shuffle: bool,
 ) -> DataLoader[PreparedExample]:
     return DataLoader(
@@ -115,10 +98,7 @@ def make_dataloader(
         shuffle=shuffle,
         collate_fn=_collator(
             context_length,
-            aux_latents_per_token=aux_latents_per_token,
-            aux_denoise_weight=aux_denoise_weight,
-            aux_mask_rate=aux_mask_rate,
-            aux_mask_span_length=aux_mask_span_length,
+            aux_target_weight=aux_target_weight,
         ),
     )
 
@@ -149,9 +129,8 @@ def train(args: argparse.Namespace) -> dict[str, object]:
         aux_gate_mode=args.aux_gate_mode,
         aux_scale=args.aux_scale,
         aux_gate_init=args.aux_gate_init,
-        aux_denoise_weight=args.aux_denoise_weight,
-        aux_mask_rate=args.aux_mask_rate,
-        aux_mask_span_length=args.aux_mask_span_length,
+        aux_target_weight=args.aux_target_weight,
+        aux_target_decoder_layers=args.aux_target_decoder_layers,
     )
     model = AuxTransformer(config).to(device)
     optimizer = AdamW(model.parameters(), lr=args.learning_rate, weight_decay=args.weight_decay)
@@ -159,10 +138,7 @@ def train(args: argparse.Namespace) -> dict[str, object]:
         train_examples,
         batch_size=args.batch_size,
         context_length=config.context_length,
-        aux_latents_per_token=config.aux_latents_per_token,
-        aux_denoise_weight=config.aux_denoise_weight,
-        aux_mask_rate=config.aux_mask_rate,
-        aux_mask_span_length=config.aux_mask_span_length,
+        aux_target_weight=config.aux_target_weight,
         shuffle=True,
     )
     print("Training set size: ", len(train_loader.dataset))
@@ -171,35 +147,44 @@ def train(args: argparse.Namespace) -> dict[str, object]:
         model.train()
         target_bytes = 0
         loss_sum = 0.0
-        denoise_bytes = 0
-        denoise_loss_sum = 0.0
-        denoise_correct = 0
+        aux_target_bytes = 0
+        aux_target_loss_sum = 0.0
+        aux_target_correct = 0
         for batch in train_loader:
             input_ids = batch["input_ids"].to(device)
             labels = batch["labels"].to(device)
             aux_lengths = batch["aux_lengths"].to(device)
             optimizer.zero_grad(set_to_none=True)
-            logits, aux_diagnostics = model(
+            forward_result = model(
                 input_ids,
                 aux_lengths=aux_lengths,
                 return_aux_diagnostics=True,
+                return_auxiliary_states=config.aux_target_weight > 0.0,
             )
+            if config.aux_target_weight > 0.0:
+                logits, aux_diagnostics, auxiliary_states = forward_result
+            else:
+                logits, aux_diagnostics = forward_result
             target_loss = target_cross_entropy(logits, labels)
             loss = target_loss
-            if config.aux_denoise_weight > 0.0:
-                denoise_input_ids = batch["denoise_input_ids"].to(device)
-                denoise_labels = batch["denoise_labels"].to(device)
-                denoise_logits = model.auxiliary_denoising_logits(
-                    denoise_input_ids, aux_lengths=aux_lengths
+            if config.aux_target_weight > 0.0:
+                aux_target_input_ids = batch["aux_target_input_ids"].to(device)
+                aux_target_labels = batch["aux_target_labels"].to(device)
+                aux_target_logits = model.auxiliary_target_logits(
+                    aux_target_input_ids,
+                    auxiliary_states=auxiliary_states,
+                    aux_lengths=aux_lengths,
                 )
-                denoise_loss = target_cross_entropy(denoise_logits, denoise_labels)
-                loss = loss + config.aux_denoise_weight * denoise_loss
-                active_denoise = denoise_labels.ne(-100)
-                count = int(active_denoise.sum().item())
-                denoise_loss_sum += float(denoise_loss.item()) * count
-                denoise_bytes += count
-                denoise_correct += int(
-                    ((denoise_logits.argmax(dim=-1) == denoise_labels) & active_denoise).sum().item()
+                aux_target_loss = target_cross_entropy(aux_target_logits, aux_target_labels)
+                loss = loss + config.aux_target_weight * aux_target_loss
+                active_aux_target = aux_target_labels.ne(-100)
+                count = int(active_aux_target.sum().item())
+                aux_target_loss_sum += float(aux_target_loss.item()) * count
+                aux_target_bytes += count
+                aux_target_correct += int(
+                    ((aux_target_logits.argmax(dim=-1) == aux_target_labels) & active_aux_target)
+                    .sum()
+                    .item()
                 )
             loss.backward()
             if args.grad_clip > 0:
@@ -218,17 +203,17 @@ def train(args: argparse.Namespace) -> dict[str, object]:
                     for i in range(config.n_layers)
                 ]
                 aux_text = " " + " ".join(gates)
-            denoise_text = ""
-            if denoise_bytes:
-                denoise_text = (
-                    f" train_aux_denoise_nll={denoise_loss_sum / denoise_bytes:.6f}"
-                    f" train_aux_denoise_accuracy={denoise_correct / denoise_bytes:.4f}"
+            aux_target_text = ""
+            if aux_target_bytes:
+                aux_target_text = (
+                    f" train_aux_target_nll={aux_target_loss_sum / aux_target_bytes:.6f}"
+                    f" train_aux_target_accuracy={aux_target_correct / aux_target_bytes:.4f}"
                 )
             print(
                 f"epoch={epoch} train_target_byte_nll={loss_sum / target_bytes:.6f} "
                 f"val_target_byte_nll={validation['target_byte_nll']:.6f} "
                 f"val_greedy_exact_target_accuracy={validation['greedy_exact_target_accuracy']:.4f}"
-                f"{aux_text}{denoise_text}",
+                f"{aux_text}{aux_target_text}",
                 flush=True,
             )
 
@@ -239,7 +224,7 @@ def train(args: argparse.Namespace) -> dict[str, object]:
         greedy_error_log=args.validation_greedy_error_log,
     )
     checkpoint = {
-        "format": "agimaze_predict.aux_transformer.v2",
+        "format": "agimaze_predict.aux_transformer.v3",
         "model_config": asdict(config),
         "model_state_dict": model.state_dict(),
         "datasets": {
@@ -273,19 +258,14 @@ def build_parser() -> argparse.ArgumentParser:
         help="prepared MAP + ACT+ -> POS JSONL used for parameter updates; may be repeated",
     )
     parser.add_argument(
-        "--aux-denoise-weight",
+        "--aux-target-weight",
         type=float,
-        help="masked-byte denoising loss weight for final aux latents; default: 0 (disabled)",
+        help="target-prediction loss weight for final aux latents; default: 0 (disabled)",
     )
     parser.add_argument(
-        "--aux-mask-rate",
-        type=float,
-        help="source-byte fraction masked for aux denoising; default: 0",
-    )
-    parser.add_argument(
-        "--aux-mask-span-length",
+        "--aux-target-decoder-layers",
         type=int,
-        help="consecutive source bytes per aux denoising corruption span; default: 4",
+        help="causal layers in the disposable aux target decoder; default: 1",
     )
     parser.add_argument(
         "--validation-dataset",
@@ -359,14 +339,10 @@ def main() -> int:
         parser.error("aux-scale must be non-negative")
     if not 0.0 < args.aux_gate_init < 1.0:
         parser.error("aux-gate-init must be strictly between zero and one")
-    if args.aux_denoise_weight < 0:
-        parser.error("aux-denoise-weight must be non-negative")
-    if not 0.0 <= args.aux_mask_rate < 1.0:
-        parser.error("aux-mask-rate must be in [0, 1)")
-    if args.aux_mask_span_length <= 0:
-        parser.error("aux-mask-span-length must be positive")
-    if args.aux_denoise_weight > 0.0 and args.aux_mask_rate == 0.0:
-        parser.error("aux-mask-rate must be positive when aux-denoise-weight is positive")
+    if args.aux_target_weight < 0:
+        parser.error("aux-target-weight must be non-negative")
+    if args.aux_target_decoder_layers <= 0:
+        parser.error("aux-target-decoder-layers must be positive")
     try:
         train(args)
     except (FileNotFoundError, FileExistsError, ValueError) as exc:

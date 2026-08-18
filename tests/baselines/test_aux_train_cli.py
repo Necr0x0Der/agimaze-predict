@@ -47,9 +47,9 @@ class AuxTrainCliDefinitionTest(unittest.TestCase):
         self.assertIn("--aux-gate-mode", options)
         self.assertIn("--aux-scale", options)
         self.assertIn("--aux-gate-init", options)
-        self.assertIn("--aux-denoise-weight", options)
-        self.assertIn("--aux-mask-rate", options)
-        self.assertIn("--aux-mask-span-length", options)
+        self.assertIn("--aux-target-weight", options)
+        self.assertIn("--aux-target-decoder-layers", options)
+        self.assertNotIn("--aux-denoise-weight", options)
         self.assertNotIn("--dataset", options)
         self.assertNotIn("--validation-fraction", options)
 

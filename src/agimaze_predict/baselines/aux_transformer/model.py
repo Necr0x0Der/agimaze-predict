@@ -30,12 +30,11 @@ class AuxTransformerConfig:
     aux_gate_mode: AuxGateMode = "learned"
     aux_scale: float = 1.0
     aux_gate_init: float = 0.05
-    # Optional masked-byte denoising supervision for the latent stream.  The
-    # clean main LM path is kept separate; this objective runs the aux stream
-    # against a corrupted source and does not backpropagate into main states.
-    aux_denoise_weight: float = 0.0
-    aux_mask_rate: float = 0.0
-    aux_mask_span_length: int = 4
+    # Optional target-aligned supervision.  A small causal decoder reads only
+    # final source-derived aux states plus teacher-forced prior target bytes.
+    # It is training-only and is discarded at inference.
+    aux_target_weight: float = 0.0
+    aux_target_decoder_layers: int = 1
     # The aux model always uses the ordinary byte + PAD input vocabulary.
     vocab_size: int | None = None
     pad_token_id: int = PAD_TOKEN_ID
@@ -57,14 +56,10 @@ class AuxTransformerConfig:
             raise ValueError("aux_scale must be non-negative")
         if not 0.0 < self.aux_gate_init < 1.0:
             raise ValueError("aux_gate_init must be strictly between zero and one")
-        if self.aux_denoise_weight < 0:
-            raise ValueError("aux_denoise_weight must be non-negative")
-        if not 0.0 <= self.aux_mask_rate < 1.0:
-            raise ValueError("aux_mask_rate must be in [0, 1)")
-        if self.aux_mask_span_length <= 0:
-            raise ValueError("aux_mask_span_length must be positive")
-        if self.aux_denoise_weight > 0.0 and self.aux_mask_rate == 0.0:
-            raise ValueError("aux_mask_rate must be positive when aux_denoise_weight is positive")
+        if self.aux_target_weight < 0:
+            raise ValueError("aux_target_weight must be non-negative")
+        if self.aux_target_decoder_layers <= 0:
+            raise ValueError("aux_target_decoder_layers must be positive")
         if self.vocab_size is None:
             object.__setattr__(self, "vocab_size", VOCAB_SIZE)
         elif self.vocab_size != VOCAB_SIZE:
@@ -237,6 +232,29 @@ class AuxiliaryTransformerBlock(nn.Module):
         return z + self.mlp(self.norm_2(z))
 
 
+class AuxiliaryTargetDecoderBlock(nn.Module):
+    """One causal target-decoder block cross-attending to source aux states."""
+
+    def __init__(self, config: AuxTransformerConfig) -> None:
+        super().__init__()
+        self.norm_1 = nn.LayerNorm(config.d_model)
+        self.attention = CausalSelfAttention(config)
+        self.cross_norm = nn.LayerNorm(config.d_model)
+        self.cross_attention = CausalCrossAttention(config)
+        self.norm_2 = nn.LayerNorm(config.d_model)
+        self.mlp = nn.Sequential(
+            nn.Linear(config.d_model, config.mlp_multiplier * config.d_model),
+            nn.GELU(),
+            nn.Linear(config.mlp_multiplier * config.d_model, config.d_model),
+            nn.Dropout(config.dropout),
+        )
+
+    def forward(self, x: Tensor, auxiliary_states: Tensor, aux_key_max_indices: Tensor) -> Tensor:
+        x = x + self.attention(self.norm_1(x))
+        x = x + self.cross_attention(self.cross_norm(x), auxiliary_states, aux_key_max_indices)
+        return x + self.mlp(self.norm_2(x))
+
+
 class AuxTransformer(nn.Module):
     """GPT-style byte model with an optional parallel causal latent stream.
 
@@ -261,8 +279,14 @@ class AuxTransformer(nn.Module):
             self.aux_blocks = nn.ModuleList(
                 [AuxiliaryTransformerBlock(config) for _ in range(config.n_layers)]
             )
-            if config.aux_denoise_weight > 0.0:
-                self.aux_denoise_head = nn.Linear(config.d_model, config.vocab_size)
+            if config.aux_target_weight > 0.0:
+                self.aux_target_position_embedding = nn.Embedding(config.context_length, config.d_model)
+                self.aux_target_blocks = nn.ModuleList(
+                    [AuxiliaryTargetDecoderBlock(config) for _ in range(config.aux_target_decoder_layers)]
+                )
+                self.aux_target_norm = nn.LayerNorm(config.d_model)
+                self.aux_target_output = nn.Linear(config.d_model, config.vocab_size, bias=False)
+                self.aux_target_output.weight = self.token_embedding.weight
         self.norm = nn.LayerNorm(config.d_model)
         self.output = nn.Linear(config.d_model, config.vocab_size, bias=False)
         self.output.weight = self.token_embedding.weight
@@ -310,7 +334,8 @@ class AuxTransformer(nn.Module):
         aux_lengths: Tensor | None = None,
         disable_aux: bool = False,
         return_aux_diagnostics: bool = False,
-    ) -> Tensor | tuple[Tensor, dict[str, float]]:
+        return_auxiliary_states: bool = False,
+    ) -> Tensor | tuple[Tensor, dict[str, float]] | tuple[Tensor, Tensor] | tuple[Tensor, dict[str, float], Tensor]:
         if input_ids.ndim != 2:
             raise ValueError("input_ids must have shape [batch, sequence]")
         batch_size, sequence_length = input_ids.shape
@@ -324,6 +349,7 @@ class AuxTransformer(nn.Module):
         )
 
         diagnostics: dict[str, float] = {}
+        auxiliary_states: Tensor | None = None
         if self.config.aux_latents_per_token:
             if aux_lengths is None:
                 raise ValueError("aux_lengths is required when aux_latents_per_token is positive")
@@ -367,67 +393,61 @@ class AuxTransformer(nn.Module):
                 main_states, _ = main_block(main_states)
 
         logits = self.output(self.norm(main_states))
+        if return_aux_diagnostics and return_auxiliary_states:
+            assert auxiliary_states is not None
+            return logits, diagnostics, auxiliary_states
         if return_aux_diagnostics:
             return logits, diagnostics
+        if return_auxiliary_states:
+            assert auxiliary_states is not None
+            return logits, auxiliary_states
         return logits
 
-    def auxiliary_denoising_logits(self, masked_input_ids: Tensor, *, aux_lengths: Tensor) -> Tensor:
-        """Predict masked source bytes from final auxiliary latent states.
+    def auxiliary_target_logits(
+        self,
+        target_input_ids: Tensor,
+        *,
+        auxiliary_states: Tensor,
+        aux_lengths: Tensor,
+    ) -> Tensor:
+        """Teacher-forced target logits from source-only auxiliary states.
 
-        This deliberately does *not* reuse clean main states from the language
-        model forward: doing so would let the aux stream copy the answer via
-        main-to-aux cross-attention.  Main states are instead recomputed from
-        the corrupted source under ``no_grad``.  Thus the denoising objective
-        trains the aux positions, aux blocks, and its disposable head, while
-        the ordinary clean LM loss remains the sole direct update to main.
+        ``auxiliary_states`` must come from :meth:`forward` on the ordinary
+        clean sequence.  The auxiliary stream itself is source bounded by
+        ``aux_lengths`` at every layer.  This decoder may see prior target
+        bytes in ``target_input_ids``, but target bytes never enter its keys or
+        values, so it cannot teach the aux representation by target leakage.
         """
 
-        if not hasattr(self, "aux_denoise_head"):
-            raise ValueError("auxiliary denoising is not enabled in this model configuration")
-        if masked_input_ids.ndim != 2:
-            raise ValueError("masked_input_ids must have shape [batch, sequence]")
-        batch_size, sequence_length = masked_input_ids.shape
-        if sequence_length > self.config.context_length:
-            raise ValueError(
-                f"sequence length {sequence_length} exceeds context length {self.config.context_length}"
-            )
+        if not hasattr(self, "aux_target_blocks"):
+            raise ValueError("auxiliary target supervision is not enabled in this model configuration")
+        if target_input_ids.ndim != 2:
+            raise ValueError("target_input_ids must have shape [batch, target_sequence]")
+        batch_size, target_length = target_input_ids.shape
+        if target_length == 0 or target_length > self.config.context_length:
+            raise ValueError("target sequence length must be in [1, context_length]")
+        if auxiliary_states.shape[0] != batch_size or auxiliary_states.shape[2] != self.config.d_model:
+            raise ValueError("auxiliary_states must agree with target inputs on batch and model dimensions")
+        aux_lengths = aux_lengths.to(device=target_input_ids.device, dtype=torch.long)
         if aux_lengths.shape != (batch_size,):
             raise ValueError("aux_lengths must have shape [batch]")
+        expected_aux_length = int(aux_lengths.max().item()) * self.config.aux_latents_per_token
+        if auxiliary_states.shape[1] != expected_aux_length:
+            raise ValueError("auxiliary_states length does not match aux_lengths")
 
-        aux_lengths = aux_lengths.to(device=masked_input_ids.device, dtype=torch.long)
-        aux_to_main, main_to_aux, auxiliary_length = self._auxiliary_masks(
-            sequence_length=sequence_length, aux_lengths=aux_lengths
+        positions = torch.arange(target_length, device=target_input_ids.device)
+        target_states = self.dropout(
+            self.token_embedding(target_input_ids)
+            + self.aux_target_position_embedding(positions)[None, :, :]
         )
-        positions = torch.arange(sequence_length, device=masked_input_ids.device)
-        # These states serve only as a fixed, corrupted contextual input to
-        # aux.  Keeping this branch gradient-free prevents denoising from
-        # quietly becoming another objective for the main Transformer.
-        with torch.no_grad():
-            main_states = self.dropout(
-                self.token_embedding(masked_input_ids)
-                + self.position_embedding(positions)[None, :, :]
-            )
-
-        aux_positions = torch.arange(auxiliary_length, device=masked_input_ids.device)
-        auxiliary_states = self.aux_position_embedding(aux_positions)[None, :, :].expand(
-            batch_size, -1, -1
+        # Every target query may read the complete source-derived aux prefix
+        # for its example, but never padded latent slots from a longer example.
+        aux_key_max_indices = (aux_lengths * self.config.aux_latents_per_token - 1)[:, None].expand(
+            -1, target_length
         )
-        aux_valid = aux_positions[None, :] < (
-            aux_lengths[:, None] * self.config.aux_latents_per_token
-        )
-        auxiliary_states = auxiliary_states * aux_valid[:, :, None]
-
-        for main_block, aux_block in zip(self.blocks, self.aux_blocks, strict=True):
-            previous_main, previous_aux = main_states, auxiliary_states
-            with torch.no_grad():
-                main_states, _ = main_block(
-                    previous_main,
-                    auxiliary_states=previous_aux.detach(),
-                    aux_key_max_indices=main_to_aux,
-                    disable_aux=True,
-                )
-            auxiliary_states = aux_block(previous_aux, previous_main, aux_to_main)
-        return self.aux_denoise_head(auxiliary_states)
+        for block in self.aux_target_blocks:
+            target_states = block(target_states, auxiliary_states, aux_key_max_indices)
+        return self.aux_target_output(self.aux_target_norm(target_states))
 
 
 def target_cross_entropy(logits: Tensor, labels: Tensor, *, ignore_index: int = -100) -> Tensor:

@@ -34,11 +34,21 @@ def main() -> int:
     args = build_parser().parse_args()
     device = torch.device(args.device or ("cuda" if torch.cuda.is_available() else "cpu"))
     checkpoint = torch.load(args.checkpoint, map_location=device, weights_only=False)
-    if checkpoint.get("format") not in {"agimaze_predict.aux_transformer.v1", "agimaze_predict.aux_transformer.v2"}:
+    if checkpoint.get("format") not in {"agimaze_predict.aux_transformer.v1", "agimaze_predict.aux_transformer.v2", "agimaze_predict.aux_transformer.v3"}:
         raise ValueError(f"unsupported checkpoint format: {checkpoint.get('format')!r}")
 
-    model = AuxTransformer(AuxTransformerConfig(**checkpoint["model_config"])).to(device)
-    model.load_state_dict(checkpoint["model_state_dict"])
+    format_version = checkpoint["format"]
+    model_config = dict(checkpoint["model_config"])
+    if format_version in {"agimaze_predict.aux_transformer.v1", "agimaze_predict.aux_transformer.v2"}:
+        # v3 replaced the disposable masked-byte head with a target-aligned
+        # decoder. The old head was training-only, so dropping its config and
+        # weights preserves greedy inference for historical checkpoints.
+        for key in ("aux_denoise_weight", "aux_mask_rate", "aux_mask_span_length"):
+            model_config.pop(key, None)
+    model = AuxTransformer(AuxTransformerConfig(**model_config)).to(device)
+    model.load_state_dict(
+        checkpoint["model_state_dict"], strict=format_version == "agimaze_predict.aux_transformer.v3"
+    )
     examples = list(PreparedMapActionsToPosDataset(args.dataset))
     if args.split == "validation":
         split = checkpoint.get("split", {})
