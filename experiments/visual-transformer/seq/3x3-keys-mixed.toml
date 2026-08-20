@@ -1,0 +1,46 @@
+# v0: MAP enters only the visual channel. A latent 2-D frame is updated after
+# each completed </ACT>; all intermediate frames are continuous and unsupervised.
+
+[data]
+train_files = [
+    "../../../datasets/seq/3x3-keys-2step-rnd-train1.jsonl",
+    "../../../datasets/seq/3x3-keys-2step-rnd-train2.jsonl",
+    "../../../datasets/seq/3x3-keys-4step-rnd-train1.jsonl",
+    "../../../datasets/seq/3x3-keys-4step-rnd-train2.jsonl",
+    "../../../datasets/seq/3x3-keys-8step-rnd-train1.jsonl",
+    "../../../datasets/seq/3x3-keys-8step-rnd-train2.jsonl",
+]
+validation_files = ["../../../datasets/seq/3x3-keys-4step-rnd-valid.jsonl"]
+
+[model]
+context_length = 128
+d_model = 128
+n_heads = 4
+n_layers = 4
+mlp_multiplier = 4
+dropout = 0.0
+
+[visual]
+# 3x3 rendered boards are 7x13; these dimensions also cover current 4x4 boards.
+canvas_height = 9
+canvas_width = 17
+visual_d_model = 128
+visual_spatial_layers = 2
+visual_temporal_layers = 2
+temporal_history = 8
+pos_readout = "full_text" # diagnostic control: "visual_only"
+visual_gate_init = 0.05
+map_supervision = "none"
+
+[training]
+seed = 111
+epochs = 300
+evaluate_every = 5
+batch_size = 32
+learning_rate = 0.0002
+weight_decay = 0.01
+grad_clip = 1.0
+
+[run]
+output = "../../../runs/visual-transformer-3x3-keys-mixed.pt"
+overwrite = false
