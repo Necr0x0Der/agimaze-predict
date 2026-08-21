@@ -25,6 +25,15 @@ class VisualTokenizerTest(unittest.TestCase):
         self.assertEqual(batch["event_positions"][0], [len(b"<ACT>left</ACT>") - 1])
         self.assertEqual(batch["labels"][0][item.target_start - 1], ord("("))
 
+    def test_visual_only_greedy_target_input_includes_all_prior_bytes(self) -> None:
+        example = PerStepExample(input="<MAP>ab\ncd</MAP>\n<ACT>left</ACT>", target="<POS>(0, 1)</POS>")
+        item = serialize_visual_example(example)
+        generated = list(item.token_ids[: item.target_start])
+        for target_index, byte in enumerate(item.target_suffix):
+            target_input = [item.token_ids[item.target_start - 1], *generated[item.target_start:]]
+            self.assertEqual(target_input, [item.token_ids[item.target_start - 1], *item.target_suffix[:target_index]])
+            generated.append(byte)
+
 
 @unittest.skipUnless(TORCH_AVAILABLE, "optional dependency 'torch' is not installed")
 class VisualTransformerTest(unittest.TestCase):
@@ -50,6 +59,35 @@ class VisualTransformerTest(unittest.TestCase):
         target_cross_entropy(logits, labels).backward()
         self.assertEqual(logits.shape[:2], labels.shape)
         self.assertIsNotNone(model.target_blocks[0].cross_attention.query.weight.grad)
+
+    def test_visual_only_greedy_uses_the_same_prefixes_as_teacher_forcing(self) -> None:
+        from types import SimpleNamespace
+
+        from agimaze_predict.baselines.visual_transformer.evaluate import greedy_target_bytes
+
+        example = PerStepExample(input="<MAP>ab\ncd</MAP>\n<ACT>left</ACT>", target="<POS>(0, 1)</POS>")
+        item = serialize_visual_example(example)
+
+        class RecordingModel(torch.nn.Module):
+            def __init__(self) -> None:
+                super().__init__()
+                self.anchor = torch.nn.Parameter(torch.zeros(()))
+                self.config = SimpleNamespace(canvas_height=3, canvas_width=4, pos_readout="visual_only")
+                self.target_inputs: list[list[int]] = []
+
+            def forward(self, input_ids, *, target_input_ids, **_kwargs):
+                self.target_inputs.append(target_input_ids[0].tolist())
+                logits = torch.zeros((1, target_input_ids.shape[1], 257), device=input_ids.device)
+                next_index = target_input_ids.shape[1] - 1
+                logits[0, -1, item.target_suffix[next_index]] = 1.0
+                return logits
+
+        model = RecordingModel()
+        self.assertEqual(greedy_target_bytes(model, example), item.target_suffix)
+        self.assertEqual(
+            model.target_inputs,
+            [[item.token_ids[item.target_start - 1], *item.target_suffix[:index]] for index in range(len(item.target_suffix))],
+        )
 
 
 if __name__ == "__main__":
