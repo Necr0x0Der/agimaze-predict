@@ -203,3 +203,24 @@ from earlier generated observations.
   - Result:
     - byte accuracy: 0.9809
     - trace accuracy: 0.869
+
+### Pseudo-video Transformer
+
+`scripts/train_txt_visual_transformer.py` is the TXT counterpart of the
+event-triggered visual-memory Transformer. It reads the same composed trace
+JSONL format and uses the same `[data] initial_context` and `depth` settings as
+the byte TXT trainer. The rendered MAP always initializes the 2-D visual frame;
+with `initial_context = "MAP"` it is excluded from the text stream, while
+`"START"` adds the textual START block before the first ACT.
+
+Each complete `</ACT>` updates the visual state. TXT-only loss is applied to
+every full `<TXT>...</TXT>` target block, and validation reports the same
+teacher-forced metrics: `txt_byte_nll`, `txt_span_exact_accuracy`, and
+`trace_all_txt_exact_accuracy`. `pos_readout = "visual_only"` makes the
+separate target decoder read only the final visual frame plus earlier generated
+target bytes; `full_text` remains the diagnostic control. Use
+`visual_gate_init = 0.99` for the current visual-first setup.
+
+No composed TXT datasets are committed yet. Create train/validation JSONL files
+with the sibling `labyrinth/scripts/compose_txt_dataset.py`, then point a TXT
+visual TOML configuration at them.
