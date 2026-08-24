@@ -1,0 +1,56 @@
+# TXT-trace rollout experiment for the event-triggered visual-memory (video)
+# Transformer. Run with:
+# python scripts/train_txt_visual_transformer.py --config experiments/visual-transformer/txt/3x3-keys.toml
+#
+# MAP initializes the 2-D visual memory and is omitted from the text stream.
+# Each completed </ACT> updates the visual frame. Loss covers only complete
+# <TXT>...</TXT> blocks; previous ground-truth TXT blocks are context for later
+# rollout steps.
+
+[data]
+train_files = [
+    "../../../datasets/txt/3x3-keys-rnd-train1.jsonl",
+    "../../../datasets/txt/3x3-keys-rnd-train2.jsonl"
+]
+validation_files = ["../../../datasets/txt/3x3-keys-rnd-valid.jsonl"]
+initial_context = "MAP" # exactly "MAP" or "START"
+depth = 8
+
+[model]
+# Current 3x3 TXT traces fit within 2048 bytes at depth 8. Raise this if the
+# rollout depth or text-observation format grows.
+context_length = 2048
+d_model = 256
+n_heads = 4
+n_layers = 5
+mlp_multiplier = 4
+dropout = 0.0
+
+[visual]
+# The current 3x3 rendered boards occupy up to 8x13. This keeps the shared
+# 9x17 visual canvas used by existing visual-transformer experiments, while
+# leaving room for 4x4 boards.
+canvas_height = 9
+canvas_width = 17
+visual_d_model = 256
+visual_spatial_layers = 2
+visual_temporal_layers = 2
+temporal_history = 8
+# The answer decoder reads only the final visual frame and earlier target bytes;
+# use "full_text" only as the diagnostic control.
+pos_readout = "visual_only"
+visual_gate_init = 0.99
+
+[training]
+seed = 111
+epochs = 250
+evaluate_every = 5
+batch_size = 32
+learning_rate = 0.0002
+weight_decay = 0.01
+grad_clip = 1.0
+
+[run]
+output = "../../../runs/visual-transformer-txt-3x3-keys.pt"
+overwrite = true
+# device = "cuda"
