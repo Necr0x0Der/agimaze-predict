@@ -107,7 +107,7 @@ shared with the per-step baseline; see the [datasets README](../datasets/README.
   - Train: 3x3-keys-2step-rnd-train1, 3x3-keys-2step-rnd-train2, 3x3-keys-4step-rnd-train1, 3x3-keys-4step-rnd-train2 (8000 samples, 210 epochs)
   - Result: 0.954
 - Extended set with 2-step + 8-step
-  - Train: 3x3-keys-2step-rnd-train1, 3x3-keys-2step-rnd-train2, 3x3-keys-8step-rnd-train1, 3x3-keys-8step-rnd-train2, 3x3-keys-4step-rnd-train1, 3x3-keys-4step-rnd-train2 (8000 samples, 265 epochs)
+  - Train: 3x3-keys-2step-rnd-train1, 3x3-keys-2step-rnd-train2, 3x3-keys-8step-rnd-train1, 3x3-keys-8step-rnd-train2, 3x3-keys-4step-rnd-train1, 3x3-keys-4step-rnd-train2 (12000 samples, 265 epochs)
   - Result: 0.979
 
 #### 4x4-keys-2step
@@ -121,7 +121,7 @@ shared with the per-step baseline; see the [datasets README](../datasets/README.
 - Multi-step training set
   - Train: 4x4-keys-1step-rnd-train1, 4x4-keys-1step-rnd-train2, 4x4-keys-4step-rnd-train1, 4x4-keys-4step-rnd-train2, 4x4-keys-2step-rnd-train1, 4x4-keys-2step-rnd-train2 (12000 samples, 220 epochs)
   - Result: 0.932
-- Mixed extended training set
+- Extended mixed training set
   - Train (20000 samples, 240 epochs):
     - 4x4-keys-1step-rnd-train1
     - 4x4-keys-1step-rnd-train2
@@ -138,7 +138,7 @@ shared with the per-step baseline; see the [datasets README](../datasets/README.
 
 #### 3x4-rivers-2step
 - Test: 3x4-rivers-2step-rnd-valid
-- Extended mixed training set (20000 samples, 240 epochs):
+- Extended mixed training set (20000 samples, 240 epochs)
   - 4x4-keys-1step-rnd-train1
   - 4x4-keys-1step-rnd-train2
   - 4x4-keys-2step-rnd-train1
@@ -151,6 +151,30 @@ shared with the per-step baseline; see the [datasets README](../datasets/README.
   - 3x4-rivers-2step-rnd-train2
 - Result: 0.881
 - Conclusion: even 2-step predicion with rivers is hard (even given 1-step prediction examples for the same traces)
+
+### Pseudo-video Auxiliary Transformer Results
+Training/validation setup is the same as for the Byte-Transformer Baseline.
+
+#### 3x3-keys-4step
+- Extended set with 2-step + 8-step
+  - full_text
+    - Resul: 0.978 (visual_gate_init=0.02)
+  - visual_only
+    - Resul: 1.00 (150 epochs)
+
+#### 4x4-keys-2step
+- Extended mixed training set
+  - full_text
+    - Resul: 0.976 (195 epochs)
+  - visual_only
+    - Resul: 1.00 (165 epochs)
+
+#### 3x4-rivers-2step
+- Extended mixed training set:
+  - full_text
+    - Resul: 0.905 (290 epochs)
+  - visual_only
+    - Resul: 0.973 (205 epochs)
 
 ## Txt (sequential textual observations prediction) datasets
 
@@ -165,4 +189,17 @@ from earlier generated observations.
 
 ### Byte-Transformer Results
 
-_No TXT experiments have been recorded yet._
+#### 3x3-keys
+- Test: 3x3-keys-rnd-valid
+- 4-step prediction:
+  - Base training set (3x3-keys-rnd-train1)
+  - 2000 traces, 235 epochs
+  - Result:
+    - byte accuracy: 0.9105
+    - trace accuracy: 0.701
+- 8-step prediction:
+  - Base training set x2 (3x3-keys-rnd-train1, 3x3-keys-rnd-train2)
+  - 4000 traces, 225 epochs
+  - Result:
+    - byte accuracy: 0.9809
+    - trace accuracy: 0.869
