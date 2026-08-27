@@ -52,5 +52,7 @@ grad_clip = 1.0
 
 [run]
 output = "../../../runs/visual-transformer-txt-3x3-keys.pt"
+# Optional warm start: restores model weights only, not optimizer/epoch state.
+# init_checkpoint = "../../../runs/visual-transformer-txt-3x3-keys.pt"
 overwrite = true
 # device = "cuda"

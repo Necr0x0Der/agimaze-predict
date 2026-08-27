@@ -16,6 +16,7 @@ TORCH_AVAILABLE = importlib.util.find_spec("torch") is not None
 
 if TORCH_AVAILABLE:
     import torch
+    from agimaze_predict.baselines.visual_transformer.train_txt import initialize_model_weights
     from agimaze_predict.baselines.visual_transformer.model import (
         VisualTransformer,
         VisualTransformerConfig,
@@ -79,9 +80,49 @@ output = "run.pt"
         self.assertEqual(values["initial_context"], "MAP")
         self.assertEqual(values["depth"], 2)
 
+    def test_resolves_initial_checkpoint_relative_to_config(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            path = Path(temp_dir) / "experiment.toml"
+            path.write_text("[run]\ninit_checkpoint = \"runs/initial.pt\"\n", encoding="utf-8")
+            values = load_visual_txt_training_config(path)
+        self.assertEqual(values["init_checkpoint"], path.parent / "runs/initial.pt")
+
 
 @unittest.skipUnless(TORCH_AVAILABLE, "optional dependency 'torch' is not installed")
 class VisualTxtModelTest(unittest.TestCase):
+    def test_initial_checkpoint_loads_only_compatible_model_weights(self) -> None:
+        config = VisualTransformerConfig(
+            context_length=128, d_model=32, visual_d_model=32, n_heads=4, n_layers=1,
+            visual_spatial_layers=1, visual_temporal_layers=1, canvas_height=3, canvas_width=4,
+        )
+        source = VisualTransformer(config)
+        target = VisualTransformer(config)
+        for parameter in target.parameters():
+            parameter.data.zero_()
+        with tempfile.TemporaryDirectory() as temp_dir:
+            checkpoint_path = Path(temp_dir) / "initial.pt"
+            torch.save(
+                {
+                    "format": "agimaze_predict.visual_transformer.txt_trace.v1",
+                    "model_state_dict": source.state_dict(),
+                },
+                checkpoint_path,
+            )
+            initialize_model_weights(target, checkpoint_path, torch.device("cpu"))
+        for source_parameter, target_parameter in zip(source.parameters(), target.parameters()):
+            self.assertTrue(torch.equal(source_parameter, target_parameter))
+
+    def test_initial_checkpoint_rejects_another_format(self) -> None:
+        config = VisualTransformerConfig(
+            context_length=128, d_model=32, visual_d_model=32, n_heads=4, n_layers=1,
+            visual_spatial_layers=1, visual_temporal_layers=1, canvas_height=3, canvas_width=4,
+        )
+        with tempfile.TemporaryDirectory() as temp_dir:
+            checkpoint_path = Path(temp_dir) / "invalid.pt"
+            torch.save({"format": "other", "model_state_dict": {}}, checkpoint_path)
+            with self.assertRaisesRegex(ValueError, "unsupported initial checkpoint format"):
+                initialize_model_weights(VisualTransformer(config), checkpoint_path, torch.device("cpu"))
+
     def test_full_text_and_visual_only_txt_batches_backpropagate(self) -> None:
         rollout = visual_txt_rollouts_from_trace(trace(), initial_context="MAP", depth=1).rollouts[0]
         batch = collate_visual_txt_rollouts([rollout], context_length=128, canvas_height=3, canvas_width=4)

@@ -14,7 +14,7 @@ DEFAULT_TXT_TRAINING_ARGUMENTS: dict[str, object] = {
     "mlp_multiplier": 4, "dropout": 0.0, "canvas_height": 9, "canvas_width": 17,
     "visual_d_model": 128, "visual_spatial_layers": 2, "visual_temporal_layers": 2,
     "temporal_history": 8, "pos_readout": "full_text", "visual_gate_init": 0.99,
-    "overwrite": False,
+    "overwrite": False, "init_checkpoint": None,
 }
 
 _CONFIG_SECTIONS = {
@@ -22,7 +22,7 @@ _CONFIG_SECTIONS = {
     "model": frozenset({"context_length", "d_model", "n_heads", "n_layers", "mlp_multiplier", "dropout"}),
     "visual": frozenset({"canvas_height", "canvas_width", "visual_d_model", "visual_spatial_layers", "visual_temporal_layers", "temporal_history", "pos_readout", "visual_gate_init"}),
     "training": frozenset({"seed", "epochs", "evaluate_every", "batch_size", "learning_rate", "weight_decay", "grad_clip"}),
-    "run": frozenset({"output", "overwrite", "device"}),
+    "run": frozenset({"output", "overwrite", "device", "init_checkpoint"}),
 }
 
 
@@ -72,7 +72,9 @@ def load_visual_txt_training_config(path: str | Path) -> dict[str, object]:
                 values["depth"] = section["depth"]
         elif section_name == "run":
             for key, value in section.items():
-                values[key] = (Path(value).expanduser() if Path(value).expanduser().is_absolute() else config_path.parent / value) if key == "output" else value
+                values[key] = (
+                    Path(value).expanduser() if Path(value).expanduser().is_absolute() else config_path.parent / value
+                ) if key in {"output", "init_checkpoint"} else value
         else:
             values.update(section)
     if raw:

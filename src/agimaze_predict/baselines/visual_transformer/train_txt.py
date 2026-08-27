@@ -42,6 +42,25 @@ def _collator(context_length: int, canvas_height: int, canvas_width: int):
     return collate
 
 
+def initialize_model_weights(model: VisualTransformer, checkpoint_path: Path, device: torch.device) -> None:
+    """Warm-start ``model`` with a compatible TXT visual-transformer checkpoint.
+
+    This deliberately restores only model parameters.  Optimizer state, epoch
+    number, and random-number-generator state remain fresh for the new run.
+    """
+
+    checkpoint = torch.load(checkpoint_path, map_location=device, weights_only=True)
+    if checkpoint.get("format") != "agimaze_predict.visual_transformer.txt_trace.v1":
+        raise ValueError(
+            f"{checkpoint_path}: unsupported initial checkpoint format: "
+            f"{checkpoint.get('format')!r}"
+        )
+    try:
+        model.load_state_dict(checkpoint["model_state_dict"], strict=True)
+    except (KeyError, RuntimeError) as exc:
+        raise ValueError(f"{checkpoint_path}: weights are incompatible with the requested model configuration") from exc
+
+
 def train(args: argparse.Namespace) -> dict[str, object]:
     seed_everything(args.seed)
     device = torch.device(args.device or ("cuda" if torch.cuda.is_available() else "cpu"))
@@ -60,6 +79,9 @@ def train(args: argparse.Namespace) -> dict[str, object]:
         collate_fn=_collator(config.context_length, config.canvas_height, config.canvas_width),
     )
     model = VisualTransformer(config).to(device)
+    if args.init_checkpoint is not None:
+        initialize_model_weights(model, Path(args.init_checkpoint), device)
+        print(f"Initialized model weights from: {args.init_checkpoint}", flush=True)
     optimizer = AdamW(model.parameters(), lr=args.learning_rate, weight_decay=args.weight_decay)
     print("Training trace count:", len(train_traces), "rollout count:", len(train_rollouts))
     for epoch in range(1, args.epochs + 1):
@@ -117,6 +139,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--validation-dataset", "--test-dataset", dest="validation_datasets", type=Path, action="append")
     parser.add_argument("--initial-context", choices=("MAP", "START")); parser.add_argument("--depth", type=int)
     parser.add_argument("--output", type=Path); parser.add_argument("--overwrite", action="store_true")
+    parser.add_argument("--init-checkpoint", type=Path, help="initialize model weights from a compatible TXT checkpoint")
     parser.add_argument("--device"); parser.add_argument("--seed", type=int); parser.add_argument("--epochs", type=int)
     parser.add_argument("--evaluate-every", type=int); parser.add_argument("--batch-size", type=int)
     parser.add_argument("--learning-rate", type=float); parser.add_argument("--weight-decay", type=float); parser.add_argument("--grad-clip", type=float)
