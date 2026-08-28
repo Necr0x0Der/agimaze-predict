@@ -20,7 +20,7 @@ depth = 8
 # Current 3x3 TXT traces fit within 2048 bytes at depth 8. Raise this if the
 # rollout depth or text-observation format grows.
 context_length = 2048
-d_model = 256
+d_model = 128
 n_heads = 4
 n_layers = 5
 mlp_multiplier = 4
@@ -53,6 +53,6 @@ grad_clip = 1.0
 [run]
 output = "../../../runs/visual-transformer-txt-3x3-keys.pt"
 # Optional warm start: restores model weights only, not optimizer/epoch state.
-# init_checkpoint = "../../../runs/visual-transformer-txt-3x3-keys.pt"
+# init_checkpoint = "../../../runs/visual-transformer-txt-3x3-keys-250.pt"
 overwrite = true
 # device = "cuda"
