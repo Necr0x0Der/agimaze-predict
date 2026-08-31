@@ -152,6 +152,20 @@ shared with the per-step baseline; see the [datasets README](../datasets/README.
 - Result: 0.881
 - Conclusion: even 2-step predicion with rivers is hard (even given 1-step prediction examples for the same traces)
 
+### Auxiliary Transformer Results
+#### 3x3-keys-4step
+- Extended set with 2-step + 8-step
+  - Resul: 0.975 (210 epochs)
+  - Remark: 100% accuracy on the training set is achieved but the validation set score is slightly lower possibly meaning that the additional transformer doesn't help to maintain useful representations but rather decreases generalization because of the increase in the number of parameters.
+
+#### 4x4-keys-2step
+- Extended mixed training set
+  - Resul: 0.886 (360 epochs)
+
+#### 3x4-rivers-2step
+- Extended mixed training set
+  - Resul: 0.868 (395 epochs)
+
 ### Pseudo-video Auxiliary Transformer Results
 Training/validation setup is the same as for the Byte-Transformer Baseline.
 

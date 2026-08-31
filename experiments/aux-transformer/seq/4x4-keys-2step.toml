@@ -27,7 +27,7 @@ mlp_multiplier = 4
 dropout = 0.0
 aux_latents_per_token = 1
 aux_gate_mode = "learned"
-aux_gate_init = 0.05
+aux_gate_init = 0.95
 aux_scale = 1.0
 
 [training]
