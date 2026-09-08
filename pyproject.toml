@@ -14,6 +14,15 @@ dependencies = []
 [project.optional-dependencies]
 torch = ["torch>=2.3"]
 test = ["pytest>=8"]
+llama = [
+  "torch>=2.3",
+  "transformers>=4.45,<5",
+  "accelerate>=0.34",
+  "peft>=0.12",
+  "safetensors>=0.4",
+]
+# Install bitsandbytes separately on the target CUDA host when QLoRA is wanted.
+# Its compatible wheel depends on the CUDA and GPU-driver combination.
 
 [tool.setuptools.packages.find]
 where = ["src"]

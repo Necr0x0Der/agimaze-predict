@@ -1,0 +1,38 @@
+# First Llama + 2-D memory experiment.  The initial run should use LoRA rank 0
+# (frozen backbone); enable LoRA only after the memory-only control is logged.
+
+[data]
+train_files = [
+  "../../../datasets/seq/3x3-keys-2step-rnd-train1.jsonl",
+  "../../../datasets/seq/3x3-keys-2step-rnd-train2.jsonl",
+  "../../../datasets/seq/3x3-keys-4step-rnd-train1.jsonl",
+  "../../../datasets/seq/3x3-keys-4step-rnd-train2.jsonl",
+  "../../../datasets/seq/3x3-keys-8step-rnd-train1.jsonl",
+  "../../../datasets/seq/3x3-keys-8step-rnd-train2.jsonl",
+]
+validation_files = ["../../../datasets/seq/3x3-keys-4step-rnd-valid.jsonl"]
+
+[model]
+base_model = "meta-llama/Llama-3.2-3B-Instruct"
+freeze_backbone = true
+lora_rank = 0
+lora_target_modules = ["q_proj", "v_proj", "o_proj"]
+
+[memory]
+canvas_height = 9
+canvas_width = 17
+d_model = 256
+n_heads = 4
+spatial_layers = 2
+memory_tokens = 16
+
+[training]
+seed = 111
+epochs = 100
+batch_size = 4
+learning_rate = 0.0002
+weight_decay = 0.01
+grad_clip = 1.0
+
+[run]
+output = "../../../runs/llama-memory-3x3-keys-4step"
