@@ -52,8 +52,10 @@ machine.  Install `bitsandbytes` separately only when using 4-bit QLoRA.
 After training, `scripts/generate_llama_memory.py` can inject the saved spatial
 memory into an arbitrary Llama text prefix.  A map remains mandatory; completed
 actions are optional and define the workspace state after those actions.  The
-map is raw rectangular text (without
-`<MAP>` tags), and actions are supplied in chronological order:
+map is raw rectangular text and actions are supplied in chronological order.
+For convenience, map files may also contain enclosing `<MAP>` / `</MAP>` tags,
+outer blank lines are ignored, and accidentally trimmed trailing spaces are
+right-padded back to the map width:
 
 ```bash
 python scripts/generate_llama_memory.py \

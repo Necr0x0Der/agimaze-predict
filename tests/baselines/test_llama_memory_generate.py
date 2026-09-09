@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import pytest
 
+from agimaze_predict.baselines.llama_memory.map_format import map_rows
+
 
 torch = pytest.importorskip("torch")
 
@@ -11,6 +13,7 @@ from agimaze_predict.baselines.llama_memory.generate import _action_tensors  # n
 class _Tokenizer:
     def __call__(self, text: str, *, add_special_tokens: bool = False) -> dict[str, list[int]]:
         return {"input_ids": [ord(character) for character in text]}
+
 
 
 def test_action_tensors_allow_an_empty_action_history() -> None:

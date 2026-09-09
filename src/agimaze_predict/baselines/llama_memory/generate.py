@@ -10,6 +10,7 @@ from typing import Sequence
 import torch
 from torch import Tensor
 
+from .map_format import map_rows
 from .model import LlamaWithSpatialMemory
 from .spatial_memory import SpatialMemoryConfig
 
@@ -38,10 +39,8 @@ def _read_text(*, value: str | None, path: Path | None, option: str) -> str:
     return value if value is not None else path.read_text(encoding="utf-8").strip("\r\n")
 
 
-def _visual_map(rows_text: str, config: SpatialMemoryConfig, *, device: torch.device) -> Tensor:
-    rows = tuple(rows_text.splitlines())
-    if not rows or not rows[0] or any(len(row) != len(rows[0]) for row in rows):
-        raise ValueError("map must be a non-empty rectangular grid")
+def _visual_map(map_text: str, config: SpatialMemoryConfig, *, device: torch.device) -> Tensor:
+    rows = map_rows(map_text)
     if len(rows) > config.canvas_height or len(rows[0]) > config.canvas_width:
         raise ValueError(
             f"map {len(rows)}x{len(rows[0])} does not fit canvas "
