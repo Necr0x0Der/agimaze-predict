@@ -55,13 +55,18 @@ class SpatialWorkspace(nn.Module):
     preserves a distinct state at every map cell over the action sequence.
     """
 
-    def __init__(self, config: SpatialMemoryConfig) -> None:
+    def __init__(self, config: SpatialMemoryConfig, *, action_embedding_dim: int) -> None:
         super().__init__()
+        if action_embedding_dim <= 0:
+            raise ValueError("action_embedding_dim must be positive")
         self.config = config
         self.characters = nn.Embedding(256, config.d_model)
         self.rows = nn.Embedding(config.canvas_height, config.d_model)
         self.columns = nn.Embedding(config.canvas_width, config.d_model)
-        self.action_projection = nn.LazyLinear(config.d_model)
+        # The language backbone exposes its embedding width at construction
+        # time.  Use it directly rather than LazyLinear: the optimizer and
+        # parameter-count logging are created before the first training batch.
+        self.action_projection = nn.Linear(action_embedding_dim, config.d_model)
         self.write_gate = nn.Linear(2 * config.d_model, config.d_model)
         self.state_cell = nn.GRUCell(config.d_model, config.d_model)
         self.spatial = nn.ModuleList(SpatialBlock(config) for _ in range(config.spatial_layers))

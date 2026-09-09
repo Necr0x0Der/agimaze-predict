@@ -16,8 +16,8 @@ class LlamaWithSpatialMemory(nn.Module):
     def __init__(self, llama: nn.Module, spatial_config: SpatialMemoryConfig) -> None:
         super().__init__()
         self.llama = llama
-        self.workspace = SpatialWorkspace(spatial_config)
         hidden_size = int(llama.config.hidden_size)
+        self.workspace = SpatialWorkspace(spatial_config, action_embedding_dim=hidden_size)
         self.memory_projection = nn.Linear(spatial_config.d_model, hidden_size, bias=False)
 
     def _action_embeddings(self, action_input_ids: Tensor, action_attention_mask: Tensor) -> tuple[Tensor, Tensor]:
