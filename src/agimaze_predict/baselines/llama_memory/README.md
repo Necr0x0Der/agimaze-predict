@@ -70,3 +70,41 @@ For its intended POS probe, it should therefore reproduce that format exactly
 (as in the example).  Questions, chat templates, or new tasks are out of
 distribution: the frozen Llama may generate fluent text, but there is no reason
 to expect the learned memory interface to ground it reliably.
+
+## Untrained API-model probe
+
+`scripts/evaluate_llm_icl.py` measures an arbitrary OpenAI-compatible model
+without training, checkpoints, PyTorch, or the spatial-memory module. It sends
+the raw ASCII `<MAP>` and `<ACT>` history with a common explanation of the maze
+format, then scores the one extracted `<POS>(row, col)</POS>` answer by exact
+match. This is an out-of-the-box ICL probe, not a negative control that can by
+itself invalidate a failed memory experiment.
+
+Set `OPENROUTER_API_KEY` (or `OPENAI_API_KEY`); the default endpoint is
+OpenRouter's OpenAI-compatible API. `OPENROUTER_BASE_URL` or
+`OPENAI_BASE_URL` overrides it. Start with a bounded zero-shot run:
+
+```bash
+OPENROUTER_API_KEY=... python scripts/evaluate_llm_icl.py \
+  --model meta-llama/llama-3.2-3b-instruct \
+  --dataset datasets/seq/3x3-keys-4step-rnd-valid.jsonl \
+  --max-examples 25 \
+  --output runs/icl-llama-3b-3x3-keys-4step.jsonl
+```
+
+For a deterministic few-shot condition, supply a separate **training-only**
+dataset. Demonstrations are sampled once from it using `--seed` and shared by
+every validation request:
+
+```bash
+OPENROUTER_API_KEY=... python scripts/evaluate_llm_icl.py \
+  --model meta-llama/llama-3.2-3b-instruct \
+  --dataset datasets/seq/3x3-keys-4step-rnd-valid.jsonl \
+  --few-shot-dataset datasets/seq/3x3-keys-4step-rnd-train1.jsonl \
+  --few-shot-count 4 --seed 111 \
+  --output runs/icl-llama-3b-3x3-keys-4step-few4.jsonl
+```
+
+The summary reports `format_valid_accuracy` (exactly one parseable POS block)
+and `exact_target_accuracy`; the JSONL output preserves every raw completion
+for error analysis.
