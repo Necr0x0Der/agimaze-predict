@@ -22,6 +22,16 @@ encoder, spatial updater/readout, and projection into Llama hidden space.  A
 later variant can add LoRA adapters to Llama attention projections.  Full
 fine-tuning is deliberately excluded from the first comparison.
 
+## Training evaluation
+
+At epoch 1, every `evaluate_every` epochs, and the final epoch, the trainer
+evaluates the held-out `validation_files` from the TOML.  It reports
+`val_target_token_nll` (teacher-forced loss only on target POS and EOS tokens)
+and `val_greedy_exact_target_accuracy` (the fraction of complete greedy
+`<POS>...</POS>` continuations, including EOS, that match exactly).  Greedy
+generation builds the map/action memory once and uses Llama's KV cache for the
+target tokens, so memory is not accidentally inserted a second time.
+
 ## Required controls
 
 At minimum, report the same tokenizer, prompt template, source-maze-disjoint

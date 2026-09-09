@@ -17,6 +17,7 @@ from agimaze_predict.data.prepared import PreparedExample, PreparedMapActionsToP
 
 from .config import resolve_training_arguments
 from .data import collate_examples
+from .evaluate import evaluate_examples
 from .model import LlamaWithSpatialMemory
 from .spatial_memory import SpatialMemoryConfig
 
@@ -93,9 +94,15 @@ def train(args: argparse.Namespace) -> Path:
     if not trainable:
         raise ValueError("no trainable parameters: enable workspace training or LoRA")
     train_examples = _load_examples(args.train_datasets)
-    loader = DataLoader(train_examples, batch_size=args.batch_size, shuffle=True, collate_fn=_collator(tokenizer, config))
+    validation_examples = _load_examples(args.validation_datasets)
+    collate = _collator(tokenizer, config)
+    loader = DataLoader(train_examples, batch_size=args.batch_size, shuffle=True, collate_fn=collate)
     optimizer = AdamW(trainable, lr=args.learning_rate, weight_decay=args.weight_decay)
-    print(f"training_examples={len(train_examples)} trainable_parameters={sum(p.numel() for p in trainable)}", flush=True)
+    print(
+        f"training_examples={len(train_examples)} validation_examples={len(validation_examples)} "
+        f"trainable_parameters={sum(p.numel() for p in trainable)}",
+        flush=True,
+    )
     for epoch in range(1, args.epochs + 1):
         model.train()
         total, tokens = 0.0, 0
@@ -111,17 +118,40 @@ def train(args: argparse.Namespace) -> Path:
             total += float(output.loss.item()) * active
             tokens += active
         if epoch == 1 or epoch % args.evaluate_every == 0 or epoch == args.epochs:
-            print(f"epoch={epoch} target_nll={total / max(tokens, 1):.6f}", flush=True)
+            validation = evaluate_examples(
+                model,
+                validation_examples,
+                tokenizer=tokenizer,
+                config=config,
+                collate=collate,
+                device=device,
+                batch_size=args.batch_size,
+            )
+            print(
+                f"epoch={epoch} train_target_nll={total / max(tokens, 1):.6f} "
+                f"val_target_token_nll={validation['target_token_nll']:.6f} "
+                f"val_greedy_exact_target_accuracy={validation['greedy_exact_target_accuracy']:.4f}",
+                flush=True,
+            )
     output = Path(args.output)
     if output.exists() and not args.overwrite:
         raise FileExistsError(f"{output} exists; use overwrite=true or --overwrite")
+    # The normal cadence evaluates on the final epoch; keep the value explicit
+    # here because it is persisted as checkpoint metadata below.
+    final_validation = validation
     output.mkdir(parents=True, exist_ok=True)
     torch.save({"format": "agimaze_predict.llama_memory.v0", "spatial_config": config.to_dict(), "workspace": model.workspace.state_dict(), "memory_projection": model.memory_projection.state_dict(), "base_model": args.base_model}, output / "spatial-memory.pt")
     tokenizer.save_pretrained(output / "tokenizer")
     if args.lora_rank > 0:
         model.llama.save_pretrained(output / "lora")
     with (output / "run.json").open("w", encoding="utf-8") as handle:
-        json.dump(vars(args), handle, default=str, indent=2, sort_keys=True)
+        json.dump(
+            {"arguments": vars(args), "final_validation": final_validation},
+            handle,
+            default=str,
+            indent=2,
+            sort_keys=True,
+        )
     return output
 
 
