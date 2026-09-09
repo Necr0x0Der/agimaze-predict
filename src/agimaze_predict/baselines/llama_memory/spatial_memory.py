@@ -100,7 +100,9 @@ class SpatialWorkspace(nn.Module):
         batch, height, width, channels = frame.shape
         for action_index in range(action_embeddings.shape[1]):
             active = action_mask[:, action_index].bool()
-            action = self.action_projection(action_embeddings[:, action_index])
+            # The frozen Llama embedding table is bf16, while this small
+            # auxiliary workspace intentionally stays fp32 for stable updates.
+            action = self.action_projection(action_embeddings[:, action_index].to(dtype=frame.dtype))
             prior = frame.reshape(batch * height * width, channels)
             write = action[:, None, None, :].expand(-1, height, width, -1).reshape_as(prior)
             gate = torch.sigmoid(self.write_gate(torch.cat((prior, write), dim=-1)))

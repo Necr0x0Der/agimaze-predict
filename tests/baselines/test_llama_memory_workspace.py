@@ -17,3 +17,16 @@ def test_workspace_initializes_action_projection_at_construction() -> None:
 
     assert workspace.action_projection.in_features == 12
     assert all(parameter.numel() > 0 for parameter in workspace.parameters())
+
+
+def test_workspace_accepts_bfloat16_llama_action_embeddings() -> None:
+    config = SpatialMemoryConfig(canvas_height=2, canvas_width=3, d_model=8, n_heads=2, spatial_layers=1)
+    workspace = SpatialWorkspace(config, action_embedding_dim=12)
+
+    memory = workspace(
+        torch.zeros((1, 2, 3), dtype=torch.long),
+        torch.randn((1, 1, 12), dtype=torch.bfloat16),
+        torch.ones((1, 1), dtype=torch.bool),
+    )
+
+    assert memory.dtype == torch.float32

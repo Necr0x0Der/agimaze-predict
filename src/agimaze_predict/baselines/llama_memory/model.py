@@ -66,6 +66,10 @@ class LlamaWithSpatialMemory(nn.Module):
         actions, action_mask = self._action_embeddings(action_input_ids, action_attention_mask)
         memory = self.memory_projection(self.workspace(visual_maps, actions, action_mask))
         tokens = self.llama.get_input_embeddings()(input_ids)
+        # The auxiliary workspace/projection is fp32, whereas Llama was loaded
+        # in bf16.  Convert only at the interface before concatenating soft
+        # memory tokens with the backbone's input embeddings.
+        memory = memory.to(dtype=tokens.dtype)
         inputs_embeds, expanded_mask, expanded_labels = self._insert_memory(
             tokens, attention_mask, labels, memory, prompt_lengths
         )
