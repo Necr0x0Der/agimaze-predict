@@ -86,18 +86,28 @@ class SpatialWorkspace(nn.Module):
             frame = block(frame)
         return frame
 
-    def forward(self, visual_maps: Tensor, action_embeddings: Tensor, action_mask: Tensor) -> Tensor:
-        """Return fixed-count soft tokens from the final map frame.
+    def _read(self, frame: Tensor) -> Tensor:
+        """Read a fixed number of soft tokens from one spatial frame."""
 
-        ``action_embeddings`` is ``[batch, actions, language_hidden]`` and is
-        usually a masked mean of frozen Llama token embeddings.  ``action_mask``
-        distinguishes actual action events from batch padding.
+        batch, height, width, channels = frame.shape
+        cells = frame.reshape(batch, height * width, channels)
+        queries = self.read_queries[None].expand(batch, -1, -1)
+        tokens, _ = self.read_attention(queries, cells, cells, need_weights=False)
+        return tokens
+
+    def rollout(self, visual_maps: Tensor, action_embeddings: Tensor, action_mask: Tensor) -> Tensor:
+        """Return one memory readout immediately after each completed action.
+
+        The result is ``[batch, actions, memory_tokens, d_model]``. Padded
+        action slots retain the preceding frame so callers may batch histories
+        with different lengths and ignore those slots through their event mask.
         """
 
         if action_embeddings.ndim != 3 or action_mask.shape != action_embeddings.shape[:2]:
             raise ValueError("action embeddings/mask must be [batch, actions, channels]")
         frame = self.initial_frame(visual_maps)
         batch, height, width, channels = frame.shape
+        readouts: list[Tensor] = []
         for action_index in range(action_embeddings.shape[1]):
             active = action_mask[:, action_index].bool()
             # The frozen Llama embedding table is bf16, while this small
@@ -110,7 +120,12 @@ class SpatialWorkspace(nn.Module):
             for block in self.spatial:
                 updated = block(updated)
             frame = torch.where(active[:, None, None, None], updated, frame)
-        cells = frame.reshape(batch, height * width, channels)
-        queries = self.read_queries[None].expand(batch, -1, -1)
-        tokens, _ = self.read_attention(queries, cells, cells, need_weights=False)
-        return tokens
+            readouts.append(self._read(frame))
+        if not readouts:
+            raise ValueError("workspace rollout requires at least one action slot")
+        return torch.stack(readouts, dim=1)
+
+    def forward(self, visual_maps: Tensor, action_embeddings: Tensor, action_mask: Tensor) -> Tensor:
+        """Return fixed-count soft tokens from the final map frame."""
+
+        return self.rollout(visual_maps, action_embeddings, action_mask)[:, -1]

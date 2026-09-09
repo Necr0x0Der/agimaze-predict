@@ -51,6 +51,64 @@ class LlamaWithSpatialMemory(nn.Module):
                 padded_labels[index, : sequence.shape[0]] = all_labels[index]
         return embeds, mask, padded_labels
 
+    def _insert_event_memory(
+        self,
+        token_embeddings: Tensor,
+        attention_mask: Tensor,
+        labels: Tensor | None,
+        memory: Tensor,
+        event_token_positions: Tensor,
+        event_mask: Tensor,
+    ) -> tuple[Tensor, Tensor, Tensor | None]:
+        """Insert event ``i``'s memory immediately after source ACT ``i``.
+
+        ``event_token_positions`` are exclusive positions in the original
+        token sequence.  The final valid event is consequently located exactly
+        before the currently predicted TXT block; earlier events remain before
+        their teacher-forced TXT feedback.
+        """
+
+        if memory.ndim != 4 or event_token_positions.shape != event_mask.shape:
+            raise ValueError("event memory/positions/mask dimensions disagree")
+        sequences, masks, all_labels = [], [], []
+        for index in range(token_embeddings.shape[0]):
+            real_length = int(attention_mask[index].sum().item())
+            base = token_embeddings[index, :real_length]
+            current_labels = None if labels is None else labels[index, :real_length]
+            positions = event_token_positions[index, event_mask[index].bool()].tolist()
+            if not positions or positions != sorted(positions) or positions[-1] > real_length:
+                raise ValueError("event positions must be non-empty, ordered source boundaries")
+            parts, label_parts = [], []
+            start = 0
+            for event_index, position in enumerate(positions):
+                if position <= start:
+                    raise ValueError("event positions must be strictly increasing")
+                parts.extend((base[start:position], memory[index, event_index]))
+                if current_labels is not None:
+                    label_parts.extend((current_labels[start:position], torch.full(
+                        (memory.shape[2],), -100, dtype=labels.dtype, device=labels.device
+                    )))
+                start = position
+            parts.append(base[start:])
+            if current_labels is not None:
+                label_parts.append(current_labels[start:])
+            sequence = torch.cat(parts, dim=0)
+            sequences.append(sequence)
+            masks.append(torch.ones(sequence.shape[0], dtype=attention_mask.dtype, device=attention_mask.device))
+            if current_labels is not None:
+                all_labels.append(torch.cat(label_parts, dim=0))
+        width = max(sequence.shape[0] for sequence in sequences)
+        hidden = token_embeddings.shape[-1]
+        embeds = token_embeddings.new_zeros((len(sequences), width, hidden))
+        mask = attention_mask.new_zeros((len(sequences), width))
+        padded_labels = None if labels is None else labels.new_full((len(sequences), width), -100)
+        for index, sequence in enumerate(sequences):
+            embeds[index, :sequence.shape[0]] = sequence
+            mask[index, :sequence.shape[0]] = masks[index]
+            if padded_labels is not None:
+                padded_labels[index, :sequence.shape[0]] = all_labels[index]
+        return embeds, mask, padded_labels
+
     def forward(
         self,
         *,
@@ -72,5 +130,31 @@ class LlamaWithSpatialMemory(nn.Module):
         memory = memory.to(dtype=tokens.dtype)
         inputs_embeds, expanded_mask, expanded_labels = self._insert_memory(
             tokens, attention_mask, labels, memory, prompt_lengths
+        )
+        return self.llama(inputs_embeds=inputs_embeds, attention_mask=expanded_mask, labels=expanded_labels, **kwargs)
+
+    def forward_txt(
+        self,
+        *,
+        input_ids: Tensor,
+        attention_mask: Tensor,
+        visual_maps: Tensor,
+        action_input_ids: Tensor,
+        action_attention_mask: Tensor,
+        event_token_positions: Tensor,
+        event_mask: Tensor,
+        labels: Tensor | None = None,
+        **kwargs: Any,
+    ) -> Any:
+        """Predict TXT with one map-state prefix after every completed ACT."""
+
+        actions, action_mask = self._action_embeddings(action_input_ids, action_attention_mask)
+        if not torch.equal(action_mask, event_mask.bool()):
+            raise ValueError("ACT tokenization mask and event mask must agree")
+        memory = self.memory_projection(self.workspace.rollout(visual_maps, actions, action_mask))
+        tokens = self.llama.get_input_embeddings()(input_ids)
+        memory = memory.to(dtype=tokens.dtype)
+        inputs_embeds, expanded_mask, expanded_labels = self._insert_event_memory(
+            tokens, attention_mask, labels, memory, event_token_positions, event_mask
         )
         return self.llama(inputs_embeds=inputs_embeds, attention_mask=expanded_mask, labels=expanded_labels, **kwargs)

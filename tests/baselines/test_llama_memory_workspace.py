@@ -19,6 +19,20 @@ def test_workspace_initializes_action_projection_at_construction() -> None:
     assert all(parameter.numel() > 0 for parameter in workspace.parameters())
 
 
+def test_workspace_rollout_emits_one_readout_per_action() -> None:
+    config = SpatialMemoryConfig(canvas_height=2, canvas_width=3, d_model=8, n_heads=2, spatial_layers=1, memory_tokens=3)
+    workspace = SpatialWorkspace(config, action_embedding_dim=12)
+
+    memory = workspace.rollout(
+        torch.zeros((2, 2, 3), dtype=torch.long),
+        torch.randn((2, 4, 12), dtype=torch.bfloat16),
+        torch.tensor([[1, 1, 1, 0], [1, 1, 0, 0]], dtype=torch.bool),
+    )
+
+    assert memory.shape == (2, 4, 3, 8)
+    assert memory.dtype == torch.float32
+
+
 def test_workspace_accepts_bfloat16_llama_action_embeddings() -> None:
     config = SpatialMemoryConfig(canvas_height=2, canvas_width=3, d_model=8, n_heads=2, spatial_layers=1)
     workspace = SpatialWorkspace(config, action_embedding_dim=12)

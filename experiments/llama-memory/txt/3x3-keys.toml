@@ -1,0 +1,47 @@
+# Event-aligned Llama + 2-D memory TXT experiment.
+# Run from repository root:
+# python scripts/train_txt_llama_memory.py --config experiments/llama-memory/txt/3x3-keys.toml
+#
+# The MAP initializes only the spatial workspace. For every completed ACT, the
+# workspace is updated and its fresh 16-token readout is inserted immediately
+# before that ACT's TXT target. Earlier ground-truth TXT blocks remain normal
+# Llama context for the next rollout. Llama is frozen in this first condition.
+
+[data]
+train_files = [
+    "../../../datasets/txt/3x3-keys-rnd-train1.jsonl",
+    "../../../datasets/txt/3x3-keys-rnd-train2.jsonl",
+]
+validation_files = ["../../../datasets/txt/3x3-keys-rnd-valid.jsonl"]
+initial_context = "START"
+depth = 8
+
+[model]
+base_model = "meta-llama/Llama-3.2-3B-Instruct"
+freeze_backbone = true
+lora_rank = 0
+
+[memory]
+canvas_height = 9
+canvas_width = 17
+d_model = 256
+n_heads = 4
+spatial_layers = 2
+memory_tokens = 16
+
+[training]
+seed = 111
+epochs = 100
+evaluate_every = 5
+batch_size = 2
+learning_rate = 0.0002
+weight_decay = 0.01
+grad_clip = 1.0
+# Greedy decoding is expensive with a 3B model; teacher-forced metrics use all
+# validation rollouts, exact generation uses this fixed prefix each evaluation.
+greedy_evaluate_examples = 100
+
+[run]
+output = "../../../runs/llama-memory-txt-3x3-keys.pt"
+overwrite = false
+# device = "cuda"

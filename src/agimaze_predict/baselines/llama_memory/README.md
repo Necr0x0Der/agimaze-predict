@@ -110,3 +110,33 @@ OPENROUTER_API_KEY=... python scripts/evaluate_llm_icl.py \
 The summary reports `format_valid_accuracy` (exactly one parseable POS block)
 and `exact_target_accuracy`; the JSONL output preserves every raw completion
 for error analysis.
+
+## Event-aligned TXT experiment
+
+`scripts/train_txt_llama_memory.py` trains the same frozen-Llama/workspace
+baseline on composed `<START>`, `<ACT>`, `<TXT>` traces. Unlike the POS task,
+this inserts **a separate current-state memory prefix after every completed
+ACT**, immediately before its corresponding TXT block:
+
+```text
+<START>...</START>
+<ACT>right</ACT> [memory after right] <TXT>...</TXT>
+<ACT>up</ACT>    [memory after right, up] <TXT>...</TXT>
+```
+
+For training, each transition is a teacher-forced rollout: prior ground-truth
+`ACT/TXT` pairs remain language context, the current ACT is present, and loss
+is calculated only on the next full `<TXT>...</TXT>` block plus EOS. The first
+controlled version updates the workspace from MAP and ACT values only; previous
+TXT observations are available to Llama but are deliberately not written to the
+workspace yet.
+
+```bash
+python scripts/train_txt_llama_memory.py \
+  --config experiments/llama-memory/txt/3x3-keys.toml
+```
+
+The trainer reports full-validation TXT token NLL and teacher-forced token
+accuracy. Because greedy decoding with a 3B Llama is expensive, the default
+config computes greedy full-span exactness on a deterministic first 100
+validation rollouts; change `greedy_evaluate_examples` for a broader estimate.
