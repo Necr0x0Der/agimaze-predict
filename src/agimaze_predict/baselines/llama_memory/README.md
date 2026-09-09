@@ -36,3 +36,27 @@ splits, and greedy exact-match metric for:
 The implementation is dependency-light at import time, but actual training
 requires `pip install -e '.[llama]'`, accepted Llama model access, and a CUDA
 machine.  Install `bitsandbytes` separately only when using 4-bit QLoRA.
+
+## Prompt probe
+
+After training, `scripts/generate_llama_memory.py` can inject the saved spatial
+memory into an arbitrary Llama text prefix.  A map and one or more completed
+actions remain mandatory: they are the only inputs from which the current
+workspace state can be built.  The map is raw rectangular text (without
+`<MAP>` tags), and actions are supplied in chronological order:
+
+```bash
+python scripts/generate_llama_memory.py \
+  --checkpoint runs/llama-memory-3x3-keys-4step \
+  --map-file /path/to/map.txt \
+  --action right --action down \
+  --prompt $'<ACT>right</ACT>\n<ACT>down</ACT>\n' \
+  --stop '</POS>'
+```
+
+The `--prompt` may contain arbitrary text, but this checkpoint was trained only
+on an action-block prompt followed immediately by a `<POS>...</POS>` target.
+For its intended POS probe, it should therefore reproduce that format exactly
+(as in the example).  Questions, chat templates, or new tasks are out of
+distribution: the frozen Llama may generate fluent text, but there is no reason
+to expect the learned memory interface to ground it reliably.
