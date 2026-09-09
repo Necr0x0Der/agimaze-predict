@@ -5,7 +5,7 @@ from __future__ import annotations
 import argparse
 import tomllib
 from pathlib import Path
-from typing import Any
+from typing import Any, Sequence
 
 _DEFAULTS: dict[str, Any] = {
     "base_model": "meta-llama/Llama-3.2-3B-Instruct",
@@ -36,10 +36,17 @@ def _paths(value: object, *, field: str, root: Path) -> list[Path]:
     return [(root / item).resolve() for item in value]
 
 
-def resolve_training_arguments(parser: argparse.ArgumentParser) -> argparse.Namespace:
-    """Merge a TOML experiment file with explicitly supplied CLI values."""
+def resolve_training_arguments(
+    parser: argparse.ArgumentParser, argv: Sequence[str] | None = None
+) -> argparse.Namespace:
+    """Merge a TOML experiment file with explicitly supplied CLI values.
 
-    supplied = parser.parse_args()
+    Relative dataset and output paths in a TOML file are resolved against that
+    file, matching the other baseline trainers.  Explicit CLI paths retain the
+    shell's normal working-directory semantics.
+    """
+
+    supplied = parser.parse_args(argv)
     values = dict(_DEFAULTS)
     config_path = getattr(supplied, "config", None)
     if config_path is not None:
@@ -61,6 +68,9 @@ def resolve_training_arguments(parser: argparse.ArgumentParser) -> argparse.Name
         root = config_path.parent
         values["train_datasets"] = _paths(section.get("train_files"), field="data.train_files", root=root)
         values["validation_datasets"] = _paths(section.get("validation_files"), field="data.validation_files", root=root)
+        if "output" in values:
+            output = Path(values["output"]).expanduser()
+            values["output"] = output if output.is_absolute() else (root / output).resolve()
     for key, value in vars(supplied).items():
         if key != "config" and value is not None:
             values[key] = value
