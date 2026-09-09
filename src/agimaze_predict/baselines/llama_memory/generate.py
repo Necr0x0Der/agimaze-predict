@@ -78,11 +78,12 @@ def _action_tensors(actions: Sequence[str], tokenizer, *, pad_token_id: int, dev
 def load_checkpoint(checkpoint: Path, *, device: torch.device) -> tuple[LlamaWithSpatialMemory, object]:
     """Load the frozen backbone plus the trained workspace/projection."""
 
-    weights_path = checkpoint / "spatial-memory.pt"
-    if not weights_path.is_file():
-        raise FileNotFoundError(f"missing checkpoint file: {weights_path}")
-    saved = torch.load(weights_path, map_location="cpu", weights_only=True)
-    if saved.get("format") != "agimaze_predict.llama_memory.v0":
+    if not checkpoint.is_file():
+        raise FileNotFoundError(f"checkpoint file does not exist: {checkpoint}")
+    # The checkpoint contains run metadata (including Path values), in addition
+    # to tensor state dictionaries.  It is an explicitly supplied local file.
+    saved = torch.load(checkpoint, map_location="cpu", weights_only=False)
+    if saved.get("format") != "agimaze_predict.llama_memory.v1":
         raise ValueError("unsupported spatial-memory checkpoint format")
     try:
         spatial_config = SpatialMemoryConfig(**saved["spatial_config"])
@@ -92,18 +93,24 @@ def load_checkpoint(checkpoint: Path, *, device: torch.device) -> tuple[LlamaWit
 
     AutoModelForCausalLM, AutoTokenizer = _require_transformers()
     dtype = torch.bfloat16 if device.type == "cuda" else torch.float32
-    tokenizer_path = checkpoint / "tokenizer"
-    tokenizer = AutoTokenizer.from_pretrained(tokenizer_path if tokenizer_path.is_dir() else base_model)
+    tokenizer = AutoTokenizer.from_pretrained(base_model)
     if tokenizer.pad_token_id is None:
         tokenizer.pad_token = tokenizer.eos_token
     backbone = AutoModelForCausalLM.from_pretrained(base_model, torch_dtype=dtype)
-    lora_path = checkpoint / "lora"
-    if lora_path.is_dir():
+    lora = saved.get("lora")
+    if lora is not None:
         try:
-            from peft import PeftModel
+            from peft import LoraConfig, TaskType, get_peft_model, set_peft_model_state_dict
         except ImportError as exc:
             raise RuntimeError("this checkpoint has LoRA weights; install the Llama extra") from exc
-        backbone = PeftModel.from_pretrained(backbone, lora_path)
+        backbone = get_peft_model(backbone, LoraConfig(
+            task_type=TaskType.CAUSAL_LM,
+            r=int(lora["rank"]),
+            lora_alpha=2 * int(lora["rank"]),
+            lora_dropout=0.0,
+            target_modules=lora["target_modules"],
+        ))
+        set_peft_model_state_dict(backbone, lora["state_dict"])
     model = LlamaWithSpatialMemory(backbone, spatial_config)
     model.workspace.load_state_dict(saved["workspace"])
     model.memory_projection.load_state_dict(saved["memory_projection"])
@@ -165,7 +172,7 @@ def greedy_generate(
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--checkpoint", type=Path, required=True, help="training output directory")
+    parser.add_argument("--checkpoint", type=Path, required=True, help="single-file training checkpoint")
     parser.add_argument("--prompt", help="arbitrary text prefix for Llama")
     parser.add_argument("--prompt-file", type=Path, help="UTF-8 file containing the text prefix")
     parser.add_argument("--map", dest="map_text", help="raw rectangular map, without <MAP> tags")

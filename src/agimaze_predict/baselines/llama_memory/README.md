@@ -57,7 +57,7 @@ map is raw rectangular text (without
 
 ```bash
 python scripts/generate_llama_memory.py \
-  --checkpoint runs/llama-memory-3x3-keys-4step \
+  --checkpoint runs/llama-memory-3x3-keys-4step.pt \
   --map-file /path/to/map.txt \
   --action right --action down \
   --prompt $'<ACT>right</ACT>\n<ACT>down</ACT>\n' \

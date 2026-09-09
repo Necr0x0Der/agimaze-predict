@@ -35,4 +35,4 @@ weight_decay = 0.01
 grad_clip = 1.0
 
 [run]
-output = "../../../runs/llama-memory-3x3-keys-4step"
+output = "../../../runs/llama-memory-3x3-keys-4step.pt"

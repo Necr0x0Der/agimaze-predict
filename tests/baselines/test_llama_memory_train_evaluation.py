@@ -24,7 +24,10 @@ class LlamaMemoryTrainingEvaluationDefinitionTest(unittest.TestCase):
         self.assertIn("_load_examples(args.validation_datasets)", source)
         self.assertIn("val_target_token_nll", source)
         self.assertIn("val_greedy_exact_target_accuracy", source)
-        self.assertIn('"final_validation": final_validation', source)
+        self.assertIn('"metrics": validation', source)
+        self.assertIn('"format": "agimaze_predict.llama_memory.v1"', source)
+        self.assertIn("output.parent.mkdir(parents=True, exist_ok=True)", source)
+        self.assertNotIn("output.mkdir(parents=True, exist_ok=True)", source)
         ast.parse(EVALUATE_PATH.read_text(encoding="utf-8"))
 
 

@@ -43,6 +43,22 @@ def _maybe_lora(model: torch.nn.Module, args: argparse.Namespace) -> torch.nn.Mo
     ))
 
 
+def _lora_checkpoint(model: torch.nn.Module, args: argparse.Namespace) -> dict[str, object] | None:
+    """Return adapter-only weights, never a duplicate copy of the Llama backbone."""
+
+    if args.lora_rank <= 0:
+        return None
+    try:
+        from peft import get_peft_model_state_dict
+    except ImportError as exc:
+        raise RuntimeError("LoRA needs the Llama extra: pip install -e '.[llama]'") from exc
+    return {
+        "rank": args.lora_rank,
+        "target_modules": args.lora_target_modules,
+        "state_dict": get_peft_model_state_dict(model),
+    }
+
+
 def _load_examples(paths: Sequence[Path]) -> list[PreparedExample]:
     examples: list[PreparedExample] = []
     for path in paths:
@@ -134,24 +150,29 @@ def train(args: argparse.Namespace) -> Path:
                 flush=True,
             )
     output = Path(args.output)
+    if output.is_dir():
+        raise IsADirectoryError(f"checkpoint output must be a file, not a directory: {output}")
     if output.exists() and not args.overwrite:
-        raise FileExistsError(f"{output} exists; use overwrite=true or --overwrite")
-    # The normal cadence evaluates on the final epoch; keep the value explicit
-    # here because it is persisted as checkpoint metadata below.
-    final_validation = validation
-    output.mkdir(parents=True, exist_ok=True)
-    torch.save({"format": "agimaze_predict.llama_memory.v0", "spatial_config": config.to_dict(), "workspace": model.workspace.state_dict(), "memory_projection": model.memory_projection.state_dict(), "base_model": args.base_model}, output / "spatial-memory.pt")
-    tokenizer.save_pretrained(output / "tokenizer")
-    if args.lora_rank > 0:
-        model.llama.save_pretrained(output / "lora")
-    with (output / "run.json").open("w", encoding="utf-8") as handle:
-        json.dump(
-            {"arguments": vars(args), "final_validation": final_validation},
-            handle,
-            default=str,
-            indent=2,
-            sort_keys=True,
-        )
+        raise FileExistsError(f"checkpoint already exists: {output} (use overwrite=true or --overwrite)")
+    # Keep this checkpoint compatible with the other baselines: --output names
+    # one file, not a directory containing several independent artifacts.
+    # The base tokenizer is unchanged, so it is recovered from base_model.
+    checkpoint = {
+        "format": "agimaze_predict.llama_memory.v1",
+        "base_model": args.base_model,
+        "spatial_config": config.to_dict(),
+        "workspace": model.workspace.state_dict(),
+        "memory_projection": model.memory_projection.state_dict(),
+        "lora": _lora_checkpoint(model.llama, args),
+        "datasets": {
+            "train_paths": [str(Path(path).resolve()) for path in args.train_datasets],
+            "validation_paths": [str(Path(path).resolve()) for path in args.validation_datasets],
+        },
+        "metrics": validation,
+        "arguments": vars(args),
+    }
+    output.parent.mkdir(parents=True, exist_ok=True)
+    torch.save(checkpoint, output)
     return output
 
 
@@ -175,8 +196,8 @@ def main() -> int:
         args = resolve_training_arguments(parser)
         if min(args.epochs, args.evaluate_every, args.batch_size, args.memory_tokens) <= 0:
             parser.error("epochs, evaluate-every, batch-size and memory-tokens must be positive")
-        print(json.dumps({"output": str(train(args))}))
-    except (FileNotFoundError, FileExistsError, RuntimeError, ValueError) as exc:
+        print(json.dumps({"checkpoint": str(train(args))}))
+    except (FileNotFoundError, FileExistsError, IsADirectoryError, RuntimeError, TypeError, ValueError) as exc:
         parser.error(str(exc))
     return 0
 
