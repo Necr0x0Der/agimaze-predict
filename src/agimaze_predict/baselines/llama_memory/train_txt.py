@@ -62,6 +62,32 @@ def _prompt_only_batch(batch: dict[str, Tensor], *, pad_token_id: int) -> dict[s
     return result
 
 
+def _txt_accuracy_counts(logits: Tensor, batch: dict[str, Tensor], *, memory_tokens: int) -> tuple[int, int]:
+    """Return correct and active TXT-token counts after event-memory insertion.
+
+    ``forward_txt`` expands each sequence with ``memory_tokens`` after every
+    completed ACT.  Its logits therefore cannot be aligned with the original,
+    unexpanded ``labels`` tensor by a batch-wise one-token shift.
+    """
+
+    labels = batch["labels"]
+    correct, active = 0, 0
+    for index, prompt_length in enumerate(batch["prompt_lengths"].tolist()):
+        targets = labels[index, prompt_length:]
+        targets = targets[targets.ne(-100)]
+        target_length = targets.numel()
+        if not target_length:
+            continue
+        event_count = int(batch["event_mask"][index].sum().item())
+        first_target = prompt_length + event_count * memory_tokens
+        predicted = logits[index, first_target - 1:first_target - 1 + target_length]
+        if predicted.shape[0] != target_length:
+            raise ValueError("expanded TXT logits do not contain every target token")
+        correct += int(predicted.argmax(dim=-1).eq(targets).sum().item())
+        active += target_length
+    return correct, active
+
+
 def _left_pad_embeds(embeds: Tensor, attention_mask: Tensor) -> tuple[Tensor, Tensor]:
     """Align all final real prefix positions at ``-1`` for batched decoding."""
 
@@ -121,11 +147,13 @@ def evaluate_txt_rollouts(
     for batch in loader:
         batch = _to_device(batch, device)
         output = model.forward_txt(**{key: value for key, value in batch.items() if key != "prompt_lengths"})
-        labels = batch["labels"]
-        active = labels[:, 1:].ne(-100)
-        total_loss += float(output.loss.item()) * int(active.sum().item())
-        total_tokens += int(active.sum().item())
-        token_correct += int((output.logits[:, :-1].argmax(dim=-1).eq(labels[:, 1:]) & active).sum().item())
+        active = int(batch["labels"].ne(-100).sum().item())
+        total_loss += float(output.loss.item()) * active
+        total_tokens += active
+        correct, _ = _txt_accuracy_counts(
+            output.logits, batch, memory_tokens=model.workspace.config.memory_tokens
+        )
+        token_correct += correct
     limit = len(examples) if greedy_examples is None else min(len(examples), greedy_examples)
     exact = 0
     for start in range(0, limit, batch_size):
