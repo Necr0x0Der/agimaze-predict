@@ -69,6 +69,12 @@ def collate_byte_examples_with_actions(
     inside <ACT>...</ACT> tags (but NOT the tags themselves).
     
     This allows training on rational-agent datasets where actions are predictable.
+    
+    Returns dict with:
+        - input_ids: input token sequences
+        - labels: target labels (combined ACT + POS)
+        - act_mask: binary mask (1 = ACT token, 0 = other)
+        - pos_mask: binary mask (1 = POS token, 0 = other)
     """
 
     if not examples:
@@ -88,24 +94,39 @@ def collate_byte_examples_with_actions(
     width = longest - 1
     input_ids: list[list[int]] = []
     labels: list[list[int]] = []
+    act_masks: list[list[int]] = []
+    pos_masks: list[list[int]] = []
 
     for item in serialized:
         ids = item.token_ids
         row_input = ids[:-1] + [PAD_TOKEN_ID] * (width - (len(ids) - 1))
         row_labels = [IGNORE_INDEX] * width
+        row_act_mask = [0] * width
+        row_pos_mask = [0] * width
         
-        # Original behavior: include target
+        # POS target (original behavior)
         for index in range(item.target_start - 1, len(ids) - 1):
             row_labels[index] = ids[index + 1]
+            row_pos_mask[index] = 1
         
-        # NEW: Also include <ACT> content (only bytes INSIDE tags, not tags themselves)
+        # ACT content (NEW)
         act_ranges = find_act_content_ranges(ids)
         for content_start, content_end in act_ranges:
             # Predict content bytes (causal: predict token i+1 from i)
             for index in range(content_start - 1, min(content_end - 1, len(ids) - 1)):
                 row_labels[index] = ids[index + 1]
+                row_act_mask[index] = 1
+                # Remove from POS mask if accidentally overlapping
+                row_pos_mask[index] = 0
         
         input_ids.append(row_input)
         labels.append(row_labels)
+        act_masks.append(row_act_mask)
+        pos_masks.append(row_pos_mask)
 
-    return {"input_ids": input_ids, "labels": labels}
+    return {
+        "input_ids": input_ids,
+        "labels": labels,
+        "act_mask": act_masks,
+        "pos_mask": pos_masks,
+    }
