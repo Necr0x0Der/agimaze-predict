@@ -110,10 +110,16 @@ def collate_byte_examples_with_actions(
             row_pos_mask[index] = 1
         
         # ACT content (NEW)
+        # Include closing </ACT> tag in loss so model learns to stop properly
         act_ranges = find_act_content_ranges(ids)
         for content_start, content_end in act_ranges:
-            # Predict content bytes (causal: predict token i+1 from i)
-            for index in range(content_start - 1, min(content_end - 1, len(ids) - 1)):
+            # content_end points to first byte of </ACT>
+            # We want to include the entire </ACT> tag (6 bytes)
+            act_close_len = 6  # len("</ACT>")
+            full_end = min(content_end + act_close_len, len(ids))
+            
+            # Predict content bytes + closing tag (causal: predict token i+1 from i)
+            for index in range(content_start - 1, min(full_end - 1, len(ids) - 1)):
                 row_labels[index] = ids[index + 1]
                 row_act_mask[index] = 1
                 # Remove from POS mask if accidentally overlapping
