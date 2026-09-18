@@ -92,6 +92,8 @@ def _collator_with_actions(context_length: int, *, state_tokens: int = 0):
         return {
             "input_ids": torch.tensor(batch["input_ids"], dtype=torch.long),
             "labels": torch.tensor(batch["labels"], dtype=torch.long),
+            "act_mask": torch.tensor(batch["act_mask"], dtype=torch.bool),
+            "pos_mask": torch.tensor(batch["pos_mask"], dtype=torch.bool),
         }
     return collate
 
@@ -113,48 +115,108 @@ def make_dataloader(
     )
 
 
+def compute_losses_by_type(logits, labels, act_mask, pos_mask):
+    """Compute separate losses for ACT and POS tokens."""
+    # Total loss
+    total_loss = target_cross_entropy(logits, labels)
+    
+    # ACT loss
+    act_labels = labels.clone()
+    act_labels[~act_mask] = -100  # Mask non-ACT tokens
+    act_loss = target_cross_entropy(logits, act_labels)
+    act_bytes = act_mask.sum().item()
+    
+    # POS loss
+    pos_labels = labels.clone()
+    pos_labels[~pos_mask] = -100  # Mask non-POS tokens
+    pos_loss = target_cross_entropy(logits, pos_labels)
+    pos_bytes = pos_mask.sum().item()
+    
+    return {
+        "total_loss": total_loss,
+        "act_loss": act_loss,
+        "pos_loss": pos_loss,
+        "act_bytes": act_bytes,
+        "pos_bytes": pos_bytes,
+        "total_bytes": act_bytes + pos_bytes,
+    }
+
+
 def train_epoch(model, dataloader, optimizer, device, grad_clip=1.0):
     model.train()
     total_loss = 0.0
+    act_loss = 0.0
+    pos_loss = 0.0
     total_bytes = 0
+    act_bytes = 0
+    pos_bytes = 0
 
     for batch in dataloader:
         input_ids = batch["input_ids"].to(device)
         labels = batch["labels"].to(device)
+        act_mask = batch["act_mask"].to(device)
+        pos_mask = batch["pos_mask"].to(device)
 
         logits = model(input_ids)
-        loss = target_cross_entropy(logits, labels)
+        
+        # Compute losses with breakdown
+        losses = compute_losses_by_type(logits, labels, act_mask, pos_mask)
+        loss = losses["total_loss"]
 
         optimizer.zero_grad()
         loss.backward()
         torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=grad_clip)
         optimizer.step()
 
-        active_bytes = int(labels.ne(-100).sum().item())
-        total_loss += float(loss.item()) * active_bytes
-        total_bytes += active_bytes
+        # Accumulate weighted losses
+        total_loss += float(loss.item()) * losses["total_bytes"]
+        act_loss += float(losses["act_loss"].item()) * losses["act_bytes"]
+        pos_loss += float(losses["pos_loss"].item()) * losses["pos_bytes"]
+        total_bytes += losses["total_bytes"]
+        act_bytes += losses["act_bytes"]
+        pos_bytes += losses["pos_bytes"]
 
-    return total_loss / total_bytes if total_bytes > 0 else 0.0
+    return {
+        "total": total_loss / total_bytes if total_bytes > 0 else 0.0,
+        "act": act_loss / act_bytes if act_bytes > 0 else 0.0,
+        "pos": pos_loss / pos_bytes if pos_bytes > 0 else 0.0,
+    }
 
 
 def evaluate_model(model, dataloader, device):
     model.eval()
     total_loss = 0.0
+    act_loss = 0.0
+    pos_loss = 0.0
     total_bytes = 0
+    act_bytes = 0
+    pos_bytes = 0
 
     with torch.no_grad():
         for batch in dataloader:
             input_ids = batch["input_ids"].to(device)
             labels = batch["labels"].to(device)
+            act_mask = batch["act_mask"].to(device)
+            pos_mask = batch["pos_mask"].to(device)
 
             logits = model(input_ids)
-            loss = target_cross_entropy(logits, labels)
+            
+            # Compute losses with breakdown
+            losses = compute_losses_by_type(logits, labels, act_mask, pos_mask)
 
-            active_bytes = int(labels.ne(-100).sum().item())
-            total_loss += float(loss.item()) * active_bytes
-            total_bytes += active_bytes
+            # Accumulate weighted losses
+            total_loss += float(losses["total_loss"].item()) * losses["total_bytes"]
+            act_loss += float(losses["act_loss"].item()) * losses["act_bytes"]
+            pos_loss += float(losses["pos_loss"].item()) * losses["pos_bytes"]
+            total_bytes += losses["total_bytes"]
+            act_bytes += losses["act_bytes"]
+            pos_bytes += losses["pos_bytes"]
 
-    return total_loss / total_bytes if total_bytes > 0 else 0.0
+    return {
+        "total": total_loss / total_bytes if total_bytes > 0 else 0.0,
+        "act": act_loss / act_bytes if act_bytes > 0 else 0.0,
+        "pos": pos_loss / pos_bytes if pos_bytes > 0 else 0.0,
+    }
 
 
 def train(args: argparse.Namespace, logger: Logger) -> dict[str, object]:
@@ -265,34 +327,42 @@ def train(args: argparse.Namespace, logger: Logger) -> dict[str, object]:
     logger.log("=" * 80)
     logger.log("TRAINING")
     logger.log("=" * 80)
+    logger.log("Format: Epoch | Total / ACT / POS | Time")
+    logger.log("")
     
     for epoch in range(1, args.epochs + 1):
         epoch_start = time.time()
-        train_loss = train_epoch(model, train_loader, optimizer, device, grad_clip=args.grad_clip)
+        train_losses = train_epoch(model, train_loader, optimizer, device, grad_clip=args.grad_clip)
         epoch_time = time.time() - epoch_start
 
         # Evaluate every N epochs
         if epoch % args.evaluate_every == 0 or epoch == args.epochs:
-            val_loss = evaluate_model(model, val_loader, device)
-            msg = f"Epoch {epoch:3d}/{args.epochs} | Train: {train_loss:.4f} | Val: {val_loss:.4f} | Time: {epoch_time:.1f}s"
+            val_losses = evaluate_model(model, val_loader, device)
+            
+            msg = (f"Epoch {epoch:3d}/{args.epochs} | "
+                   f"Train: {train_losses['total']:.4f} / {train_losses['act']:.4f} / {train_losses['pos']:.4f} | "
+                   f"Val: {val_losses['total']:.4f} / {val_losses['act']:.4f} / {val_losses['pos']:.4f} | "
+                   f"{epoch_time:.1f}s")
             logger.log(msg)
 
-            if val_loss < best_val_loss:
-                best_val_loss = val_loss
+            if val_losses['total'] < best_val_loss:
+                best_val_loss = val_losses['total']
                 checkpoint = {
                     "model_state_dict": model.state_dict(),
                     "model_config": asdict(config),
                     "epoch": epoch,
-                    "train_loss": train_loss,
-                    "val_loss": val_loss,
+                    "train_losses": train_losses,
+                    "val_losses": val_losses,
                     "train_datasets": [str(p) for p in args.train_datasets],
                     "validation_datasets": [str(p) for p in args.validation_datasets],
                     "training_args": vars(args),
                 }
                 torch.save(checkpoint, output_path)
-                logger.log(f"  → Saved checkpoint (val_loss={val_loss:.4f})")
+                logger.log(f"  → Checkpoint saved (val={val_losses['total']:.4f})")
         else:
-            msg = f"Epoch {epoch:3d}/{args.epochs} | Train: {train_loss:.4f} | Time: {epoch_time:.1f}s"
+            msg = (f"Epoch {epoch:3d}/{args.epochs} | "
+                   f"Train: {train_losses['total']:.4f} / {train_losses['act']:.4f} / {train_losses['pos']:.4f} | "
+                   f"{epoch_time:.1f}s")
             logger.log(msg)
 
     total_time = time.time() - start_time

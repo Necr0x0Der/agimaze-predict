@@ -3,7 +3,10 @@
 from __future__ import annotations
 
 import argparse
-import tomllib
+try:
+    import tomllib  # Python 3.11+
+except ModuleNotFoundError:
+    import tomli as tomllib  # Python <3.11 fallback
 from pathlib import Path
 from typing import Sequence
 
