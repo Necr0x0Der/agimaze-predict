@@ -301,7 +301,8 @@ class VisualTransformer(nn.Module):
         event_positions: Tensor,
         event_counts: Tensor,
         target_input_ids: Tensor | None = None,
-    ) -> Tensor:
+        return_action_logits: bool = False,
+    ) -> Tensor | tuple[Tensor, Tensor]:
         if input_ids.ndim != 2 or visual_maps.ndim != 3:
             raise ValueError("input_ids must be [batch,text] and visual_maps [batch,height,width]")
         batch, length = input_ids.shape
@@ -322,6 +323,8 @@ class VisualTransformer(nn.Module):
         for block in self.text_blocks:
             text_states = block(text_states, visual_for_text)
         if self.config.pos_readout == "full_text":
+            if return_action_logits:
+                raise ValueError("return_action_logits is only for visual_only readout")
             return self.output(self.norm(text_states))
         if target_input_ids is None:
             raise ValueError("target_input_ids is required for visual_only readout")
@@ -337,7 +340,12 @@ class VisualTransformer(nn.Module):
         final_visual = frames[:, -1].reshape(batch, -1, self.config.visual_d_model)
         for block in self.target_blocks:
             target_states = block(target_states, final_visual)
-        return self.target_output(self.target_norm(target_states))
+        target_logits = self.target_output(self.target_norm(target_states))
+        if return_action_logits:
+            # Reuse the existing causal full-text readout for action bytes.
+            # The POS answer still comes exclusively from the visual-only decoder.
+            return target_logits, self.output(self.norm(text_states))
+        return target_logits
 
 
 def target_cross_entropy(logits: Tensor, labels: Tensor, *, ignore_index: int = -100) -> Tensor:

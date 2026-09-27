@@ -106,9 +106,10 @@ def _canvas(rows: tuple[str, ...], *, height: int, width: int, blank_char: int) 
 
 
 def collate_visual_examples(
-    examples: Sequence[PreparedExample], *, context_length: int, canvas_height: int, canvas_width: int
+    examples: Sequence[PreparedExample], *, context_length: int, canvas_height: int, canvas_width: int,
+    predict_actions: bool = False,
 ) -> dict[str, list[list[int]]]:
-    """Build target-only byte LM tensors plus event-aligned visual inputs."""
+    """Build event-aligned visual inputs; optionally supervise ACT contents and closing tags."""
 
     if not examples:
         raise ValueError("cannot collate an empty batch")
@@ -123,6 +124,8 @@ def collate_visual_examples(
     max_target = max(len(item.target_suffix) for item in serialized)
     input_ids: list[list[int]] = []
     labels: list[list[int]] = []
+    act_masks: list[list[int]] = []
+    pos_masks: list[list[int]] = []
     event_positions: list[list[int]] = []
     event_counts: list[list[int]] = []
     source_lengths: list[int] = []
@@ -135,10 +138,33 @@ def collate_visual_examples(
         text_input = ids[:-1]
         input_ids.append(text_input + [PAD_TOKEN_ID] * (width - len(text_input)))
         row_labels = [IGNORE_INDEX] * width
+        row_act_mask = [0] * width
+        row_pos_mask = [0] * width
         # ``target_start - 1`` is the literal '>' closing known <POS>; it predicts '('.
         for index in range(item.target_start - 1, len(ids) - 1):
             row_labels[index] = ids[index + 1]
+            row_pos_mask[index] = 1
+        if predict_actions:
+            # Opening <ACT> tags delimit known queries. From their final '>' onward,
+            # predict the content AND </ACT> (the stopping condition). Never train
+            # on the next opening tag: the number of actions is supplied by data.
+            start = 0
+            close = b"</ACT>"
+            opening = b"<ACT>"
+            prefix = bytes(ids[:item.target_start])
+            while (open_at := prefix.find(opening, start)) >= 0:
+                content_start = open_at + len(opening)
+                close_at = prefix.find(close, content_start)
+                if close_at < 0:
+                    raise ValueError("incomplete ACT block in visual text")
+                end = close_at + len(close)
+                for index in range(content_start - 1, end - 1):
+                    row_labels[index] = ids[index + 1]
+                    row_act_mask[index] = 1
+                start = end
         labels.append(row_labels)
+        act_masks.append(row_act_mask)
+        pos_masks.append(row_pos_mask)
         event_positions.append([*item.event_positions, *([-1] * (max_events - len(item.event_positions)))])
         counts = []
         for position in range(width):
@@ -159,6 +185,8 @@ def collate_visual_examples(
     return {
         "input_ids": input_ids,
         "labels": labels,
+        "act_mask": act_masks,
+        "pos_mask": pos_masks,
         "visual_maps": visual_maps,
         "event_positions": event_positions,
         "event_counts": event_counts,

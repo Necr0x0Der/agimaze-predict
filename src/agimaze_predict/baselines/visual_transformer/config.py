@@ -15,13 +15,14 @@ DEFAULT_TRAINING_ARGUMENTS: dict[str, object] = {
     "canvas_height": 9, "canvas_width": 17, "visual_d_model": 128,
     "visual_spatial_layers": 2, "visual_temporal_layers": 2, "temporal_history": 8,
     "pos_readout": "full_text", "visual_gate_init": 0.05, "overwrite": False,
+    "predict_actions": False,
 }
 
 _CONFIG_SECTIONS = {
     "data": frozenset({"train_files", "validation_files", "test_files"}),
     "model": frozenset({"context_length", "d_model", "n_heads", "n_layers", "mlp_multiplier", "dropout"}),
     "visual": frozenset({"canvas_height", "canvas_width", "visual_d_model", "visual_spatial_layers", "visual_temporal_layers", "temporal_history", "pos_readout", "visual_gate_init", "map_supervision"}),
-    "training": frozenset({"seed", "epochs", "evaluate_every", "batch_size", "learning_rate", "weight_decay", "grad_clip"}),
+    "training": frozenset({"seed", "epochs", "evaluate_every", "batch_size", "learning_rate", "weight_decay", "grad_clip", "predict_actions"}),
     "run": frozenset({"output", "overwrite", "device"}),
 }
 
@@ -74,6 +75,8 @@ def load_training_config(path: str | Path) -> dict[str, object]:
             raise _error(config_path, f"[visual] {key} must be a positive integer")
     if values.get("pos_readout", "full_text") not in {"full_text", "visual_only"}:
         raise _error(config_path, "[visual] pos_readout must be 'full_text' or 'visual_only'")
+    if "predict_actions" in values and not isinstance(values["predict_actions"], bool):
+        raise _error(config_path, "[training] predict_actions must be a boolean")
     return values
 
 
@@ -83,6 +86,7 @@ def resolve_training_arguments(parser: argparse.ArgumentParser, argv: Sequence[s
     values = dict(DEFAULT_TRAINING_ARGUMENTS)
     if config_path is not None:
         values.update(load_training_config(config_path))
+        values["config_path"] = config_path
     values.update(explicit)
     missing = [key for key in ("train_datasets", "validation_datasets", "output") if key not in values]
     if missing:

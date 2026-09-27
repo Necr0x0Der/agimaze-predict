@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Train byte-transformer with loss on BOTH <POS> target AND <ACT> content.
+"""Train byte-transformer with loss on BOTH <POS> target AND <ACT> answers.
 
 This modification enables training on rational-agent datasets where actions
 are predictable, not random. The model learns to predict:
   1. Target position (<POS>...</POS>) — original behavior
-  2. Action content (<ACT>content</ACT>) — NEW: content only, not tags
+  2. Action answer (<ACT>content</ACT>) — content and closing tag, not opening tag
 
 Usage with TOML config:
     python scripts/train_byte_transformer_with_actions.py \
@@ -473,7 +473,7 @@ def main():
         logger.log("=" * 80)
         logger.log(f"Finished: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
         logger.log("=" * 80)
-        return result
+        return 0
     except Exception as e:
         logger.log("")
         logger.log("=" * 80)

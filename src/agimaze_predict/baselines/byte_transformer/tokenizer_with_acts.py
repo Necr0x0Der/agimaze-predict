@@ -1,4 +1,4 @@
-"""Modified tokenizer that includes <ACT>...</ACT> content in loss.
+"""Modified tokenizer that includes ACT content and closing tags in loss.
 
 This is for training on rational-agent datasets where actions are predictable.
 """
@@ -66,7 +66,7 @@ def collate_byte_examples_with_actions(
 
     Unlike the original collate_byte_examples which only computes loss on the
     target (<POS>...</POS>), this version ALSO includes loss on the CONTENT
-    inside <ACT>...</ACT> tags (but NOT the tags themselves).
+    inside <ACT>...</ACT> and the closing tag (but NOT the opening tag).
     
     This allows training on rational-agent datasets where actions are predictable.
     
