@@ -8,16 +8,16 @@ train_files = [
     "../../../datasets/seq/3x3-keys-rational-train2-2step.jsonl",
     "../../../datasets/seq/3x3-keys-rational-train1-4step.jsonl",
     "../../../datasets/seq/3x3-keys-rational-train2-4step.jsonl",
-    "../../../datasets/seq/3x3-keys-rational-train1-8step.jsonl",
-    "../../../datasets/seq/3x3-keys-rational-train2-8step.jsonl",
+    "../../../datasets/seq/3x3-keys-rational-train1-exit.jsonl",
+    "../../../datasets/seq/3x3-keys-rational-train2-exit.jsonl",
 ]
 validation_files = [
     "../../../datasets/seq/3x3-keys-rational-valid-4step.jsonl",
-    "../../../datasets/seq/3x3-keys-rational-valid-8step.jsonl",
+    "../../../datasets/seq/3x3-keys-rational-valid-exit.jsonl",
 ]
 
 [model]
-context_length = 192
+context_length = 384
 d_model = 128
 n_heads = 4
 n_layers = 4
@@ -32,13 +32,13 @@ visual_spatial_layers = 2
 visual_temporal_layers = 2
 temporal_history = 8
 pos_readout = "visual_only" # original paper's stronger POS readout; ACT uses causal text output
-visual_gate_init = 0.05
+visual_gate_init = 0.99
 map_supervision = "none"
 
 [training]
 predict_actions = true
 seed = 42
-epochs = 150
+epochs = 300
 evaluate_every = 5
 batch_size = 32
 learning_rate = 0.0002
@@ -46,5 +46,5 @@ weight_decay = 0.01
 grad_clip = 1.0
 
 [run]
-output = "../../../runs/visual-rational-actions-3x3-keys.pt"
-overwrite = false
+output = "../../../runs/visual-rational-actions-3x3-keys-visual-exit.pt"
+overwrite = true
