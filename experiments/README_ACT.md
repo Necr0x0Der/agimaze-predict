@@ -86,6 +86,26 @@ action selection or goal-directed success. Validation demonstrations include
 the correct earlier actions, so evaluate rollouts separately before claiming
 policy competence. Use a Python 3.11+ environment with PyTorch installed.
 
+### Live visual-only agent
+
+```bash
+/opt/anaconda3/bin/python3 scripts/visual_action_agent.py \
+  --checkpoint runs/visual-rational-actions-3x3-keys-visual.pt \
+  --base-url http://127.0.0.1:8000 \
+  --path TRAINING/S0-keys/STAGE-01 --seed 42
+```
+
+The agent reads the **initial** map returned by `/api/start`, preserves open
+border spaces, and builds the same padded visual canvas used in training.
+Each step sends `<ACT>` plus previously accepted actions to the checkpoint's
+causal text readout, greedily generates the next action, and posts it to
+`/api/step`. It warns and continues if the generated text has an unambiguous
+action prefix followed by noise. Invalid generations and exhausted context
+stop the run instead of guessing an action or silently discarding history.
+This checkpoint's text context is 192 bytes: long live trajectories can
+exhaust it; short teacher-forced validation losses do not guarantee successful
+closed-loop navigation. `--max-steps` can cap an exploratory run.
+
 **Split caveat:** the rational `3x3-keys` shards currently selected above are
 not disjoint as serialized examples: 618 distinct validation `(input, target)`
 pairs also occur in training (across the 4- and 8-step validation files).
